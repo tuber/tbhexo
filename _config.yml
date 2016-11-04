@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-author: John Doe
+title: 要干，请深干
+subtitle: 向三金学习
+description: 生命不嘻,都干不止
+author: B T
 language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://iamtb.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
