@@ -42,7 +42,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="PHP,插入排序,算法," />
 
 
 
@@ -58,16 +58,16 @@
 
 
 
-<meta name="description" content="生命不嘻,都干不止">
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940&amp;lt;?php/*1.外层循环是从数组中选出一个arr[i]将要插入到有序数组的数2.内层循环是遍历已经排序好的数组，将arr[i]（也就是temp）依次与有序数组做对比，如果发现有序数组其中一个比准备插进来的arr[i]大，那么谁比这个arr[i]大，谁">
 <meta property="og:type" content="article">
-<meta property="og:title" content="add from tbhexo 004">
-<meta property="og:url" content="http://iamtb.cn/2016/11/04/add-from-tbhexo-004/index.html">
+<meta property="og:title" content="PHP的插入排序">
+<meta property="og:url" content="http://iamtb.cn/2016/11/04/php-insert-sort/index.html">
 <meta property="og:site_name" content="要干，请深干">
-<meta property="og:description" content="生命不嘻,都干不止">
-<meta property="og:updated_time" content="2016-11-04T09:26:11.526Z">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940&amp;lt;?php/*1.外层循环是从数组中选出一个arr[i]将要插入到有序数组的数2.内层循环是遍历已经排序好的数组，将arr[i]（也就是temp）依次与有序数组做对比，如果发现有序数组其中一个比准备插进来的arr[i]大，那么谁比这个arr[i]大，谁">
+<meta property="og:updated_time" content="2016-11-04T11:21:45.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="add from tbhexo 004">
-<meta name="twitter:description" content="生命不嘻,都干不止">
+<meta name="twitter:title" content="PHP的插入排序">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940&amp;lt;?php/*1.外层循环是从数组中选出一个arr[i]将要插入到有序数组的数2.内层循环是遍历已经排序好的数组，将arr[i]（也就是temp）依次与有序数组做对比，如果发现有序数组其中一个比准备插进来的arr[i]大，那么谁比这个arr[i]大，谁">
 
 
 
@@ -88,10 +88,10 @@
 
 
 
-  <link rel="canonical" href="http://iamtb.cn/2016/11/04/add-from-tbhexo-004/"/>
+  <link rel="canonical" href="http://iamtb.cn/2016/11/04/php-insert-sort/"/>
 
 
-  <title> add from tbhexo 004 | 要干，请深干 </title>
+  <title> PHP的插入排序 | 要干，请深干 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -221,7 +221,7 @@
             
             
               
-                add from tbhexo 004
+                PHP的插入排序
               
             
           </h1>
@@ -233,19 +233,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-04T17:26:11+08:00" content="2016-11-04">
+            <time itemprop="dateCreated" datetime="2016-11-04T19:18:59+08:00" content="2016-11-04">
               2016-11-04
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/04/add-from-tbhexo-004/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/add-from-tbhexo-004/" itemprop="commentsCount"></span>
+                <a href="/2016/11/04/php-insert-sort/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/php-insert-sort/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -268,7 +287,8 @@
       
 
       
-        
+        <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">/*</span></div><div class="line">1.外层循环是从数组中选出一个arr[i]将要插入到有序数组的数</div><div class="line">2.内层循环是遍历已经排序好的数组，将arr[i]（也就是temp）依次与有序数组做对比，如果发现有序数组其中一个比准备插进来的arr[i]大，</div><div class="line">那么谁比这个arr[i]大，谁就出去，把位置腾出去，当然比arr[i]大的这个数也不能扔，就给他放在已经排号序数组中且相对于</div><div class="line">他的下一个索引就好了。</div><div class="line">3.2还有个空档，这时候把temp补上就行了</div><div class="line">*/</div><div class="line">$arr = [<span class="number">3</span>, <span class="number">7</span>, <span class="number">6</span>,<span class="number">8</span>,<span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span><span class="params">($arr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> ($i = <span class="number">1</span>; $i &lt; count($arr); $i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">'外层&#123;$i&#125;='</span> . $i . <span class="string">"次循环"</span> . <span class="string">"\n"</span>;</div><div class="line"></div><div class="line">        $temp = $arr[$i];<span class="comment">//待插入的数</span></div><div class="line">        <span class="keyword">echo</span> <span class="string">'外层待插入的数为&#123;$temp&#125;='</span> . $temp . <span class="string">"\n"</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> ($j = $i - <span class="number">1</span>; $j &gt;= <span class="number">0</span> &amp;&amp; $temp &gt; $arr[$j]; $j--)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">'====&gt;内层&#123;$j&#125;='</span> . $j . <span class="string">"次循环"</span> . <span class="string">"\n"</span>;</div><div class="line">            <span class="keyword">echo</span> <span class="string">'要插入的$temp'</span> . <span class="string">"=$temp "</span> . <span class="string">"VS "</span> . <span class="string">'已经排序好的$arr[$j]='</span> . <span class="string">"$arr[$j]"</span> . <span class="string">"小\n"</span>;</div><div class="line"></div><div class="line">            $arr[$j + <span class="number">1</span>] = $arr[$j];</div><div class="line">            <span class="keyword">echo</span> <span class="string">'所以要腾出一个空来给temp,这时候索引$j的值为'</span>.$arr[$j].<span class="string">'要往后靠，此时$j='</span> . $j, <span class="string">"\n"</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">'外层&#123;$i&#125;='</span> . $i . <span class="string">'次循环结束'</span>;</div><div class="line">        <span class="comment">// var_dump($temp,$arr[$i]);注意此处两值如果已经经历了内层循环，那么就！==</span></div><div class="line">        $arr[$j + <span class="number">1</span>] = $temp;</div><div class="line">        <span class="keyword">echo</span> <span class="string">'  此时完成$j='</span> . $j . <span class="string">'把temp的值'</span> . <span class="string">"$temp"</span> . <span class="string">'赋予$j+1'</span> . <span class="string">"\n"</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"====="</span>, <span class="string">"\n"</span>;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var_dump(insertSort($arr));</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -288,22 +308,28 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag">#PHP</a>
+          
+            <a href="/tags/插入排序/" rel="tag">#插入排序</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/04/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/11/04/post/" rel="next" title="此博客的'构造方法'">
+                <i class="fa fa-chevron-left"></i> 此博客的'构造方法'
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/04/add-tbhexo-005/" rel="prev" title="add tbhexo 005">
-                add tbhexo 005 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -329,8 +355,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/04/add-from-tbhexo-004/"
-           data-title="add from tbhexo 004" data-url="http://iamtb.cn/2016/11/04/add-from-tbhexo-004/">
+      <div class="ds-thread" data-thread-key="2016/11/04/php-insert-sort/"
+           data-title="PHP的插入排序" data-url="http://iamtb.cn/2016/11/04/php-insert-sort/">
       </div>
     
   </div>

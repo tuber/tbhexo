@@ -1,0 +1,715 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="github.page,hexo,git,node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="其实这就是熟悉熟悉怎么用git，不建议一个仓库弄两个分支…
+HEXO初始化暂设当前目录 iamtb，且github仓库A放hexo dynamic文件，仓库B放hexo static文件
+npm install -g hexo
+
+npm install hexo-deployer-git --save
+
+hexo init iamtb
+ 在iamtb文件夹下
+hexo s
+来个NB的NEXT主题在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="此博客的'构造方法'">
+<meta property="og:url" content="http://iamtb.cn/2016/11/04/post/index.html">
+<meta property="og:site_name" content="要干，请深干">
+<meta property="og:description" content="其实这就是熟悉熟悉怎么用git，不建议一个仓库弄两个分支…
+HEXO初始化暂设当前目录 iamtb，且github仓库A放hexo dynamic文件，仓库B放hexo static文件
+npm install -g hexo
+
+npm install hexo-deployer-git --save
+
+hexo init iamtb
+ 在iamtb文件夹下
+hexo s
+来个NB的NEXT主题在">
+<meta property="og:image" content="http://iamtb.cn/img/node/IAMTB.png">
+<meta property="og:updated_time" content="2016-11-04T11:14:56.893Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="此博客的'构造方法'">
+<meta name="twitter:description" content="其实这就是熟悉熟悉怎么用git，不建议一个仓库弄两个分支…
+HEXO初始化暂设当前目录 iamtb，且github仓库A放hexo dynamic文件，仓库B放hexo static文件
+npm install -g hexo
+
+npm install hexo-deployer-git --save
+
+hexo init iamtb
+ 在iamtb文件夹下
+hexo s
+来个NB的NEXT主题在">
+<meta name="twitter:image" content="http://iamtb.cn/img/node/IAMTB.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '1184093927',
+      author: 'BT'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://iamtb.cn/2016/11/04/post/"/>
+
+
+  <title> 此博客的'构造方法' | 要干，请深干 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">要干，请深干</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">向三金学习</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                此博客的'构造方法'
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T18:22:18+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/04/post/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/post/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>其实这就是熟悉熟悉怎么用git，不建议一个仓库弄两个分支…</em></p>
+<h2 id="HEXO初始化"><a href="#HEXO初始化" class="headerlink" title="HEXO初始化"></a>HEXO初始化</h2><p>暂设当前目录 iamtb，且github仓库A放hexo dynamic文件，仓库B放hexo static文件</p>
+<pre><code>npm install -g hexo
+
+npm install hexo-deployer-git --save
+
+hexo init iamtb
+</code></pre><p> 在iamtb文件夹下</p>
+<pre><code>hexo s
+</code></pre><h2 id="来个NB的NEXT主题"><a href="#来个NB的NEXT主题" class="headerlink" title="来个NB的NEXT主题"></a>来个NB的NEXT主题</h2><p>在iamtb目录下载主题NEXT，</p>
+<a id="more"></a>
+<pre><code>git clone https://github.com/iissnan/hexo-theme-next themes/next
+</code></pre><p>修改基本主题配置，包括语言，page等，确保本地预览无误。</p>
+<h2 id="重点来了！！！"><a href="#重点来了！！！" class="headerlink" title="[重点来了！！！]"></a>[重点来了！！！]</h2><p>[重点来了！]必须<strong>删除下载主题内的.git目录</strong>，否则主题无法上传到A库，因为你自己下载的主题文件有.git控制文件夹。<br>另外一定<strong>修改.gitignore</strong> ,把其中的<code>node_modules</code>和<code>db.json</code>，不要ignore，不要ignore，不要ignore。</p>
+<p> 意思就是你的<code>.ignore</code>文件是这样：</p>
+<pre><code>.DS_Store
+Thumbs.db
+*.log
+public/
+.deploy*/
+</code></pre><h2 id="推到A仓库"><a href="#推到A仓库" class="headerlink" title="推到A仓库"></a>推到A仓库</h2><p>在github新建<a href="https://github.com/tuber/tbhexo.git" target="_blank" rel="external">A仓库</a>，把目前的这些文件都推到A库。参考以下命令</p>
+<pre><code>503  git status
+504  git init
+505  git status
+506  git add *
+507  git commit -m &apos;init hexo and next theme&apos;
+508  git status
+509  git remote
+510  git remote add origin https://github.com/tuber/tbhexo.git
+511  git branch
+512  git push
+513  git push origin master
+</code></pre><h2 id="建立yourname-github-io"><a href="#建立yourname-github-io" class="headerlink" title="建立yourname.github.io"></a>建立yourname.github.io</h2><p>github建立<a href="http://tuber.github.io" target="_blank" rel="external">仓库B</a>,建完后可一进入仓库setting进行初始化（Launch automatic page generator），保证访问<code>yourname.github.io</code>正常访问。</p>
+<h2 id="本地config配置"><a href="#本地config配置" class="headerlink" title="本地config配置"></a>本地config配置</h2><p> 目的就是执行<code>hexo d</code>的时候推到B仓库</p>
+<pre><code>deploy:
+  type: git
+  repo: https://github.com/tuber/tuber.github.io.git
+  branch: master
+  message: just static
+</code></pre><h2 id="本地发布测试文章"><a href="#本地发布测试文章" class="headerlink" title="本地发布测试文章"></a>本地发布测试文章</h2><p> 如果网络慢可以在主题设置中禁用google字体</p>
+<pre><code>hexo new ‘001’
+
+hexo new ‘002’
+
+hexo new ‘003’
+
+hexo g
+
+git commit -am&apos;add 3 post&apos;
+
+git push origin master #把本地master推到远程origin，此处为A仓库
+
+hexo d #把生成静态文件推到B仓库
+</code></pre><h2 id="完成80-了，如果换电脑了呢？"><a href="#完成80-了，如果换电脑了呢？" class="headerlink" title="完成80%了，如果换电脑了呢？"></a>完成80%了，如果换电脑了呢？</h2><p> 那我们由于之前都做好了准备，我们只需要在你需要的地方</p>
+<pre><code>git clone https://github.com/tuber/tbhexo.git，
+</code></pre><p> 这样你目录下就会新增了一个<code>tbhexo</code>文件夹</p>
+<p>进入thhexo目录，<strong>不用init 不用init 不用init</strong></p>
+<pre><code>npm install hexo
+
+npm install hexo-deployer-git
+</code></pre><p>然后还是先<code>hexo s</code> 启动一下，正常没问题</p>
+<p> 然后从tbhexo文件夹下，（就相当于你另外一台电脑了）<br>随便创建几个文件：</p>
+<pre><code>hexo new add tbhexo 004
+hexo new add tbhexo 005
+hexo new add tbhexo 006
+</code></pre><p>可以参考以下命令</p>
+<pre><code>504  git status
+505  git add *
+506  git commit -m&apos;add 3 posts and tow helloword posts in tbhexo&apos;
+507  git push origin master
+</code></pre><h2 id="最后一步"><a href="#最后一步" class="headerlink" title="最后一步"></a>最后一步</h2><p><code>hexo d</code></p>
+<p>完工。这样你在另外一台电脑上更新的文章也推到<code>yourname.github.io</code>上了。</p>
+<h2 id="如此循环"><a href="#如此循环" class="headerlink" title="如此循环"></a>如此循环</h2><p>只需要  <code>git pull origin master</code>更新</p>
+<p><code>git push origin master</code> 上传即可。</p>
+<h2 id="大问题："><a href="#大问题：" class="headerlink" title="大问题："></a>大问题：</h2><p>目测他有一个默认文章hello word ，理论应该在第一个文章，但是经过此番折腾他跑到第三文章了。<br>贴图：</p>
+<p><img src="/img/node/IAMTB.png" alt="图片描述"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github-page/" rel="tag">#github.page</a>
+          
+            <a href="/tags/hexo/" rel="tag">#hexo</a>
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/Hello-World-1/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/php-insert-sort/" rel="prev" title="PHP的插入排序">
+                PHP的插入排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/04/post/"
+           data-title="此博客的'构造方法'" data-url="http://iamtb.cn/2016/11/04/post/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="B T" />
+          <p class="site-author-name" itemprop="name">B T</p>
+          <p class="site-description motion-element" itemprop="description">生命不嘻,都干不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HEXO初始化"><span class="nav-number">1.</span> <span class="nav-text">HEXO初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#来个NB的NEXT主题"><span class="nav-number">2.</span> <span class="nav-text">来个NB的NEXT主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重点来了！！！"><span class="nav-number">3.</span> <span class="nav-text">[重点来了！！！]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推到A仓库"><span class="nav-number">4.</span> <span class="nav-text">推到A仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立yourname-github-io"><span class="nav-number">5.</span> <span class="nav-text">建立yourname.github.io</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地config配置"><span class="nav-number">6.</span> <span class="nav-text">本地config配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地发布测试文章"><span class="nav-number">7.</span> <span class="nav-text">本地发布测试文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完成80-了，如果换电脑了呢？"><span class="nav-number">8.</span> <span class="nav-text">完成80%了，如果换电脑了呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后一步"><span class="nav-number">9.</span> <span class="nav-text">最后一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如此循环"><span class="nav-number">10.</span> <span class="nav-text">如此循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大问题："><span class="nav-number">11.</span> <span class="nav-text">大问题：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">B T</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"iamtb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
