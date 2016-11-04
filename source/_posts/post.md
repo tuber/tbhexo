@@ -31,6 +31,8 @@ HEXO初始化
 
 在iamtb目录下载主题NEXT，
 
+<!-- more -->
+
     git clone https://github.com/iissnan/hexo-theme-next themes/next
 
 修改基本主题配置，包括语言，page等，确保本地预览无误。
