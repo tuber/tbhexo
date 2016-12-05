@@ -17,6 +17,7 @@ tags:
 
 ![添加动态模版][1]
 
+<!-- more -->
 
 [1]: /img/php/storm-1.jpg
 
