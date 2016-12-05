@@ -223,6 +223,126 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/04/php-insert-sort/" itemprop="url">
+                  PHP的插入排序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T19:18:59+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/04/php-insert-sort/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/php-insert-sort/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">/*</span></div><div class="line">1.外层循环是从数组中选出一个arr[i]将要插入到有序数组的数</div><div class="line">2.内层循环是遍历已经排序好的数组，将arr[i]（也就是temp）依次与有序数组做对比，如果发现有序数组其中一个比准备插进来的arr[i]大，</div><div class="line">那么谁比这个arr[i]大，谁就出去，把位置腾出去，当然比arr[i]大的这个数也不能扔，就给他放在已经排号序数组中且相对于</div><div class="line">他的下一个索引就好了。</div><div class="line">3.2还有个空档，这时候把temp补上就行了</div><div class="line">*/</div><div class="line">$arr = [<span class="number">3</span>, <span class="number">7</span>, <span class="number">6</span>,<span class="number">8</span>,<span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSort</span><span class="params">($arr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> ($i = <span class="number">1</span>; $i &lt; count($arr); $i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">'外层&#123;$i&#125;='</span> . $i . <span class="string">"次循环"</span> . <span class="string">"\n"</span>;</div><div class="line"></div><div class="line">        $temp = $arr[$i];<span class="comment">//待插入的数</span></div><div class="line">        <span class="keyword">echo</span> <span class="string">'外层待插入的数为&#123;$temp&#125;='</span> . $temp . <span class="string">"\n"</span>;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> ($j = $i - <span class="number">1</span>; $j &gt;= <span class="number">0</span> &amp;&amp; $temp &gt; $arr[$j]; $j--)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">'====&gt;内层&#123;$j&#125;='</span> . $j . <span class="string">"次循环"</span> . <span class="string">"\n"</span>;</div><div class="line">            <span class="keyword">echo</span> <span class="string">'要插入的$temp'</span> . <span class="string">"=$temp "</span> . <span class="string">"VS "</span> . <span class="string">'已经排序好的$arr[$j]='</span> . <span class="string">"$arr[$j]"</span> . <span class="string">"小\n"</span>;</div><div class="line"></div><div class="line">            $arr[$j + <span class="number">1</span>] = $arr[$j];</div><div class="line">            <span class="keyword">echo</span> <span class="string">'所以要腾出一个空来给temp,这时候索引$j的值为'</span>.$arr[$j].<span class="string">'要往后靠，此时$j='</span> . $j, <span class="string">"\n"</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">'外层&#123;$i&#125;='</span> . $i . <span class="string">'次循环结束'</span>;</div><div class="line">        <span class="comment">// var_dump($temp,$arr[$i]);注意此处两值如果已经经历了内层循环，那么就！==</span></div><div class="line">        $arr[$j + <span class="number">1</span>] = $temp;</div><div class="line">        <span class="keyword">echo</span> <span class="string">'  此时完成$j='</span> . $j . <span class="string">'把temp的值'</span> . <span class="string">"$temp"</span> . <span class="string">'赋予$j+1'</span> . <span class="string">"\n"</span>;</div><div class="line"></div><div class="line">        <span class="keyword">echo</span> <span class="string">"====="</span>, <span class="string">"\n"</span>;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var_dump(insertSort($arr));</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/04/post/" itemprop="url">
                   此博客的'构造方法'
                 </a>
@@ -1133,120 +1253,11 @@ hexo init iamtb
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/04/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-04T15:37:54+08:00" content="2016-11-04">
-              2016-11-04
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/04/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1287,7 +1298,7 @@ hexo init iamtb
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1304,7 +1315,7 @@ hexo init iamtb
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
