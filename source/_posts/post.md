@@ -166,7 +166,17 @@ github建立[仓库B][2],建完后可一进入仓库setting进行初始化（Lau
 
 ![图片描述][3]
 
+PostScript：备忘录
+----
+1. 第一步：应该先`git pull origin master` ，[`git branch` `git remore`查看]从远程拉一下分支到本地，保持同步。
+2. 第二步：`hexo new yourpost`，在本地文件夹下`source/`编辑`yourpost.md`
+3. 本地预览，然后，`hexo g` 生成对应文件如tags img等，确认格式文件无误，然后增加、提交`git add *`，`git status`，查看对应文件是否被捕捉完整
+4. 提交到本地 `git commit  -m 'add yourpost'`
+5. 提交到远程分支(这个分支是为了更换电脑后，文章等都没了的问题)，`git push origin master`
+6. 发布到你的对应io上，我的就是[tuber.github.io][4].这个是配置文件配的。注意与5的区别
+
 
   [1]: https://github.com/tuber/tbhexo.git
   [2]: http://tuber.github.io
   [3]: /img/node/IAMTB.png
+  [4]: http://tuber.github.io
