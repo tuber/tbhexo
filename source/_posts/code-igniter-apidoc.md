@@ -39,7 +39,7 @@ tags:
 
 
   [1]: /img/php/api-doc-1.jpg
-  [2]: /img/php/api-doc-1.jpg
-  [3]: /img/php/api-doc-1.jpg
+  [2]: /img/php/api-doc-2.jpg
+  [3]: /img/php/api-doc-3.jpg
   [4]: http://www.phalapi.net/
   [5]: https://github.com/tuber/apidoc
