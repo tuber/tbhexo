@@ -223,6 +223,175 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/07/http-cache/" itemprop="url">
+                  HTTP-CAHCE中的CACHE-CONTROL、Etag、Modify
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-07T13:41:11+08:00" content="2017-03-07">
+              2017-03-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/07/http-cache/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/07/http-cache/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="用世界上最好的语言演示一下etag"><a href="#用世界上最好的语言演示一下etag" class="headerlink" title="用世界上最好的语言演示一下etag"></a>用世界上最好的语言演示一下etag</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">// apache 服务器，如果您是nginx请自行配置读取header等信息，同时下面会有nginx测试</div><div class="line"></div><div class="line">$file = &apos;etag.txt&apos;;</div><div class="line">$etag = md5_file($file);</div><div class="line">$headers = apache_request_headers();</div><div class="line"></div><div class="line">if (isset($headers[&apos;If-None-Match&apos;]) &amp;&amp; trim($headers[&quot;If-None-Match&quot;]) == $etag) &#123;</div><div class="line">    header(&quot;HTTP/1.1 304 Not Modified&quot;);</div><div class="line">&#125; else &#123;</div><div class="line">    $content = file_get_contents($file);</div><div class="line">    header(&quot;Etag: $etag&quot;);</div><div class="line">    echo $content;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第一次请求，服务器返回200.我分别列下请求头【RequsetHeaders】和响应头【ResponseHeaders】</p>
+<p>请求头<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div><div class="line">Accept-Encoding:gzip, deflate, sdch</div><div class="line">Accept-Language:zh-CN,zh;q=0.8,en;q=0.6</div><div class="line">Cache-Control:no-cache</div><div class="line">Connection:keep-alive</div><div class="line">Host:kache.com</div><div class="line">Pragma:no-cache</div><div class="line">Upgrade-Insecure-Requests:1</div><div class="line">User-Agent:Mozilla/5.</div></pre></td></tr></table></figure></p>
+<p>响应头</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Request URL:http://kache.com/etag.php</div><div class="line">Request Method:GET</div><div class="line">Status Code:200 OK</div><div class="line">Remote Address:127.0.0.1:80</div><div class="line"></div><div class="line">Connection:Keep-Alive</div><div class="line">Content-Type:text/html</div><div class="line">Date:Tue, 07 Mar 2017 13:02:13 GMT</div><div class="line">Etag:966aa4bd5183fd9358fd222647c5c6a3</div><div class="line">Keep-Alive:timeout=5, max=99</div><div class="line">Server:Apache/2.4.10 (Win32) OpenSSL/0.9.8zb mod_fcgid/2.3.9</div><div class="line">Transfer-Encoding:chunked</div><div class="line">X-Powered-By:PHP/5.4.33</div></pre></td></tr></table></figure>
+<p>需要注意第一次请求头没有If-None-Match:，注意第一次响应头有Etag:这个标签,注意第一次是200</p>
+<hr>
+<p>第二次请求</p>
+<p>请求头：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div><div class="line">Accept-Encoding:gzip, deflate, sdch</div><div class="line">Accept-Language:zh-CN,zh;q=0.8,en;q=0.6</div><div class="line">Cache-Control:max-age=0</div><div class="line">Connection:keep-alive</div><div class="line">Host:kache.com</div><div class="line">If-None-Match:966aa4bd5183fd9358fd222647c5c6a3</div><div class="line">Upgrade-Insecure-Requests:1</div><div class="line">User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36</div></pre></td></tr></table></figure>
+<p>响应头:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Request URL:http://kache.com/etag.php</div><div class="line">Request Method:GET</div><div class="line">Status Code:304 Not Modified</div><div class="line">Remote Address:127.0.0.1:80</div><div class="line"></div><div class="line">Connection:Keep-Alive</div><div class="line">Date:Tue, 07 Mar 2017 13:02:16 GMT</div><div class="line">Keep-Alive:timeout=5, max=98</div><div class="line">Server:Apache/2.4.10 (Win32) OpenSSL/0.9.8zb mod_fcgid/2.3.9</div></pre></td></tr></table></figure>
+<p>需要注意第二次请求头有If-None-Match:，注意第二次响应为304</p>
+<hr>
+<h2 id="再用php语言演示一下Last-Modified"><a href="#再用php语言演示一下Last-Modified" class="headerlink" title="再用php语言演示一下Last-Modified"></a>再用php语言演示一下Last-Modified</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">/**</div><div class="line"> *If-Modified-Since[request] &amp; Last-Modified [response]</div><div class="line"> *减少网络字节传输</div><div class="line"> */</div><div class="line">$headers = apache_request_headers();</div><div class="line">$file = &apos;modified.txt&apos;;</div><div class="line"></div><div class="line">if (isset($headers[&apos;If-Modified-Since&apos;]) &amp;&amp; (strtotime($headers[&apos;If-Modified-Since&apos;]) == filemtime($file))) &#123;</div><div class="line"></div><div class="line">    header(&apos;Last-Modified: &apos; . gmdate(&apos;D, d M Y H:i:s&apos;, filemtime($file)) . &apos; GMT&apos;, true, 304);</div><div class="line"></div><div class="line">&#125; else &#123;</div><div class="line">    header(&apos;Last-Modified: &apos; . gmdate(&apos;D, d M Y H:i:s&apos;, filemtime($file)) . &apos; GMT&apos;, true, 200);</div><div class="line"></div><div class="line">    $content = file_get_contents($file);</div><div class="line">    echo $content;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>If-Modified-Since[请求头的] 和 Last-Modified [响应头的]这一对关系的HADER头我这里就不贴了。稍后的ppt里有比较详细的说明</p>
+<hr>
+<h2 id="我们常用的就是Last-Modified和Etag一起来用，上php代码"><a href="#我们常用的就是Last-Modified和Etag一起来用，上php代码" class="headerlink" title="我们常用的就是Last-Modified和Etag一起来用，上php代码"></a>我们常用的就是Last-Modified和Etag一起来用，上php代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">$file=&apos;etag_modify.txt&apos;;</div><div class="line"></div><div class="line">$last_modified_time=filemtime($file);</div><div class="line"></div><div class="line">$etag = md5_file($file);</div><div class="line"></div><div class="line">$headers = apache_request_headers();</div><div class="line"></div><div class="line"></div><div class="line">if (@strtotime($headers[&apos;If-Modified-Since&apos;]) == $last_modified_time ||</div><div class="line">    @trim($headers[&apos;If-None-Match&apos;]) == $etag) &#123;</div><div class="line">  header(&apos;Content-Length: &apos;.filesize($file));</div><div class="line">    header(&quot;HTTP/1.1 304 Not Modified&quot;);</div><div class="line"></div><div class="line">&#125;else&#123;</div><div class="line"></div><div class="line">  header(&quot;Etag: $etag&quot;);</div><div class="line">  header(&apos;Last-Modified: &apos;.gmdate(&apos;D, d M Y H:i:s&apos;, $last_modified_time).&apos; GMT&apos;, true, 200);</div><div class="line">  header(&apos;Content-Length: &apos;.filesize($file));</div><div class="line">  $content=file_get_contents($file);</div><div class="line">  echo $content;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做的好处是双重验证，同时满足两者条件才会缓存失效，弥补了modify的粒度最多为秒的问题以及modify的打开关闭即更改时间的问题。当然etag也会有坑，不同物理机可能会导致相同文件不同结果（没实验过）</p>
+<hr>
+<h2 id="直接上NGINX配置示例"><a href="#直接上NGINX配置示例" class="headerlink" title="直接上NGINX配置示例"></a>直接上NGINX配置示例</h2><p>毕竟php做服务端水平有限，大家可以参考  swoole framework OR workerman中对etag和modify的处理。</p>
+<p>不多说，上NGINX配置段，为了演示modify ，可以在/etc/nginx/nginx.conf中把etag关闭</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line"></div><div class="line">        ##</div><div class="line">        # Basic Settings</div><div class="line">        ##</div><div class="line">        etag  off;</div><div class="line">        ...</div></pre></td></tr></table></figure>
+<p>关于其他静态文件缓存的设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">location ~* \.(?:css)$ &#123;</div><div class="line">  #expires 1y;</div><div class="line">  add_header  Cache-Control max-age=5;</div><div class="line">  add_header Cache-Control &quot;public&quot;;</div><div class="line">  add_header  Last-Modified &quot;&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>简单对以上括号内代码说明：</p>
+<ol>
+<li>expires 1y; 是http协议1.0写法，1.1对应的是cache-contorl:max-age=’’;前者为GMT绝对时间，后者为相对时间。</li>
+<li>add_header  Cache-Control max-age=5; 缓存5秒，如果没有Last-Modified（即设置了 add_header  Last-Modified “”;） ，期间会一直直接请求服务器，服务器一直返回200，如果有设置Last-Modified，5秒后会请求一次服务器，5秒前会返回304.</li>
+</ol>
+<p>简单归纳Last-Modified和max-age（expires）关系</p>
+<ol>
+<li><p>如果设置了max-age=0，而没有启用modify，那么不会缓存</p>
+</li>
+<li><p>如果单单启用modify，而没有max-age==0.也会缓存</p>
+</li>
+<li><p>如果启用了modify，并且 max-age=0，那么不会缓存</p>
+</li>
+<li><p>如果设置了max-age=1000，但没有启用modify ，不会缓存</p>
+</li>
+</ol>
+<p>再此说明上面配置导致的结果：5秒内如果文件有变化，那么客户端不会有任何感知。5秒后将会重新发起请求，得到200响应。然后再缓存5秒【注意没有开启etag】</p>
+<hr>
+<p>下面这个例子和上面一样，是针对图片等，缓存1一个月，即使服务端删除了，1个月内也会正常显示（除非ctrl+f5，或者服务端重启了）public代表任何代理服务器都可以缓存，对应的为private，只允许客户端浏览器缓存。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc)$ &#123;</div><div class="line">  expires 1M;</div><div class="line">  add_header Cache-Control &quot;public&quot;;</div><div class="line">  add_header  Last-Modified &quot;&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="那需要有更改就更新，怎么办？"><a href="#那需要有更改就更新，怎么办？" class="headerlink" title="那需要有更改就更新，怎么办？"></a>那需要有更改就更新，怎么办？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">location ~* \.(?:css)$ &#123;</div><div class="line">  expires 1y;</div><div class="line"> # add_header  Cache-Control max-age=5;</div><div class="line"> # add_header Cache-Control &quot;public&quot;;</div><div class="line"> # add_header  Last-Modified &quot;&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上配置虽然过期时间是一年，但是服务端会返回Last-Modified，来确认，意思为你就vim了一下xx.css,即使没有做任何更改，浏览器也会重新发起请求。你要是没改，那八成就一年后见了。</p>
+<h2 id="那我就不想缓存怎么办？"><a href="#那我就不想缓存怎么办？" class="headerlink" title="那我就不想缓存怎么办？"></a>那我就不想缓存怎么办？</h2><p>用cache-control：控制<br>用no-cahce【浏览器端等可以缓存，但是没有什么卵用】<br>用no-store【浏览器端等不用缓存，不用费劲。每次都跟我服务端请求】<br>用must-revalidate，浏览器端别整没用的，到期了就马上跟我请求。麻溜的必须。防止的就是代理服务器等自作聪明，认为没有过期。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">location ~* \.(?:js)$ &#123;</div><div class="line">  add_header  Cache-Control no-cache;</div><div class="line">  add_header  Cache-Control must-revalidate;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="测试代码和PPT在这里"><a href="#测试代码和PPT在这里" class="headerlink" title="测试代码和PPT在这里"></a><a href="https://github.com/tuber/HTTP_CACHE" target="_blank" rel="external">测试代码和PPT在这里</a></h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/20/code-igniter-apidoc/" itemprop="url">
                   在CI框架中加入生成api文档
                 </a>
@@ -1294,130 +1463,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/09/2015-软考-上午/" itemprop="url">
-                  2015上半年软件设计师上午题部分试题分析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-09T19:18:59+08:00" content="2016-11-09">
-              2016-11-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/computer/" itemprop="url" rel="index">
-                    <span itemprop="name">computer</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/09/2015-软考-上午/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/09/2015-软考-上午/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>1.计算机中cpu对其访问速度最快的是 通用寄存器&gt;CACHE&gt;内存》硬盘</p>
-<p>2.机器字长为N位的二进制数可以用补码来表示个不同的有符号定点小数。<br> 对正数来说，二进制的原码，反码，补码都相同。<br> 负数的反码为符号位不变，其他位取反。<br> 负数的补码为其反码+1<br> 带符号的数：机器数的最高位表示符号<br>定点数是小数点位置约定不变的数，小数点不占位置，定点数分为定点整数和定点小数<br>定点整数（纯整数）：约定小数点的位置在机器数的最低位之后<br>定点小数（纯小数）：约定小数点的位置在机器数的最高数值位之前（带符号数，最高数值位是在符号位之后）<br>符号位占一位，符号位也有0 和1的变化，即出现正数和负数<br>,8位为例：理论上有负数2^(n-1)-1 =127个、正数2^(n-1)-1=127 个再加上10000000和00000000 。共计256个。</p>
-<p>3.cache的地址映像中，发生冲突块最小的是<br>  1)．直接映象<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/09/2015-软考-上午/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1463,7 +1508,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1480,7 +1525,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
