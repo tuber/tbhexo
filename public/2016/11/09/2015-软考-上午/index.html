@@ -1,0 +1,677 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="软考,软件设计师," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="1.计算机中cpu对其访问速度最快的是 通用寄存器&amp;gt;CACHE&amp;gt;内存》硬盘 2.机器字长为N位的二进制数可以用补码来表示个不同的有符号定点小数。 对正数来说，二进制的原码，反码，补码都相同。 负数的反码为符号位不变，其他位取反。 负数的补码为其反码+1 带符号的数：机器数的最高位表示符号定点数是小数点位置约定不变的数，小数点不占位置，定点数分为定点整数和定点小数定点整数（纯整数）：约定">
+<meta name="keywords" content="软考,软件设计师">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2015上半年软件设计师上午题部分试题分析">
+<meta property="og:url" content="http://iamtb.cn/2016/11/09/2015-软考-上午/index.html">
+<meta property="og:site_name" content="要干，请深干">
+<meta property="og:description" content="1.计算机中cpu对其访问速度最快的是 通用寄存器&amp;gt;CACHE&amp;gt;内存》硬盘 2.机器字长为N位的二进制数可以用补码来表示个不同的有符号定点小数。 对正数来说，二进制的原码，反码，补码都相同。 负数的反码为符号位不变，其他位取反。 负数的补码为其反码+1 带符号的数：机器数的最高位表示符号定点数是小数点位置约定不变的数，小数点不占位置，定点数分为定点整数和定点小数定点整数（纯整数）：约定">
+<meta property="og:image" content="http://iamtb.cn/img/ruankao/17-18.png">
+<meta property="og:updated_time" content="2017-04-16T07:33:00.036Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2015上半年软件设计师上午题部分试题分析">
+<meta name="twitter:description" content="1.计算机中cpu对其访问速度最快的是 通用寄存器&amp;gt;CACHE&amp;gt;内存》硬盘 2.机器字长为N位的二进制数可以用补码来表示个不同的有符号定点小数。 对正数来说，二进制的原码，反码，补码都相同。 负数的反码为符号位不变，其他位取反。 负数的补码为其反码+1 带符号的数：机器数的最高位表示符号定点数是小数点位置约定不变的数，小数点不占位置，定点数分为定点整数和定点小数定点整数（纯整数）：约定">
+<meta name="twitter:image" content="http://iamtb.cn/img/ruankao/17-18.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '1184093927',
+      author: 'BT'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://iamtb.cn/2016/11/09/2015-软考-上午/"/>
+
+
+  <title> 2015上半年软件设计师上午题部分试题分析 | 要干，请深干 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">要干，请深干</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">向三金学习</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2015上半年软件设计师上午题部分试题分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-09T19:18:59+08:00" content="2016-11-09">
+              2016-11-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/computer/" itemprop="url" rel="index">
+                    <span itemprop="name">computer</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/09/2015-软考-上午/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/09/2015-软考-上午/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1.计算机中cpu对其访问速度最快的是 通用寄存器&gt;CACHE&gt;内存》硬盘</p>
+<p>2.机器字长为N位的二进制数可以用补码来表示个不同的有符号定点小数。<br> 对正数来说，二进制的原码，反码，补码都相同。<br> 负数的反码为符号位不变，其他位取反。<br> 负数的补码为其反码+1<br> 带符号的数：机器数的最高位表示符号<br>定点数是小数点位置约定不变的数，小数点不占位置，定点数分为定点整数和定点小数<br>定点整数（纯整数）：约定小数点的位置在机器数的最低位之后<br>定点小数（纯小数）：约定小数点的位置在机器数的最高数值位之前（带符号数，最高数值位是在符号位之后）<br>符号位占一位，符号位也有0 和1的变化，即出现正数和负数<br>,8位为例：理论上有负数2^(n-1)-1 =127个、正数2^(n-1)-1=127 个再加上10000000和00000000 。共计256个。</p>
+<p>3.cache的地址映像中，发生冲突块最小的是<br>  1)．直接映象<br><a id="more"></a><br>　　每个主存地址映像到Cache中的一个指定地址的方式，称为直接映象方式。在直接映象方式下，主存中存储单元的数据只可调入Cache中的一个位置，如果主存中另一个存储单元的数据也要调入该位置则将发生冲突。地址映像的方法一般是将主存空间按Cache的尺寸分区，每区内相同的块号映像到Cache 中相同的块位置。一般地，Cache被分为2N块，主存被分为同样大小的2M块，主存与Cache中块的对应关系可用如下映像函数表示：j = i mod 2N。式中，j是Cache中的块号，i是主存中的块号。　　</p>
+<p>　　直接映象是一种最简单的地址映像方式，它的地址变换速度快，而且不涉及其他两种映像方式中的替换策略问题。但是这种方式的块冲突概率较高，当称序往返访问两个相互冲突的块中的数据时，Cache的命中率将急剧下降，因为这时即使Cache中有其他空闲块，也因为固定的地址映像关系而无法应用。　　</p>
+<p>  2)．全相联映象　　　　</p>
+<p>　　主存中的每一个字块可映像到Cache任何一个字块位置上，这种方式称为全相联映像。这种方式只有当Cache中的块全部装满后才会出现块冲突，所以块冲突的概率低，可达到很高的Cache命中率；但实现很复杂。当访问一个块中的数据时，块地址要与Cache块表中的所有地址标记进行比较已确定是否命中。在数据块调入时存在着一个比较复杂的替换问题，即决定将数据块调入Cache中什么位置，将Cache中那一块数据调出主存。为了达到较高的速度，全部比较和替换都要用硬件实现。</p>
+<p>  3)．组相联映象　　　</p>
+<p>　　组相联映象方式是直接映象和全相联映象的一种折衷方案。这种方法将存储空间分为若干组，各组之间是直接映像，而组内各块之间则是全相联映像。它是上述两种映像方式的一般形式，如果组的大小为1，即Cache空间分为2N组，就变为直接映像；如果组的大小为Cache整个的尺寸，就变为了全相联映像。组相联方式在判断块命中及替换算法上都要比全相联方式简单，块冲突的概率比直接映像的低，其命中率也介于直接映像和全相联映像方式之间。</p>
+<p>  <a href="http://blog.csdn.net/kobesdu/article/details/39081189" target="_blank" rel="external">参考</a> 　</p>
+<p>4.计算机中的cpu终端响应时间指的是 从发出中断请求到开始进入中断处理程序，要分清中断响应过程和中断服务过程</p>
+<p>5.总线宽度为32bit，时钟频率为200MHZ,若总线上每5个小时周期传送一个32bit的字，则该总线的宽度为<br>32bit*(200MHZ/5)/8bit=160MB<br>总线的带宽指的是这条总线在单位时间内可以传输的数据总量，它等于总线位宽与工作频率的乘积。例如，对于64位、800MHz的前端总线，它的数据传输率就等于64bit×800MHz÷8(Byte)=6.4GB/s；32位、33MHz PCI总线的数据传输率就是32bit×33MHz÷8=132MB/s，等等，这项法则可以用于所有并行总线上面——看到这里，读者应该明白我们所说的总线带宽指的就是它的数据传输率。<br><a href="http://baike.baidu.com/link?url=AIbVrUoI9cOptbbWoJaK2gd1pQbm4OWS7BDlE9MgNQ6UsBME35eOd0S8SZBswIiP_lwaHPB8xXeJ_oa4S9a3tTGNVwr6drJmsieSPN2xETQ8E7VscDXfRz0HLGzdOBUg" target="_blank" rel="external">参考</a></p>
+<p>6.流水线性能：采用异步并不会明显提高性能。药师加速比和效率最大化应该对流水线各级采用相同的运行时间。</p>
+<p>7.SSH，安全套接层secure shell，建立在应用层基础上</p>
+<p>8.9.系统安全 漏洞补丁，应用安全 数据库安全</p>
+<p>10.11.软件产品也是作品的一种，公民拥有的为死后50年，企业为发布后50年，公民的署名权，修改权，保护作品完整权 是永远保护的<br>个人一般只有个署名权，其他的著作权都归公司。商标谁申请谁拥有，同时申请，谁先用，谁使用。专利，谁先申请谁拥有，同时那就协商去。或者抓阄。<br>著作权不需要申请就拥有。<br>专利同时申请的就协商，协商不成谁也不想要。</p>
+<p>12.13.媒体分为感觉媒体、表示媒体、表现媒体、存储媒体和传输媒体<br> 感觉媒体<br>感觉媒体指的是能直接作用于人们的感觉器官，从而能使人产生直接感觉的媒体。如文字、数据、声音、图形、图像等。<br>在多媒体计算机技术中，我们所说的媒体一般指的是感觉媒体。<br> 表示媒体<br>表示媒体指的是为了传输感觉媒体而人为研究出来的媒体，借助于此种媒体，能有效地存储感觉媒体或将感觉媒体从一个地方传送到另一个地方。如语言编码、电报码、条形码等。<br> 表现媒体<br>表现媒体指的是用于通信中使电信号和感觉媒体之间产生转换用的媒体。如输入、输出设备，包括键盘、鼠标器、显示器、打印机等。<br> 存储媒体<br>存储媒体指的是用于存放表示媒体的媒体。如纸张、磁带、磁盘、光盘等。</p>
+<p>传输媒体<br>传输媒体指的用于传输某种媒体的物理媒体。如双绞线、电缆、光纤等。</p>
+<p>14.</p>
+<p>15.软件工程的基本要素包括方法 工具和过程</p>
+<p>16.在概要设计阶段，选择适当的解决方案，将系统分解为若干个子系统，建立整个系统的体系结构</p>
+<p>17.18 ，关键路径算法</p>
+<p>你好，本题是考察项目的关键路径，关键路径：项目中时间最长的活动顺序，决定着可能的项目最短工期。<br>本题解题时需要先生成网络图，然后找出关键路径。<br>本题按照题干生成的图如下：</p>
+<p><img src="/img/ruankao/17-18.png" alt="img"><br>可以从图中发现ADEFH是最长的路径，也就是关键路径。<br>由于ADF都是关键路径上的活动，对其进行修改就会影响关键路径，而B不是关键路径上的活动，对其进行缩短，经过B的所有路径的时长都不会比关键路径长，即不会影响项目工期</p>
+<p>19.风险的优先级通常是根据 风险暴露risk exposure 来设定<br>风险暴露又称为风险曝光度，测量的是资产的整个安全性风险，他将表示实际损失的可能性与表示大量可能损失的资讯结合到单一数字评估中，风险曝光riskexposure=错误出现率 *错误造成损失（风险损失）</p>
+<p>20.程序设计语言中，局部变量的值是在运行时改变的</p>
+<p>21.算法表达式对应的树，对此二叉树进行先序，中序，后序遍历，便可以得到表达式的前缀，中缀和后缀书写形式。<br>中缀形式是算术表达式的通常形式，只是没有括号。使用后缀表达式更容易求职（在计算机中）</p>
+<p>22.c程序中全局变量的存储空间在静态数据区分配</p>
+<p>23.24.25记得v是增加信号量，p是减少信号量。用pv就能选出，不用是p几s几</p>
+<p>26.访问位为0的就把他淘汰掉</p>
+<p>27.28 嵌入式系统初始化分为片级初始化，板级初始化，系统级初始化。这是按照自底向上，从硬件到软件的次序依次进行的。<br>片级初始化完成嵌入式微处理器的初始化，包括设置嵌入式微处理器的核心寄存器和控制寄存器。片级初始化是一个纯硬件的过程。<br>板级初始化，同时需要设置一些数据结构和参数，同时包含软件和硬件在内的初始化过程。<br>系统初始化，系统分区，网络系统，文件系统等，最后将控制权交给应用程序的入口</p>
+<p>29.瀑布模型 文档驱动 系统可能不满足客户的需求<br>快速原型模型 关注满足客户需求 可能导致系统设计差、效率低，难于维护<br>增量模型 开发早期反馈及时，易于维护 需要开放式体系结构，可能会导致效率低下<br>螺旋模型 风险驱动 风险分析人员需要有经验且经过充分训练</p>
+<p>记住螺旋模型是有风险控制的就好</p>
+<p>30.敏捷开发<br>scrum【并列争球】：三个角色，四个会议，三个物件<br>极限编程【xp】：交流，朴素，反馈和勇气，近螺旋式开发方法<br>水晶方法srystal：提倡机动性方法，包含具有共性的核心元素，每个都含有独特的角色，过程模式，工作产品和实践七大体系特征：经常交付，反思改进，渗透式交流，个人安全，焦点，与专家用户建立方便的联系，配有自动测试，配置管理和经常集成功能的技术环境<br>DSDM dynamic system development management 动态系统开发方法：以业务为核心 用户持续参与，产品经常交付，迭代增量</p>
+<p>31.软件配置管理内容：版本控制，变更控制，过程支持</p>
+<p>32.内聚和耦合。内聚是从功能性角度，描述的是模块内功能性的关系。耦合是各个模块之间互相连接的一种度量。<br>耦合强弱取决于模块之间接口的复杂程度。<br>模块之间关系越紧密，耦合性就强，独立性就差</p>
+<p>内容耦合：一个模块直接访问另外一个模块内部数据；一个模块多个入口，这种耦合性最强。（目前高级语言不会有这种情况，最早出现在汇编）<br>公共耦合：一组模块都访问同一个全局数据结构，公共数据环境可以是全局数据结构，共享通信区，内存的公共覆盖区等<br>外部耦合:一组模块都访问同一全局简单变量，而且不通过参数表传递该全局变量信息，则称为外部耦合。<br>控制耦合：模块之间传递的不是数据信息，而是控制信息，如标志，开关量等，一个模块控制了另外一个模块的功能。<br>标记耦合：调用模块和被调用模块之间传递的数据结构而不是简单数据，同时也称作特征耦合，其实传递的是地址。</p>
+<p>数据耦合：调用模块和被调用模块之间只是传递简单的数据项参数，相当于高级语言值传递。</p>
+<p>非直接耦合：两个模块之间没有直接关系，他们之间的联系完全通过主模块的调用来实现的，耦合度最低，模块独立性最强。</p>
+<p>内聚：偶然内聚，没有任何关系，<br>逻辑内聚：调用时由传送模块参数传递<br>时间内聚：把需要执行的动作组合在一起形成模块<br>过程内聚：特定次数，特定关系<br>通信内聚模块内各个组成部分都使用相同的数据结构或产生相同的数据结构<br>顺序内聚：必须顺序执行<br>功能内聚是最强内聚</p>
+<p>某模块实现两个功能，向某个数据结构区域写数据和从该区域读数据，则该模块内聚类型为 通信内聚</p>
+<p>33.正规技术评审目的<br>（1）发现软件在功能、逻辑、实现上的错误；<br>（2）验证软件符合它的需求规格；<br>（3）确认软件符合预先定义的开发规范和标准；<br>（4）保证软件在统一的模式下进行开发；<br>（5）便于项目管理。<br>此外，正规技术评审为新手提供软件分析、设计和实现的培训途经，后备、后续开发人员也可以通过正规技术评审熟悉他人开发的软件。</p>
+<p>34.自顶向下集成</p>
+<p>目的：从顶层控制（主控模块）开始，采用同设计顺序一样的思路对被测系统进行测试，来验证系统的稳定性。<br>定义：自顶向下的集成测试就是按照系统层次结构图，以主程序模块为中心，自上而下按照深度优先或者广度优先策略，对各个模块一边组装一边进行测试。<br>方法：<br>①      把主控模块作为测试驱动，所有与主控模块直接相连的模块作为桩模块；<br>②                      根据集成的方式（深度优先或者广度优先），逐渐使用实际模块替换相应的下层桩模块；再用桩代替他们的直接下属模块，与已通过测试的模块或子系统组装成新的子系统。<br>③                      在每个模块被集成时，都必须已经通过了单元测试；<br>④                      进行回归测试（重新执行以前做过的全部或部分测试），以确定集成新模块后没有引入错误；<br>⑤                      从上述过程中的第二步开始重复执行，直到所有模块都已经集成到系统中为止。<br>优点：<br>①      在测试的过程中，可以较早地验证主要的控制和判断点。<br>② 选择深度优先组合方式，可以首先实现和验证一个完整的软件功能，可先对逻辑输入的分支进行组装和测试，检查和克服潜藏的错误和缺陷，<br>③      验证其功能的正确性，为此后主要分支的组装和测试提供保证；<br>④      能够较早的验证功能可行性，给开发者和用户带来成功的信心；<br>⑤      只有在个别情况下，才需要驱动程序（最多不超过一个），减少了测试驱动程序开发和维护的费用；<br>⑥      可以和开发设计工作一起并行执行集成测试，能够灵活的适应目标环境；<br>⑦      容易进行故障隔离和错误定位。<br> 缺点：<br>①      在测试时需要为每个模块的下层模块提供桩模块，桩模块的开发和维护费用大；<br>②      底层组件的需求变更可能会影响到全局组件，需要修改整个系统的多个上层模块。<br>③      要求控制模块具有比较高的可测试性；<br>④      可能会导致底层模块特别是被重用的模块测试不够充分。<br> 适用范围：<br>①      控制结构比较清晰和稳定的应用程序；<br>②      系统高层的模块接口变化的可能性比较小；<br>③      产品的低层模块接口还未定义或可能会经常因需求变更等原因被修改；<br>④      产品中的控制模块技术风险较大，需要尽可能提前验证；<br>⑤      需要尽早看到产品的系统功能行为；<br>⑥      在极限编程（Extreme Programming）中使用测试优先的开发方法。</p>
+<p>自底向上集成</p>
+<p>1) 目的：从依赖性最小的底层模块开始，按照层次结构图，逐层向上集成，验证系统的稳定性。<br>2) 定义：自底向上集成是从系统层次结构图的最底层模块开始进行组装和集成测试的方式。<br>3) 方法：<br>①      从最底层的模块开始组装，组合成一个能够完成制定的软件子功能的构件；<br>②      编制驱动程序，协调测试用例的输入与输出；<br>③      测试集成后的构件；<br>④      使用实际模块代替驱动程序，按程序结构向上组装测试后的构件；<br>⑤      重复上面的第二步，直到系统的最顶层模块被加入到系统中为止。<br>4) 优点：<br>①      即使数据流并未构成有向的非环状图，生成测试数据也没有困难。<br>②      可以尽早的验证底层模块的行为。<3>提高了测试效率；<br>③      对实际被测模块的可测试性要求要少；<br>④      减少了桩模块的工作量;<br>⑤      容易对错误进行定位。<br>5) 缺点<br>①      直到最后一个模块加进去之后才能看到整个系统的框架；<br>②      只有到测试过程的后期才能发现时序问题和资源竞争问题；<br>③      驱动模块的设计工作量大;<br>④      不能被及时发现高层模块设计上的错误。<br>6) 适用范围<br>① 底层模块接口比较稳定的产品；<br>② 高层模块接口变更比较频繁的产品；<br>③ 底层模块开发和单元测试工作完成较早的产品。</3></p>
+<p>自底向上的集成测试策略的优点 不需要编写桩程序，但是需要编写很多驱动模块</p>
+<p>35.mccabe 程序控制流程图中，节点是程序代码中最小的单元。边代表节点间的控制流，一个有e条边和n个节点的流程图f。其圈复杂度为e-f+2 ，边-点+2<br>10-8+2=4</p>
+<p>36.软件可维护性是衡量软件质量的一个重要特性，受到开发文档影响，可维护性也是软件开发阶段各个时期的关键目标，可以从可理解行，可靠性，可测试性，可行性，可移植性进行度量。</p>
+<p>37.对象是封闭数据和行为的整体</p>
+<p>38.面向对象程序设计选择合适的面向对象程序设计语言，将程序组织为相互协作的对象集合，每个对象表示某个类的实例，类通过继承等关系进行组织。<br>面向对象分析：主要任务是抽取和整理用户需求并建立问题域精确模型，<br>面向对象设计：采用协作的对象，对象的属性和方法说明软件解决方案的一种方式，强调的是定义软件对象和这些软件对象如何协作来满足要求，延续了面向对象分析。<br>面向对象实现：采用面向对象程序设计语言下hi线系统。<br>面向对象测试是根据规范来说明验证系统设计的正确性。</p>
+<p>39.一个类可以通过多个重名方法而参数类型列表示不通的方法，被称为重载方法</p>
+<p>40.41.UML关系<br>实现关系implementation：接口和类的实现，implements 带空心三角形的虚线来表示<br>组合关系composition：整体和部分关系，并且有统一的生存期。整体不存在，那么部分也不存在。比如头和嘴的关系。<br>组合关系用实心菱形。整体那边是实心菱形，部分那么是箭头。</p>
+<p>聚合关系aggregation整体和部分的关系，但是可以相互存在，就是部分可以脱离整体。比如电脑和显示器。整体那边是虚心菱形</p>
+<p>关联关系 association 一对一，多对多，自关联等，是一种结构关系，描述了一种链。链是对象之间的连接。<br>泛化 generation 就是继承关系，空心三角指向父类</p>
+<p>依赖关系dependence 大多情况，依赖关系体现在某个类的方法使用另一个类的对象作为参数<br>虚心箭头表示，开车和司机的关系</p>
+<p>42.43uml，统一建模语言<br>用例图：描述用户需求，从用户角度描述系统功能，椭圆为某个用户，人形为角色，帮助团队以一种可视化的方式理解系统功能需求<br>活动图：通过动作来组织，主要描述一种方法，机制或用例的内部行为，涉及状态 活动转移分支 并发 同步<br>静态结构图：【类图】，【对象图】，【包图】，【组合结构图】…<br>部署图：deployment diagram 描述系统所需的硬件构件的物理部署</p>
+<p><a href="http://www.cnblogs.com/wangkangluo1/archive/2013/02/21/2920606.html" target="_blank" rel="external">参考</a></p>
+<p>44.45.46 组合模式，属于结构型模式，表示对象的整体，结构层次</p>
+<p>47.某些设计模式会引入总是被用作参数的对象 visitor 访问者模式对象是一个多态accept的参数<br>命令模式：将请求封装为一个对象，可以将不通的请求对客户进行参数化<br>责任链模式：chain of responsibility 模式将多个对象的请求连成一条链，并沿着这条连传递该请求，直到有一个对象处理他为止，主要是避免请求的发送者和接受者之间的耦合关系。<br>观察者模式：定义对象之间的一种一对的依赖关系，当一个对象的状态发生改变时，所有依赖他的对象都得到通知并被自动更新。</p>
+<p>48.对高级语言源程序的编译或解释的过程可以分为多个阶段，解释方式不包括 目标代码生成。解释方式是没有目标代码生成的，与编译方式在词法，语法，语义方面大体相同，但在运行时直接执行源程序或源程序的内部形式，即解释程序不产生源程序的目标程序。这是与编译程序的主要区别。如php都是分析之后，解释成opcode码，然后解释执行，可以这么说，解释程序是参与程序的运行过程的。编译就是分开的。解释的控制器在解释程序。</p>
+<p><a href="http://www.cnblogs.com/riskyer/p/3347865.html" target="_blank" rel="external">参考</a></p>
+<p>49.</p>
+<p>50.递归下降分析法是一种自上而下的语法分析</p>
+<p>51.若关系R（h,l,m,p）的主键为全码，则关系的主键为为HLMP</p>
+<p>52.</p>
+<p>53.遗传算法的主要基因操作是选种、交配和突变，而在进化规则、进化策略中，进化机制源于选种和突变。就适应度的角度来说遗传算法用于选择优秀的父代(优秀的父代产生优秀的子代)，而进化规则和进化策略则用于选择子代(优秀的子代才能存在)。</p>
+<p>54.55.56 自然连接是一种特殊的等值连接，要求两个关系中进行比较的分量必须是相同的属性组，并且在结果中把重复的 属性去掉。等值连接是不会去重重复属性列的。<br>自然连接一定是等值连接，自然连接会把重复的属性移除。</p>
+<p>67.一个vlan【虚拟局域网】就是一个广播域。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软考/" rel="tag">#软考</a>
+          
+            <a href="/tags/软件设计师/" rel="tag">#软件设计师</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/11/java-bridge/" rel="next" title="java桥接模式-软件设计师考试2013下半年">
+                <i class="fa fa-chevron-left"></i> java桥接模式-软件设计师考试2013下半年
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/07/java-adapter/" rel="prev" title="JAVA适配器模式-2016年上半半年考试真题">
+                JAVA适配器模式-2016年上半半年考试真题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/09/2015-软考-上午/"
+           data-title="2015上半年软件设计师上午题部分试题分析" data-url="http://iamtb.cn/2016/11/09/2015-软考-上午/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avator/fucktheking.jpg"
+               alt="B T" />
+          <p class="site-author-name" itemprop="name">B T</p>
+          <p class="site-description motion-element" itemprop="description">生命不嘻,都干不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">B T</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"iamtb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
