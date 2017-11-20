@@ -466,8 +466,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/11/04/head_first_c_/" itemprop="url">
-                  字符数组+1与指针+1
+                <a class="post-title-link" href="/2017/11/04/big_small_binary/" itemprop="url">
+                  大小端字节序
                 </a>
               
             
@@ -510,8 +510,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/11/04/head_first_c_/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/head_first_c_/" itemprop="commentsCount"></span>
+                <a href="/2017/11/04/big_small_binary/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/big_small_binary/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -535,9 +535,9 @@
 
       
         
-          <h2 id="字符数组-1代码"><a href="#字符数组-1代码" class="headerlink" title="字符数组+1代码"></a>字符数组+1代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">char</span> mystr[]=<span class="string">"Abcef"</span>;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"size of mystr=%i\n"</span>,<span class="keyword">sizeof</span>(mystr));</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[0]，他的值为%c:\n"</span>,mystr[<span class="number">0</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[0]，他的内存地址值为%i:\n"</span>,&amp;mystr);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[1]，他的值为%c:\n"</span>,mystr[<span class="number">1</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[1]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">1</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[2]，他的值为%c:\n"</span>,mystr[<span class="number">2</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[2]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">2</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[3]，他的值为%c:\n"</span>,mystr[<span class="number">3</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[3]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">3</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          <p>大端字节序：数据的低位字节保存在内存的高地址端，等于内存的低位保存的是数据的高位地址<br>小端字节序：数据的高位字节保存在内存的高地址端，<br>网络字节序：tcpip是基于大端字节序<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/04/head_first_c_/#more" rel="contents">
+            <a class="btn" href="/2017/11/04/big_small_binary/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -711,8 +711,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/11/04/big_small_binary/" itemprop="url">
-                  大小端字节序
+                <a class="post-title-link" href="/2017/11/04/head_first_c_/" itemprop="url">
+                  字符数组+1与指针+1
                 </a>
               
             
@@ -755,8 +755,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/11/04/big_small_binary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/big_small_binary/" itemprop="commentsCount"></span>
+                <a href="/2017/11/04/head_first_c_/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/head_first_c_/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -780,9 +780,9 @@
 
       
         
-          <p>大端字节序：数据的低位字节保存在内存的高地址端，等于内存的低位保存的是数据的高位地址<br>小端字节序：数据的高位字节保存在内存的高地址端，<br>网络字节序：tcpip是基于大端字节序<br>
+          <h2 id="字符数组-1代码"><a href="#字符数组-1代码" class="headerlink" title="字符数组+1代码"></a>字符数组+1代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">char</span> mystr[]=<span class="string">"Abcef"</span>;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"size of mystr=%i\n"</span>,<span class="keyword">sizeof</span>(mystr));</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[0]，他的值为%c:\n"</span>,mystr[<span class="number">0</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[0]，他的内存地址值为%i:\n"</span>,&amp;mystr);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[1]，他的值为%c:\n"</span>,mystr[<span class="number">1</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[1]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">1</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[2]，他的值为%c:\n"</span>,mystr[<span class="number">2</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[2]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">2</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[3]，他的值为%c:\n"</span>,mystr[<span class="number">3</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[3]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">3</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/04/big_small_binary/#more" rel="contents">
+            <a class="btn" href="/2017/11/04/head_first_c_/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
