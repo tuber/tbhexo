@@ -42,7 +42,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="HEAD_FIRST_C," />
+  <meta name="keywords" content="接口调用,安全性,sign&token," />
 
 
 
@@ -58,17 +58,17 @@
 
 
 
-<meta name="description" content="123456789101112131415161718int main()&amp;#123;	char masked_raider[] = &quot;Alived&quot;;	char *jimmy = masked_raider;	printf(&quot;masked_raider is %s,jimmy is %s\n&quot;, masked_raider, jimmy);	masked_raider[0] = &apos;d&apos;;	mas">
-<meta name="keywords" content="HEAD_FIRST_C">
+<meta name="description" content="一些接口调用中，为了安全原因，会加入一些token或者是签名。以下是个简单例子：根据post给被调用方的key和value数组，其中先根据数组做ksort，然后对value的值做（递归）拼接得到$string。">
+<meta name="keywords" content="接口调用,安全性,sign&token">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符指针与字符数组">
-<meta property="og:url" content="http://iamtb.cn/2017/11/20/head_frist_c_78/index.html">
-<meta property="og:site_name" content="HEAD FIRST C">
-<meta property="og:description" content="123456789101112131415161718int main()&amp;#123;	char masked_raider[] = &quot;Alived&quot;;	char *jimmy = masked_raider;	printf(&quot;masked_raider is %s,jimmy is %s\n&quot;, masked_raider, jimmy);	masked_raider[0] = &apos;d&apos;;	mas">
-<meta property="og:updated_time" content="2017-11-20T04:31:06.508Z">
+<meta property="og:title" content="接口调用安全性">
+<meta property="og:url" content="http://iamtb.cn/2016/12/05/接口调用安全性/index.html">
+<meta property="og:site_name" content="要干，请深干">
+<meta property="og:description" content="一些接口调用中，为了安全原因，会加入一些token或者是签名。以下是个简单例子：根据post给被调用方的key和value数组，其中先根据数组做ksort，然后对value的值做（递归）拼接得到$string。">
+<meta property="og:updated_time" content="2017-05-31T10:58:23.281Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="字符指针与字符数组">
-<meta name="twitter:description" content="123456789101112131415161718int main()&amp;#123;	char masked_raider[] = &quot;Alived&quot;;	char *jimmy = masked_raider;	printf(&quot;masked_raider is %s,jimmy is %s\n&quot;, masked_raider, jimmy);	masked_raider[0] = &apos;d&apos;;	mas">
+<meta name="twitter:title" content="接口调用安全性">
+<meta name="twitter:description" content="一些接口调用中，为了安全原因，会加入一些token或者是签名。以下是个简单例子：根据post给被调用方的key和value数组，其中先根据数组做ksort，然后对value的值做（递归）拼接得到$string。">
 
 
 
@@ -89,10 +89,10 @@
 
 
 
-  <link rel="canonical" href="http://iamtb.cn/2017/11/20/head_frist_c_78/"/>
+  <link rel="canonical" href="http://iamtb.cn/2016/12/05/接口调用安全性/"/>
 
 
-  <title> 字符指针与字符数组 | HEAD FIRST C </title>
+  <title> 接口调用安全性 | 要干，请深干 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -123,11 +123,11 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">HEAD FIRST C</span>
+      <span class="site-title">要干，请深干</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">我的沃尔沃呢？</p>
+  <p class="site-subtitle">向三金学习</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -222,7 +222,7 @@
             
             
               
-                字符指针与字符数组
+                接口调用安全性
               
             
           </h1>
@@ -234,8 +234,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-20T08:12:03+08:00" content="2017-11-20">
-              2017-11-20
+            <time itemprop="dateCreated" datetime="2016-12-05T16:42:23+08:00" content="2016-12-05">
+              2016-12-05
             </time>
           </span>
 
@@ -248,8 +248,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C</span>
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
                   </a>
                 </span>
 
@@ -264,8 +264,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/11/20/head_frist_c_78/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/20/head_frist_c_78/" itemprop="commentsCount"></span>
+                <a href="/2016/12/05/接口调用安全性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/05/接口调用安全性/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -288,26 +288,9 @@
       
 
       
-        <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">char</span> masked_raider[] = <span class="string">"Alived"</span>;</div><div class="line"></div><div class="line">	<span class="keyword">char</span> *jimmy = masked_raider;</div><div class="line"></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"masked_raider is %s,jimmy is %s\n"</span>, masked_raider, jimmy);</div><div class="line"></div><div class="line">	masked_raider[<span class="number">0</span>] = <span class="string">'d'</span>;</div><div class="line">	masked_raider[<span class="number">1</span>] = <span class="string">'e'</span>;</div><div class="line">	masked_raider[<span class="number">2</span>] = <span class="string">'a'</span>;</div><div class="line">	masked_raider[<span class="number">3</span>] = <span class="string">'d'</span>;</div><div class="line">	masked_raider[<span class="number">4</span>] = <span class="string">'e'</span>;</div><div class="line">	masked_raider[<span class="number">5</span>] = <span class="string">'d'</span>;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"masked_raider is %s,jimmy is %s\n"</span>, masked_raider, jimmy);</div><div class="line">	</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><pre><code>jimmy和masked_raider 是一个存储器地址的两个别名
-字符串字面值保存在只读存储器中
-如果要修改字符串，需要在新的数组中创建副本
+        <p>一些接口调用中，为了安全原因，会加入一些token或者是签名。<br>以下是个简单例子：根据post给被调用方的key和value数组，<br>其中先根据数组做ksort，然后对value的值做（递归）拼接得到$string。<br><a id="more"></a><br>返回后用key.$string，调用方和被调用方按照此规则，对传递过来的额外post字段中的sign做验证，另外也可以结合一些非对称加密和对称加密，交换固定的字段和值来生成token，（此token也是固定的，可以随着时间等变化来变化），这样达到一定的安全性。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSign</span><span class="params">($data, $key = <span class="string">''</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(is_array($data))&#123;</div><div class="line">        ksort($data);<span class="comment">//按照键值排序</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    $string = getPostString($data);</div><div class="line">    <span class="keyword">return</span> $string;</div><div class="line">    <span class="comment">// return md5($string.$key);</span></div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 数组系列化成字符串</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPostString</span><span class="params">(&amp;$post)</span></span></div><div class="line">&#123;</div><div class="line">    $string = <span class="string">''</span>;</div><div class="line">    <span class="keyword">if</span>(is_array($post))</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">foreach</span>($post <span class="keyword">as</span> $item)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(is_array($item))</div><div class="line">                $string .= getPostString($item);</div><div class="line">            <span class="keyword">else</span></div><div class="line">                $string .= $item;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        $string = $post;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> $string;</div><div class="line">&#125;</div><div class="line">$params=[</div><div class="line"><span class="string">'mobile'</span>=&gt;<span class="string">'18618824588'</span>,</div><div class="line"><span class="string">'code'</span>=&gt;<span class="string">'114360'</span>,</div><div class="line"><span class="string">'hid'</span>=&gt;<span class="string">'2700'</span>,</div><div class="line"><span class="string">'name'</span>=&gt;<span class="string">'tb'</span>,</div><div class="line"><span class="string">'city_serial_id'</span>=&gt;<span class="string">'bj2700'</span>,</div><div class="line">];</div><div class="line"></div><div class="line">var_dump(ksort($params));</div><div class="line">var_dump($params);</div><div class="line"><span class="keyword">echo</span> getSign($params);</div></pre></td></tr></table></figure>
 
-char masked_raider[] = &quot;Alived&quot;;
-
-程序会在栈上创建一个maskd_raider的数组，并把右值设置为 Alived
-
-
-char *jimmy =&quot;Alived&quot;;
-
-程序会把常量值放在常量存储区，常量存储期是只读的。
-接着在栈上创建了jimmy变量，是局部变量
-然后把栈上的jimmy变量设置为alived的地址
-const char *jimmy = &quot;Alived&quot;;
-jimmy[0] = &apos;d&apos;
-因为常量存储区是只读的，所以用jimmy[0]=&apos;d&apos;的时候，会报错，jimmy为不可修改的左值
-</code></pre>
       
     </div>
 
@@ -329,7 +312,11 @@ jimmy[0] = &apos;d&apos;
       
         <div class="post-tags">
           
-            <a href="/tags/HEAD-FIRST-C/" rel="tag">#HEAD_FIRST_C</a>
+            <a href="/tags/接口调用/" rel="tag">#接口调用</a>
+          
+            <a href="/tags/安全性/" rel="tag">#安全性</a>
+          
+            <a href="/tags/sign-token/" rel="tag">#sign&token</a>
           
         </div>
       
@@ -338,12 +325,16 @@ jimmy[0] = &apos;d&apos;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/12/07/linux-top-about-cpu/" rel="next" title="linux top about cpu">
+                <i class="fa fa-chevron-left"></i> linux top about cpu
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/17/php-catch-fatel-error/" rel="prev" title="php捕获fatal error">
-                php捕获fatal error <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/05/phpstorm-add-comment-in-function/" rel="prev" title="PHPSTORM中给一个方法动态添加注释">
+                PHPSTORM中给一个方法动态添加注释 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -370,8 +361,8 @@ jimmy[0] = &apos;d&apos;
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/11/20/head_frist_c_78/"
-           data-title="字符指针与字符数组" data-url="http://iamtb.cn/2017/11/20/head_frist_c_78/">
+      <div class="ds-thread" data-thread-key="2016/12/05/接口调用安全性/"
+           data-title="接口调用安全性" data-url="http://iamtb.cn/2016/12/05/接口调用安全性/">
       </div>
     
   </div>
@@ -409,14 +400,14 @@ jimmy[0] = &apos;d&apos;
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/avator/fucktheking.jpg"
-               alt="Tong Bo" />
-          <p class="site-author-name" itemprop="name">Tong Bo</p>
+               alt="B T" />
+          <p class="site-author-name" itemprop="name">B T</p>
           <p class="site-description motion-element" itemprop="description">生命不嘻,都干不止</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -424,7 +415,7 @@ jimmy[0] = &apos;d&apos;
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -433,7 +424,7 @@ jimmy[0] = &apos;d&apos;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -462,7 +453,7 @@ jimmy[0] = &apos;d&apos;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点："><span class="nav-number">1.</span> <span class="nav-text">知识点：</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
@@ -485,7 +476,7 @@ jimmy[0] = &apos;d&apos;
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Tong Bo</span>
+  <span class="author" itemprop="copyrightHolder">B T</span>
 </div>
 
 <div class="powered-by">
