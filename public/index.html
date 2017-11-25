@@ -223,13 +223,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/11/25/mycnart_email_config/" itemprop="url">
                   mycncart email设置
-=======
-                <a class="post-title-link" href="/2017/11/22/redis_incr_hash/" itemprop="url">
-                  redis竟态与争抢唯一
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               
             
@@ -242,13 +237,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-11-25T20:25:03+08:00" content="2017-11-25">
               2017-11-25
-=======
-            <time itemprop="dateCreated" datetime="2017-11-22T21:12:03+08:00" content="2017-11-22">
-              2017-11-22
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
             </time>
           </span>
 
@@ -261,13 +251,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-<<<<<<< HEAD
                   <a href="/categories/PHP/" itemprop="url" rel="index">
                     <span itemprop="name">PHP</span>
-=======
-                  <a href="/categories/REDIS/" itemprop="url" rel="index">
-                    <span itemprop="name">REDIS</span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                   </a>
                 </span>
 
@@ -282,13 +267,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/11/25/mycnart_email_config/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/25/mycnart_email_config/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/11/22/redis_incr_hash/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/22/redis_incr_hash/" itemprop="commentsCount"></span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               </span>
             
@@ -312,30 +292,12 @@
 
       
         
-<<<<<<< HEAD
           <h2 id="知识点：查看log"><a href="#知识点：查看log" class="headerlink" title="知识点：查看log"></a>知识点：查看log</h2><p>提交订单时，出现服务器500错误，但是php的相关报错都已经打开。<br>想了一会，还是看<code>fpm_error.log</code>和<code>nginx errorlog</code><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/11/25/mycnart_email_config/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
-=======
-          
-            <h2 id="incr"><a href="#incr" class="headerlink" title="incr"></a><a href="http://redisdoc.com/string/incr.html" target="_blank" rel="external">incr</a></h2><p>比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。<a href="http://num.10010.com/NumApp/chseNumList/init?num=186" target="_blank" rel="external">业务模型参考</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> if ($this-&gt;redis_db-&gt;incr(&quot;bj_&quot;.$car_no) != 1) &#123;</div><div class="line">      让别人先下手了,点别的去~</div><div class="line">  &#125;else&#123;</div><div class="line">       //抢到竞态条件，如果不复核资质要求退出，并清除incr</div><div class="line">       if(抢到了但是没资质等)&#123;</div><div class="line">         释放对此id的竟态权，别占茅坑</div><div class="line">         $this-&gt;yredis_db-&gt;del(&quot;bj_&quot;.$id);</div><div class="line">       &#125;else&#123;</div><div class="line">         其他业务A</div><div class="line">         抱得号码归...</div><div class="line">         其他业务B</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>另外，<code>incr</code>对<code>string</code>类型，<code>hash</code>类型，<code>sortedSet</code>类型都可以进行操作</p>
-<h2 id="blpop"><a href="#blpop" class="headerlink" title="blpop"></a><a href="http://redisdoc.com/list/blpop.html" target="_blank" rel="external">blpop</a></h2><p><code>blpop</code>相对于lpop有一个好处，可以对多个队列进行优先级操作。<br><code>blpop</code>会按照<code>key</code>的排列顺序依次弹出，返回值为<code>key</code>的listname及具体元素值，而且可以设置<code>block</code>时间，原则是先阻塞先服务.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$date = date(&apos;Ymd&apos;, time());</div><div class="line">//左进左出 ，优先分配一般的车牌号码，然后在分配非常好的连号号码，设置一个阻塞时间</div><div class="line">return $this-&gt;redis-&gt;blpop(self::$_config[&apos;dispatch_normal_list&apos;] . $date, self::$_config[&apos;dispatch_better_list&apos;] . $date, self::$_config[&apos;redis_block_l_pop_time_out&apos;]);</div></pre></td></tr></table></figure>
-<h2 id="hsetnx"><a href="#hsetnx" class="headerlink" title="hsetnx"></a><a href="http://redisdoc.com/hash/hsetnx.html" target="_blank" rel="external">hsetnx</a></h2><p>设置<code>hash</code>中一个<code>field</code>为指定<code>value</code>，前提是<code>field</code>不存在。如果存在，返回0。<br>这样能保证在一个人只能抢一个车牌，但是抢到车牌执行付款或者其他业务操作过程中，其他人无法对此操作，（即不能将此车牌绑定到其他人身上）。根据具体业务情况，可设置基于car_no的hash field和基于 people 的hash field。<br>hash_base_people {“zhangsan”:”京A888”,”lisi”:”京A999”}<br>hash_base_car_no {“京A888”:”zhangsan”,”京A999”:”lisi”}<br>基于这两个hash 可以做更多关于业务的操作,比如通过hget等查看具体的绑定关系。</p>
-<h2 id="hdel"><a href="#hdel" class="headerlink" title="hdel"></a><a href="http://redisdoc.com/hash/hdel.html" target="_blank" rel="external">hdel</a></h2><p>有了通过hsetnx的绑定模型，当某个人对某个车牌交付了订金等一系列之后，就代表可以永远的将其消除，这样会用到hdel。另外如果在指定时间内没有做比如交付订金之类的操作，这个车牌号码会回炉到原始列表中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//删除以people_id为key的hash</div><div class="line">$base_people_id_del = $this-&gt;redis-&gt;hdel(self::$_config[&apos;hash_base_people&apos;], $people_id);</div><div class="line"></div><div class="line">//删除以car_no为key的hash</div><div class="line">$base_car_no_del = $this-&gt;redis-&gt;hdel(self::$_config[&apos;hash_base_car_no&apos;], $clue_id);</div></pre></td></tr></table></figure>
-<h2 id="lpush"><a href="#lpush" class="headerlink" title="lpush"></a><a href="http://redisdoc.com/list/lpush.html" target="_blank" rel="external">lpush</a></h2><p>如果有入口将北京可以抢拍的车牌放入到一个list里</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$lpush_res = $redisObj-&gt;lpush($list_name, $car_no);</div></pre></td></tr></table></figure>
-<p>其中list_name的值可以根据car_no的具体值来确定，比如有６和８的我就放入到<code>better_car_no</code>列表里，其他的放入到<code>normal_car_no</code>列表里，最后可以用<code>blpop</code>来指定一个先后优先级。</p>
-<h2 id="rpoplpush"><a href="#rpoplpush" class="headerlink" title="rpoplpush"></a><a href="http://redisdoc.com/list/rpoplpush.html" target="_blank" rel="external">rpoplpush</a></h2><p>安全的队列弹出模式，比如N多人对一个入口按钮进行操作，如果list结构中有足够的数据，每个人有且只有一条数据会被领取，领取之后再做其他的业务操作。<br>但是问题是，如果用<code>lpop</code>之后，原队列中已被弹出，如果中途客户端在取得该<code>pop</code>的元素后，且完成处理此元素前，客户端发生崩溃。这时候此条消息就凭空消失了。如果没有其他补助措施（比如通过绑定或者记录此弹出的元素）需要严谨要求，可以用<code>rpoplpus</code>h可以解决此问题。在客户端真正处理完此<code>pop</code>的元素之后，通过<code>lrem</code>将此消息安全删除。</p>
-
-          
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
         
       
     </div>
@@ -383,13 +345,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/11/25/head_firstc_str_reverse_98/" itemprop="url">
                   C语言str_reverse实例
-=======
-                <a class="post-title-link" href="/2017/11/20/head_frist_c_78/" itemprop="url">
-                  字符指针与字符数组
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               
             
@@ -402,13 +359,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-11-25T08:25:03+08:00" content="2017-11-25">
               2017-11-25
-=======
-            <time itemprop="dateCreated" datetime="2017-11-20T08:12:03+08:00" content="2017-11-20">
-              2017-11-20
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
             </time>
           </span>
 
@@ -437,13 +389,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/11/25/head_firstc_str_reverse_98/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/25/head_firstc_str_reverse_98/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/11/20/head_frist_c_78/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/20/head_frist_c_78/" itemprop="commentsCount"></span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               </span>
             
@@ -467,15 +414,9 @@
 
       
         
-<<<<<<< HEAD
           <h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p>字符数组的字符串指针反转<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/11/25/head_firstc_str_reverse_98/#more" rel="contents">
-=======
-          <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></div><div class="line"></span>&#123;</div><div class="line">	<span class="keyword">char</span> masked_raider[] = <span class="string">"Alived"</span>;</div><div class="line"></div><div class="line">	<span class="keyword">char</span> *jimmy = masked_raider;</div><div class="line"></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"masked_raider is %s,jimmy is %s\n"</span>, masked_raider, jimmy);</div><div class="line"></div><div class="line">	masked_raider[<span class="number">0</span>] = <span class="string">'d'</span>;</div><div class="line">	masked_raider[<span class="number">1</span>] = <span class="string">'e'</span>;</div><div class="line">	masked_raider[<span class="number">2</span>] = <span class="string">'a'</span>;</div><div class="line">	masked_raider[<span class="number">3</span>] = <span class="string">'d'</span>;</div><div class="line">	masked_raider[<span class="number">4</span>] = <span class="string">'e'</span>;</div><div class="line">	masked_raider[<span class="number">5</span>] = <span class="string">'d'</span>;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"masked_raider is %s,jimmy is %s\n"</span>, masked_raider, jimmy);</div><div class="line">	</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/20/head_frist_c_78/#more" rel="contents">
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
               阅读全文 &raquo;
             </a>
           </div>
@@ -526,13 +467,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/11/25/head_firstc_strstr_94/" itemprop="url">
                   C语言STRSTR实例
-=======
-                <a class="post-title-link" href="/2017/11/17/php-catch-fatel-error/" itemprop="url">
-                  php捕获fatal error
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               
             
@@ -545,13 +481,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-11-25T08:12:03+08:00" content="2017-11-25">
               2017-11-25
-=======
-            <time itemprop="dateCreated" datetime="2017-11-17T19:06:12+08:00" content="2017-11-17">
-              2017-11-17
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
             </time>
           </span>
 
@@ -564,13 +495,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-<<<<<<< HEAD
                   <a href="/categories/C/" itemprop="url" rel="index">
                     <span itemprop="name">C</span>
-=======
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                   </a>
                 </span>
 
@@ -585,13 +511,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/11/25/head_firstc_strstr_94/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/25/head_firstc_strstr_94/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/11/17/php-catch-fatel-error/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/17/php-catch-fatel-error/" itemprop="commentsCount"></span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               </span>
             
@@ -615,20 +536,134 @@
 
       
         
-<<<<<<< HEAD
           <h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p><code>strstr()</code>函数会在第一个字符串中查找第二个字符串，如果找到，他会返回第二个字符串在存储器中的位置。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/11/25/head_firstc_strstr_94/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
-=======
-          
-            <p>用到laravel定时任务的时候，由于类似conf配置问题，无法捕捉到错误，采取的方式如下</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fatal_handler</span><span class="params">()</span> </span>&#123;</div><div class="line">    $errfile = <span class="string">"unknown file"</span>;</div><div class="line">    $errstr  = <span class="string">"shutdown"</span>;</div><div class="line">    $errno   = E_CORE_ERROR;</div><div class="line">    $errline = <span class="number">0</span>;</div><div class="line"></div><div class="line">    $error = error_get_last();</div><div class="line"></div><div class="line">    <span class="keyword">if</span>($error)&#123;</div><div class="line">      <span class="comment">//发送邮件队列也可以</span></div><div class="line">        file_put_contents(<span class="string">'./testerror11.txt'</span>, json_encode($error));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">register_shutdown_function(<span class="string">"fatal_handler"</span>);</div><div class="line"></div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">    $db=<span class="keyword">new</span> db();</div><div class="line">&#125;<span class="keyword">catch</span>(<span class="keyword">Exception</span> $e)&#123;</div><div class="line"></div><div class="line"><span class="keyword">echo</span> $e-&gt;error_msg();</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/22/redis_incr_hash/" itemprop="url">
+                  redis竟态与争抢唯一
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-22T21:12:03+08:00" content="2017-11-22">
+              2017-11-22
+            </time>
+          </span>
 
           
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/REDIS/" itemprop="url" rel="index">
+                    <span itemprop="name">REDIS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/11/22/redis_incr_hash/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/22/redis_incr_hash/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="incr"><a href="#incr" class="headerlink" title="incr"></a><a href="http://redisdoc.com/string/incr.html">incr</a></h2><p>比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。<a href="http://num.10010.com/NumApp/chseNumList/init?num=186">业务模型参考</a></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/11/22/redis_incr_hash/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -798,13 +833,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/11/17/php-catch-fatel-error/" itemprop="url">
                   php捕获fatal error
-=======
-                <a class="post-title-link" href="/2017/11/04/computer-science-summary/" itemprop="url">
-                  计算机科学CS分类
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               
             
@@ -831,13 +861,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-<<<<<<< HEAD
                   <a href="/categories/PHP/" itemprop="url" rel="index">
                     <span itemprop="name">PHP</span>
-=======
-                  <a href="/categories/computer/" itemprop="url" rel="index">
-                    <span itemprop="name">computer</span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                   </a>
                 </span>
 
@@ -852,13 +877,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/11/17/php-catch-fatel-error/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/17/php-catch-fatel-error/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/11/04/computer-science-summary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/computer-science-summary/" itemprop="commentsCount"></span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               </span>
             
@@ -882,21 +902,11 @@
 
       
         
-<<<<<<< HEAD
           
             <p>用到laravel定时任务的时候，由于类似conf配置问题，无法捕捉到错误，采取的方式如下</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fatal_handler</span><span class="params">()</span> </span>&#123;</div><div class="line">    $errfile = <span class="string">"unknown file"</span>;</div><div class="line">    $errstr  = <span class="string">"shutdown"</span>;</div><div class="line">    $errno   = E_CORE_ERROR;</div><div class="line">    $errline = <span class="number">0</span>;</div><div class="line"></div><div class="line">    $error = error_get_last();</div><div class="line"></div><div class="line">    <span class="keyword">if</span>($error)&#123;</div><div class="line">      <span class="comment">//发送邮件队列也可以</span></div><div class="line">        file_put_contents(<span class="string">'./testerror11.txt'</span>, json_encode($error));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">register_shutdown_function(<span class="string">"fatal_handler"</span>);</div><div class="line"></div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">    $db=<span class="keyword">new</span> db();</div><div class="line">&#125;<span class="keyword">catch</span>(<span class="keyword">Exception</span> $e)&#123;</div><div class="line"></div><div class="line"><span class="keyword">echo</span> $e-&gt;error_msg();</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
 
           
-=======
-          <p>经常看到CS这个词，今天偶然下载了知乎刘洋的电子书。再此也敲一下。</p>
-<h3 id="理论计算机科学"><a href="#理论计算机科学" class="headerlink" title="理论计算机科学"></a>理论计算机科学</h3><h4 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h4><h4 id="计算理论"><a href="#计算理论" class="headerlink" title="计算理论"></a>计算理论</h4><h4 id="信息论与编码理论"><a href="#信息论与编码理论" class="headerlink" title="信息论与编码理论"></a>信息论与编码理论</h4><h4 id="编程语言与编译器"><a href="#编程语言与编译器" class="headerlink" title="编程语言与编译器"></a>编程语言与编译器</h4><h4 id="形式化方法"><a href="#形式化方法" class="headerlink" title="形式化方法"></a>形式化方法</h4>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/04/computer-science-summary/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
         
       
     </div>
@@ -944,13 +954,8 @@
             
               
                 
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/11/04/big_small_binary/" itemprop="url">
                   大小端字节序
-=======
-                <a class="post-title-link" href="/2017/11/04/head_first_c_/" itemprop="url">
-                  字符数组+1与指针+1
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               
             
@@ -993,13 +998,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/11/04/big_small_binary/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/big_small_binary/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/11/04/head_first_c_/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/head_first_c_/" itemprop="commentsCount"></span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               </span>
             
@@ -1023,15 +1023,9 @@
 
       
         
-<<<<<<< HEAD
           <p>大端字节序：数据的低位字节保存在内存的高地址端，等于内存的低位保存的是数据的高位地址<br>小端字节序：数据的高位字节保存在内存的高地址端，<br>网络字节序：tcpip是基于大端字节序<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/11/04/big_small_binary/#more" rel="contents">
-=======
-          <h2 id="字符数组-1代码"><a href="#字符数组-1代码" class="headerlink" title="字符数组+1代码"></a>字符数组+1代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">char</span> mystr[]=<span class="string">"Abcef"</span>;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"size of mystr=%i\n"</span>,<span class="keyword">sizeof</span>(mystr));</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[0]，他的值为%c:\n"</span>,mystr[<span class="number">0</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[0]，他的内存地址值为%i:\n"</span>,&amp;mystr);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[1]，他的值为%c:\n"</span>,mystr[<span class="number">1</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[1]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">1</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[2]，他的值为%c:\n"</span>,mystr[<span class="number">2</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[2]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">2</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[3]，他的值为%c:\n"</span>,mystr[<span class="number">3</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[3]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">3</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/04/head_first_c_/#more" rel="contents">
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
               阅读全文 &raquo;
             </a>
           </div>
@@ -1082,156 +1076,8 @@
             
               
                 
-<<<<<<< HEAD
-                <a class="post-title-link" href="/2017/11/04/head_first_c_/" itemprop="url">
-                  字符数组+1与指针+1
-=======
-                <a class="post-title-link" href="/2017/05/31/workday/" itemprop="url">
-                  根据当前日期算出N个工作日之后的日期
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
-            <time itemprop="dateCreated" datetime="2017-11-04T21:12:03+08:00" content="2017-11-04">
-              2017-11-04
-=======
-            <time itemprop="dateCreated" datetime="2017-05-31T19:18:59+08:00" content="2017-05-31">
-              2017-05-31
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-<<<<<<< HEAD
-                <a href="/2017/11/04/head_first_c_/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/head_first_c_/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/05/31/workday/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/31/workday/" itemprop="commentsCount"></span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-<<<<<<< HEAD
-          <h2 id="字符数组-1代码"><a href="#字符数组-1代码" class="headerlink" title="字符数组+1代码"></a>字符数组+1代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">char</span> mystr[]=<span class="string">"Abcef"</span>;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"size of mystr=%i\n"</span>,<span class="keyword">sizeof</span>(mystr));</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[0]，他的值为%c:\n"</span>,mystr[<span class="number">0</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[0]，他的内存地址值为%i:\n"</span>,&amp;mystr);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[1]，他的值为%c:\n"</span>,mystr[<span class="number">1</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[1]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">1</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[2]，他的值为%c:\n"</span>,mystr[<span class="number">2</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[2]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">2</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[3]，他的值为%c:\n"</span>,mystr[<span class="number">3</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[3]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">3</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/04/head_first_c_/#more" rel="contents">
-=======
-          <h3 id="需求：给定一个日期，要求算出N天（工作日）后的日期"><a href="#需求：给定一个日期，要求算出N天（工作日）后的日期" class="headerlink" title="需求：给定一个日期，要求算出N天（工作日）后的日期"></a>需求：给定一个日期，要求算出N天（工作日）后的日期</h3><hr>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/05/31/workday/#more" rel="contents">
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-<<<<<<< HEAD
                 <a class="post-title-link" href="/2017/11/04/computer-science-summary/" itemprop="url">
                   计算机科学CS分类
-=======
-                <a class="post-title-link" href="/2017/03/07/http-cache/" itemprop="url">
-                  HTTP-CAHCE中的CACHE-CONTROL、Etag、Modify
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               
             
@@ -1244,13 +1090,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
             <time itemprop="dateCreated" datetime="2017-11-04T21:12:03+08:00" content="2017-11-04">
               2017-11-04
-=======
-            <time itemprop="dateCreated" datetime="2017-03-07T13:41:11+08:00" content="2017-03-07">
-              2017-03-07
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
             </time>
           </span>
 
@@ -1279,13 +1120,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/11/04/computer-science-summary/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/computer-science-summary/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/03/07/http-cache/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/07/http-cache/" itemprop="commentsCount"></span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               </span>
             
@@ -1309,18 +1145,10 @@
 
       
         
-<<<<<<< HEAD
           <p>经常看到CS这个词，今天偶然下载了知乎刘洋的电子书。再此也敲一下。</p>
 <h3 id="理论计算机科学"><a href="#理论计算机科学" class="headerlink" title="理论计算机科学"></a>理论计算机科学</h3><h4 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h4><h4 id="计算理论"><a href="#计算理论" class="headerlink" title="计算理论"></a>计算理论</h4><h4 id="信息论与编码理论"><a href="#信息论与编码理论" class="headerlink" title="信息论与编码理论"></a>信息论与编码理论</h4><h4 id="编程语言与编译器"><a href="#编程语言与编译器" class="headerlink" title="编程语言与编译器"></a>编程语言与编译器</h4><h4 id="形式化方法"><a href="#形式化方法" class="headerlink" title="形式化方法"></a>形式化方法</h4>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/11/04/computer-science-summary/#more" rel="contents">
-=======
-          <h2 id="用世界上最好的语言演示一下etag"><a href="#用世界上最好的语言演示一下etag" class="headerlink" title="用世界上最好的语言演示一下etag"></a>用世界上最好的语言演示一下etag</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">// apache 服务器，如果您是nginx请自行配置读取header等信息，同时下面会有nginx测试</div><div class="line"></div><div class="line">$file = &apos;etag.txt&apos;;</div><div class="line">$etag = md5_file($file);</div><div class="line">$headers = apache_request_headers();</div><div class="line"></div><div class="line">if (isset($headers[&apos;If-None-Match&apos;]) &amp;&amp; trim($headers[&quot;If-None-Match&quot;]) == $etag) &#123;</div><div class="line">    header(&quot;HTTP/1.1 304 Not Modified&quot;);</div><div class="line">&#125; else &#123;</div><div class="line">    $content = file_get_contents($file);</div><div class="line">    header(&quot;Etag: $etag&quot;);</div><div class="line">    echo $content;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>第一次请求，服务器返回200.我分别列下请求头【RequsetHeaders】和响应头【ResponseHeaders】</p>
-<p>请求头<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div><div class="line">Accept-Encoding:gzip, deflate, sdch</div><div class="line">Accept-Language:zh-CN,zh;q=0.8,en;q=0.6</div><div class="line">Cache-Control:no-cache</div><div class="line">Connection:keep-alive</div><div class="line">Host:kache.com</div><div class="line">Pragma:no-cache</div><div class="line">Upgrade-Insecure-Requests:1</div><div class="line">User-Agent:Mozilla/5.</div></pre></td></tr></table></figure></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/07/http-cache/#more" rel="contents">
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
               阅读全文 &raquo;
             </a>
           </div>
@@ -1371,13 +1199,8 @@
             
               
                 
-<<<<<<< HEAD
-                <a class="post-title-link" href="/2017/05/31/workday/" itemprop="url">
-                  根据当前日期算出N个工作日之后的日期
-=======
-                <a class="post-title-link" href="/2017/01/20/code-igniter-apidoc/" itemprop="url">
-                  在CI框架中加入生成api文档
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
+                <a class="post-title-link" href="/2017/11/04/head_first_c_/" itemprop="url">
+                  字符数组+1与指针+1
                 </a>
               
             
@@ -1390,13 +1213,130 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
+            <time itemprop="dateCreated" datetime="2017-11-04T21:12:03+08:00" content="2017-11-04">
+              2017-11-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/11/04/head_first_c_/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/04/head_first_c_/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="字符数组-1代码"><a href="#字符数组-1代码" class="headerlink" title="字符数组+1代码"></a>字符数组+1代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">char</span> mystr[]=<span class="string">"Abcef"</span>;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"size of mystr=%i\n"</span>,<span class="keyword">sizeof</span>(mystr));</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[0]，他的值为%c:\n"</span>,mystr[<span class="number">0</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[0]，他的内存地址值为%i:\n"</span>,&amp;mystr);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[1]，他的值为%c:\n"</span>,mystr[<span class="number">1</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[1]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">1</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[2]，他的值为%c:\n"</span>,mystr[<span class="number">2</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[2]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">2</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[3]，他的值为%c:\n"</span>,mystr[<span class="number">3</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[3]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">3</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/11/04/head_first_c_/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/31/workday/" itemprop="url">
+                  根据当前日期算出N个工作日之后的日期
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2017-05-31T19:18:59+08:00" content="2017-05-31">
               2017-05-31
-=======
-            <time itemprop="dateCreated" datetime="2017-01-20T14:18:59+08:00" content="2017-01-20">
-              2017-01-20
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
             </time>
           </span>
 
@@ -1425,13 +1365,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-<<<<<<< HEAD
                 <a href="/2017/05/31/workday/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/31/workday/" itemprop="commentsCount"></span>
-=======
-                <a href="/2017/01/20/code-igniter-apidoc/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/20/code-igniter-apidoc/" itemprop="commentsCount"></span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
                 </a>
               </span>
             
@@ -1455,172 +1390,12 @@
 
       
         
-<<<<<<< HEAD
           <h3 id="需求：给定一个日期，要求算出N天（工作日）后的日期"><a href="#需求：给定一个日期，要求算出N天（工作日）后的日期" class="headerlink" title="需求：给定一个日期，要求算出N天（工作日）后的日期"></a>需求：给定一个日期，要求算出N天（工作日）后的日期</h3><hr>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/05/31/workday/#more" rel="contents">
-=======
-          <h2 id="先上图"><a href="#先上图" class="headerlink" title="先上图"></a>先上图</h2><p><strong>文档列表页面-1</strong></p>
-<p><img src="/img/php/api-doc-1.jpg" alt="图片描述"></p>
-<p><strong>文档列表页面-2</strong></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/20/code-igniter-apidoc/#more" rel="contents">
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
               阅读全文 &raquo;
             </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-<<<<<<< HEAD
-                <a class="post-title-link" href="/2017/03/07/http-cache/" itemprop="url">
-                  HTTP-CAHCE中的CACHE-CONTROL、Etag、Modify
-=======
-                <a class="post-title-link" href="/2016/12/07/linux-top-about-cpu/" itemprop="url">
-                  linux top about cpu
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-<<<<<<< HEAD
-            <time itemprop="dateCreated" datetime="2017-03-07T13:41:11+08:00" content="2017-03-07">
-              2017-03-07
-=======
-            <time itemprop="dateCreated" datetime="2016-12-07T12:48:13+08:00" content="2016-12-07">
-              2016-12-07
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-<<<<<<< HEAD
-                <a href="/2017/03/07/http-cache/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/07/http-cache/" itemprop="commentsCount"></span>
-=======
-                <a href="/2016/12/07/linux-top-about-cpu/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/07/linux-top-about-cpu/" itemprop="commentsCount"></span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-<<<<<<< HEAD
-          <h2 id="用世界上最好的语言演示一下etag"><a href="#用世界上最好的语言演示一下etag" class="headerlink" title="用世界上最好的语言演示一下etag"></a>用世界上最好的语言演示一下etag</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">// apache 服务器，如果您是nginx请自行配置读取header等信息，同时下面会有nginx测试</div><div class="line"></div><div class="line">$file = &apos;etag.txt&apos;;</div><div class="line">$etag = md5_file($file);</div><div class="line">$headers = apache_request_headers();</div><div class="line"></div><div class="line">if (isset($headers[&apos;If-None-Match&apos;]) &amp;&amp; trim($headers[&quot;If-None-Match&quot;]) == $etag) &#123;</div><div class="line">    header(&quot;HTTP/1.1 304 Not Modified&quot;);</div><div class="line">&#125; else &#123;</div><div class="line">    $content = file_get_contents($file);</div><div class="line">    header(&quot;Etag: $etag&quot;);</div><div class="line">    echo $content;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>第一次请求，服务器返回200.我分别列下请求头【RequsetHeaders】和响应头【ResponseHeaders】</p>
-<p>请求头<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div><div class="line">Accept-Encoding:gzip, deflate, sdch</div><div class="line">Accept-Language:zh-CN,zh;q=0.8,en;q=0.6</div><div class="line">Cache-Control:no-cache</div><div class="line">Connection:keep-alive</div><div class="line">Host:kache.com</div><div class="line">Pragma:no-cache</div><div class="line">Upgrade-Insecure-Requests:1</div><div class="line">User-Agent:Mozilla/5.</div></pre></td></tr></table></figure></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/07/http-cache/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-=======
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Tasks: 179 total,   4 running, 175 sleeping,   0 stopped,   0 zombie</div><div class="line">%Cpu(s): 10.3 us,  1.3 sy,  0.0 ni, 88.5 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</div><div class="line">KiB Mem:   3012668 total,  1073356 used,  1939312 free,    52772 buffers</div><div class="line">KiB Swap:  1308668 total,        0 used,  1308668 free.   409160 cached Mem</div></pre></td></tr></table></figure>
-<p><code>us</code> 用户态 cpu执行用户进程的时间，包括nice时间，一般用户空间cpu高点比较好</p>
-<p><code>sy</code> 系统 cpu在内核运行时间，包括软硬终中断时间，如果此值较高，说明系统有问题</p>
-<p><code>id</code> idle 系统空闲<br><code>wa</code> waiting 系统等待io操作所花费的时间，系统不应该花费太多时间在此，如果有，说明io有瓶颈<br><code>hi</code> hard irq time 硬中断，一般由硬件发出<br><code>si</code> soft irq time 软中断，由信号发出，程序指令发出，比如等待io请求，一般没有硬件的参与<br><code>st</code> steal time，被强制等待 虚拟cpu的时间，比如为另一个虚拟处理器服务</p>
-<p>以上输出根据 <code>/proc/stat</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">tb@tb:~$ cat /proc/stat</div><div class="line">cpu  5803 228 1006 54723 212 0 22 0 0 0</div><div class="line">cpu0 5803 228 1006 54723 212 0 22 0 0 0</div><div class="line">intr 105215 41 238 0 0 0 0 0 0 0 0 0 0 288 0 0 741 0 0 0 3170 1912 14235 58 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</div><div class="line">ctxt 1172838</div><div class="line">btime 1481084918</div><div class="line">processes 2570</div><div class="line">procs_running 6</div><div class="line">procs_blocked 0</div><div class="line">softirq 48007 4 24384 126 3233 14075 0 271 0 0 5914</div></pre></td></tr></table></figure>
-<p><a href="http://download.csdn.net/detail/u010703523/9704275" target="_blank" rel="external">了解更多</a></p>
-
-          
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
         
       
     </div>
@@ -1692,11 +1467,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-<<<<<<< HEAD
-              <span class="site-state-item-count">26</span>
-=======
-              <span class="site-state-item-count">24</span>
->>>>>>> 3a397645fdac1cebb8eee9732f87caa4f6b9c1ae
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1713,7 +1484,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

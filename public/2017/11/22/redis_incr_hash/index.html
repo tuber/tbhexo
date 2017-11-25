@@ -42,7 +42,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="HEAD_FIRST_C," />
+  <meta name="keywords" content="REDIS应用," />
 
 
 
@@ -58,17 +58,17 @@
 
 
 
-<meta name="description" content="知识点：strstr()函数会在第一个字符串中查找第二个字符串，如果找到，他会返回第二个字符串在存储器中的位置。">
-<meta name="keywords" content="HEAD_FIRST_C">
+<meta name="description" content="incr比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。业务模型参考">
+<meta name="keywords" content="REDIS应用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言STRSTR实例">
-<meta property="og:url" content="http://iamtb.cn/2017/11/25/head_firstc_strstr_94/index.html">
+<meta property="og:title" content="redis竟态与争抢唯一">
+<meta property="og:url" content="http://iamtb.cn/2017/11/22/redis_incr_hash/index.html">
 <meta property="og:site_name" content="HEAD FIRST C">
-<meta property="og:description" content="知识点：strstr()函数会在第一个字符串中查找第二个字符串，如果找到，他会返回第二个字符串在存储器中的位置。">
-<meta property="og:updated_time" content="2017-11-25T00:07:46.093Z">
+<meta property="og:description" content="incr比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。业务模型参考">
+<meta property="og:updated_time" content="2017-11-25T12:16:52.920Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C语言STRSTR实例">
-<meta name="twitter:description" content="知识点：strstr()函数会在第一个字符串中查找第二个字符串，如果找到，他会返回第二个字符串在存储器中的位置。">
+<meta name="twitter:title" content="redis竟态与争抢唯一">
+<meta name="twitter:description" content="incr比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。业务模型参考">
 
 
 
@@ -89,10 +89,10 @@
 
 
 
-  <link rel="canonical" href="http://iamtb.cn/2017/11/25/head_firstc_strstr_94/"/>
+  <link rel="canonical" href="http://iamtb.cn/2017/11/22/redis_incr_hash/"/>
 
 
-  <title> C语言STRSTR实例 | HEAD FIRST C </title>
+  <title> redis竟态与争抢唯一 | HEAD FIRST C </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -222,7 +222,7 @@
             
             
               
-                C语言STRSTR实例
+                redis竟态与争抢唯一
               
             
           </h1>
@@ -234,8 +234,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-25T08:12:03+08:00" content="2017-11-25">
-              2017-11-25
+            <time itemprop="dateCreated" datetime="2017-11-22T21:12:03+08:00" content="2017-11-22">
+              2017-11-22
             </time>
           </span>
 
@@ -248,8 +248,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C</span>
+                  <a href="/categories/REDIS/" itemprop="url" rel="index">
+                    <span itemprop="name">REDIS</span>
                   </a>
                 </span>
 
@@ -264,8 +264,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/11/25/head_firstc_strstr_94/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/25/head_firstc_strstr_94/" itemprop="commentsCount"></span>
+                <a href="/2017/11/22/redis_incr_hash/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/22/redis_incr_hash/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -288,10 +288,19 @@
       
 
       
-        <h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p><code>strstr()</code>函数会在第一个字符串中查找第二个字符串，如果找到，他会返回第二个字符串在存储器中的位置。</p>
+        <h2 id="incr"><a href="#incr" class="headerlink" title="incr"></a><a href="http://redisdoc.com/string/incr.html" target="_blank" rel="external">incr</a></h2><p>比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。<a href="http://num.10010.com/NumApp/chseNumList/init?num=186" target="_blank" rel="external">业务模型参考</a></p>
 <a id="more"></a>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">//head frist c page 94</span></div><div class="line"></div><div class="line"><span class="keyword">char</span> tracks [][<span class="number">80</span>] = &#123;</div><div class="line">		<span class="string">"给我一首歌的时间"</span>,</div><div class="line">		<span class="string">"七里香"</span>,</div><div class="line">		<span class="string">"威廉古堡"</span>,</div><div class="line">		<span class="string">"简单爱"</span>,</div><div class="line">		<span class="string">"东风破"</span>,</div><div class="line">		<span class="string">"叶惠美"</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">find_track</span><span class="params">(<span class="keyword">char</span> search_for[])</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> i;</div><div class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</div><div class="line">		<span class="keyword">if</span> (<span class="built_in">strstr</span>(tracks[i], search_for)) &#123;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"find track %i:%s\n"</span>, i,tracks[i]);</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="comment">// printf("your search is %s,not in %s\n",search_for,tracks[i]);</span></div><div class="line">		&#125;	</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> main()</div><div class="line">&#123;</div><div class="line">	<span class="keyword">char</span> search_for[<span class="number">80</span>];</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"search for :"</span>);</div><div class="line">	fgets(search_for, <span class="number">80</span>, <span class="built_in">stdin</span>);</div><div class="line"></div><div class="line">	<span class="comment">//由于fgets接收有换行符号+\0，所以把换行符换成结束符</span></div><div class="line">	search_for[<span class="built_in">strlen</span>(search_for)<span class="number">-1</span>]=<span class="string">'\0'</span>;</div><div class="line">	find_track(search_for);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;	</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
-<h2 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">search for :爱</div><div class="line">find track 3:简单爱</div><div class="line">请按任意键继续. . .</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> if ($this-&gt;redis_db-&gt;incr(&quot;bj_&quot;.$car_no) != 1) &#123;</div><div class="line">      让别人先下手了,点别的去~</div><div class="line">  &#125;else&#123;</div><div class="line">       //抢到竞态条件，如果不复核资质要求退出，并清除incr</div><div class="line">       if(抢到了但是没资质等)&#123;</div><div class="line">         释放对此id的竟态权，别占茅坑</div><div class="line">         $this-&gt;yredis_db-&gt;del(&quot;bj_&quot;.$id);</div><div class="line">       &#125;else&#123;</div><div class="line">         其他业务A</div><div class="line">         抱得号码归...</div><div class="line">         其他业务B</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外，<code>incr</code>对<code>string</code>类型，<code>hash</code>类型，<code>sortedSet</code>类型都可以进行操作</p>
+<h2 id="blpop"><a href="#blpop" class="headerlink" title="blpop"></a><a href="http://redisdoc.com/list/blpop.html" target="_blank" rel="external">blpop</a></h2><p><code>blpop</code>相对于lpop有一个好处，可以对多个队列进行优先级操作。<br><code>blpop</code>会按照<code>key</code>的排列顺序依次弹出，返回值为<code>key</code>的listname及具体元素值，而且可以设置<code>block</code>时间，原则是先阻塞先服务.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$date = date(&apos;Ymd&apos;, time());</div><div class="line">//左进左出 ，优先分配一般的车牌号码，然后在分配非常好的连号号码，设置一个阻塞时间</div><div class="line">return $this-&gt;redis-&gt;blpop(self::$_config[&apos;dispatch_normal_list&apos;] . $date, self::$_config[&apos;dispatch_better_list&apos;] . $date, self::$_config[&apos;redis_block_l_pop_time_out&apos;]);</div></pre></td></tr></table></figure>
+<h2 id="hsetnx"><a href="#hsetnx" class="headerlink" title="hsetnx"></a><a href="http://redisdoc.com/hash/hsetnx.html" target="_blank" rel="external">hsetnx</a></h2><p>设置<code>hash</code>中一个<code>field</code>为指定<code>value</code>，前提是<code>field</code>不存在。如果存在，返回0。<br>这样能保证在一个人只能抢一个车牌，但是抢到车牌执行付款或者其他业务操作过程中，其他人无法对此操作，（即不能将此车牌绑定到其他人身上）。根据具体业务情况，可设置基于car_no的hash field和基于 people 的hash field。<br>hash_base_people {“zhangsan”:”京A888”,”lisi”:”京A999”}<br>hash_base_car_no {“京A888”:”zhangsan”,”京A999”:”lisi”}<br>基于这两个hash 可以做更多关于业务的操作,比如通过hget等查看具体的绑定关系。</p>
+<h2 id="hdel"><a href="#hdel" class="headerlink" title="hdel"></a><a href="http://redisdoc.com/hash/hdel.html" target="_blank" rel="external">hdel</a></h2><p>有了通过hsetnx的绑定模型，当某个人对某个车牌交付了订金等一系列之后，就代表可以永远的将其消除，这样会用到hdel。另外如果在指定时间内没有做比如交付订金之类的操作，这个车牌号码会回炉到原始列表中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//删除以people_id为key的hash</div><div class="line">$base_people_id_del = $this-&gt;redis-&gt;hdel(self::$_config[&apos;hash_base_people&apos;], $people_id);</div><div class="line"></div><div class="line">//删除以car_no为key的hash</div><div class="line">$base_car_no_del = $this-&gt;redis-&gt;hdel(self::$_config[&apos;hash_base_car_no&apos;], $clue_id);</div></pre></td></tr></table></figure>
+<h2 id="lpush"><a href="#lpush" class="headerlink" title="lpush"></a><a href="http://redisdoc.com/list/lpush.html" target="_blank" rel="external">lpush</a></h2><p>如果有入口将北京可以抢拍的车牌放入到一个list里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$lpush_res = $redisObj-&gt;lpush($list_name, $car_no);</div></pre></td></tr></table></figure>
+<p>其中list_name的值可以根据car_no的具体值来确定，比如有６和８的我就放入到<code>better_car_no</code>列表里，其他的放入到<code>normal_car_no</code>列表里，最后可以用<code>blpop</code>来指定一个先后优先级。</p>
+<h2 id="rpoplpush"><a href="#rpoplpush" class="headerlink" title="rpoplpush"></a><a href="http://redisdoc.com/list/rpoplpush.html" target="_blank" rel="external">rpoplpush</a></h2><p>安全的队列弹出模式，比如N多人对一个入口按钮进行操作，如果list结构中有足够的数据，每个人有且只有一条数据会被领取，领取之后再做其他的业务操作。<br>但是问题是，如果用<code>lpop</code>之后，原队列中已被弹出，如果中途客户端在取得该<code>pop</code>的元素后，且完成处理此元素前，客户端发生崩溃。这时候此条消息就凭空消失了。如果没有其他补助措施（比如通过绑定或者记录此弹出的元素）需要严谨要求，可以用<code>rpoplpus</code>h可以解决此问题。在客户端真正处理完此<code>pop</code>的元素之后，通过<code>lrem</code>将此消息安全删除。</p>
 
       
     </div>
@@ -314,7 +323,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/HEAD-FIRST-C/" rel="tag">#HEAD_FIRST_C</a>
+            <a href="/tags/REDIS应用/" rel="tag">#REDIS应用</a>
           
         </div>
       
@@ -323,16 +332,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/25/head_firstc_str_reverse_98/" rel="next" title="C语言str_reverse实例">
-                <i class="fa fa-chevron-left"></i> C语言str_reverse实例
+              <a href="/2017/11/25/head_firstc_strstr_94/" rel="next" title="C语言STRSTR实例">
+                <i class="fa fa-chevron-left"></i> C语言STRSTR实例
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/22/redis_incr_hash/" rel="prev" title="redis竟态与争抢唯一">
-                redis竟态与争抢唯一 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/11/20/head_frist_c_78/" rel="prev" title="字符指针与字符数组">
+                字符指针与字符数组 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -359,8 +368,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/11/25/head_firstc_strstr_94/"
-           data-title="C语言STRSTR实例" data-url="http://iamtb.cn/2017/11/25/head_firstc_strstr_94/">
+      <div class="ds-thread" data-thread-key="2017/11/22/redis_incr_hash/"
+           data-title="redis竟态与争抢唯一" data-url="http://iamtb.cn/2017/11/22/redis_incr_hash/">
       </div>
     
   </div>
@@ -451,7 +460,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点："><span class="nav-number">1.</span> <span class="nav-text">知识点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果："><span class="nav-number">2.</span> <span class="nav-text">结果：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#incr"><span class="nav-number">1.</span> <span class="nav-text">incr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blpop"><span class="nav-number">2.</span> <span class="nav-text">blpop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hsetnx"><span class="nav-number">3.</span> <span class="nav-text">hsetnx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hdel"><span class="nav-number">4.</span> <span class="nav-text">hdel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lpush"><span class="nav-number">5.</span> <span class="nav-text">lpush</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rpoplpush"><span class="nav-number">6.</span> <span class="nav-text">rpoplpush</span></a></li></ol></div>
             
           </div>
         </section>
