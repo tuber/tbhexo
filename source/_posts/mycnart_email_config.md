@@ -37,3 +37,29 @@ smtp服务器由
 
 `ssl://smtp.exmail.qq.com`
 
+
+## 备忘~
+opencart nginx url seo 配置
+```
+	server {
+
+         location / {
+
+                 try_files $uri @opencart;
+
+         }
+
+         location @opencart {
+
+                 rewrite ^/(.+)$ /index.php?_route_=$1 last;
+
+         }
+
+
+         location ~* (\.(tpl|ini))$ {
+
+                 deny all;
+
+ 		}
+```
+
