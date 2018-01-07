@@ -1,0 +1,608 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HEAD_FIRST_C," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="知识点：标准输入读入以及scanf返回值及其参数的使用">
+<meta name="keywords" content="HEAD_FIRST_C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C根据标准输入解析为json">
+<meta property="og:url" content="http://iamtb.cn/2017/11/26/head_first_c_106/index.html">
+<meta property="og:site_name" content="HEAD FIRST C">
+<meta property="og:description" content="知识点：标准输入读入以及scanf返回值及其参数的使用">
+<meta property="og:updated_time" content="2017-11-26T07:45:14.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C根据标准输入解析为json">
+<meta name="twitter:description" content="知识点：标准输入读入以及scanf返回值及其参数的使用">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '1184093927',
+      author: 'BT'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://iamtb.cn/2017/11/26/head_first_c_106/"/>
+
+
+  <title> C根据标准输入解析为json | HEAD FIRST C </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">HEAD FIRST C</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我的沃尔沃呢？</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                C根据标准输入解析为json
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-26T15:25:03+08:00" content="2017-11-26">
+              2017-11-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/11/26/head_first_c_106/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/26/head_first_c_106/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p>标准输入读入以及<code>scanf</code>返回值及其参数的使用<br><a id="more"></a></p>
+<h2 id="原书版本"><a href="#原书版本" class="headerlink" title="原书版本"></a>原书版本</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// volvo1.cpp: 定义控制台应用程序的入口点。</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="comment">//head frist c page 106</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">float</span> latitude;</div><div class="line">	<span class="keyword">float</span> longitude;</div><div class="line">	<span class="keyword">char</span> info[<span class="number">80</span>];</div><div class="line">	<span class="keyword">int</span> started = <span class="number">0</span>;</div><div class="line"></div><div class="line">	<span class="built_in">puts</span>(<span class="string">"data=["</span>);</div><div class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%f,%f,%79[^\n]"</span>, &amp;latitude, &amp;longitude, info) == <span class="number">3</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (started) &#123;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">",\n"</span>);</div><div class="line">		&#125;</div><div class="line">			</div><div class="line">		<span class="keyword">else</span> &#123;</div><div class="line">			started = <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">			</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"&#123;latitude: %f, longitude: %f, info: '%s'&#125;"</span>, latitude, longitude, info);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">puts</span>(<span class="string">"\n]"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">data=[</div><div class="line">12321.123,21321.123,asdffd</div><div class="line">&#123;latitude: 12321.123047, longitude: 21321.123047, info: &apos;asdffd&apos;&#125;12312.12,213123.213,sdafsdf</div><div class="line">,</div><div class="line">&#123;latitude: 12312.120117, longitude: 213123.218750, info: &apos;sdafsdf&apos;&#125;^D</div><div class="line"></div><div class="line">]</div><div class="line">请按任意键继续. . .</div></pre></td></tr></table></figure>
+<h2 id="我的版本："><a href="#我的版本：" class="headerlink" title="我的版本："></a>我的版本：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// volvo1.cpp: 定义控制台应用程序的入口点。</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdafx.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="comment">//head frist c page 106</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">char</span> name[<span class="number">40</span>];</div><div class="line">	<span class="keyword">char</span> album[<span class="number">40</span>];</div><div class="line">	<span class="keyword">int</span> year;</div><div class="line">	<span class="keyword">char</span> comments[<span class="number">90</span>];</div><div class="line">	<span class="keyword">int</span> startd = <span class="number">0</span>;</div><div class="line">	<span class="built_in">puts</span>(<span class="string">"data=["</span>);</div><div class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%[^,], %[^,], %i, %89[^\n]"</span>, name, album, &amp;year, comments) == <span class="number">4</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (startd) &#123;</div><div class="line">			<span class="built_in">printf</span>(<span class="string">"，\n"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> &#123;</div><div class="line">			startd = <span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">	   <span class="built_in">printf</span>(<span class="string">"&#123;歌曲名称:'%s', 所属专辑：'%s',出品日期:%i，歌词: '%s'&#125;"</span>, name, album, year, comments);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">puts</span>(<span class="string">"\n]"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
+<h2 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">data=[</div><div class="line">简单爱,范特西,2012,我想就这样...</div><div class="line">&#123;歌曲名称:&apos;简单爱&apos;, 所属专辑：&apos;范特西&apos;,出品日期:2012，歌词: &apos;我想就这样...&apos;&#125;简单爱,范特西,2012,我想就这样...</div><div class="line">，</div><div class="line">&#123;歌曲名称:&apos;</div><div class="line">简单爱&apos;, 所属专辑：&apos;范特西&apos;,出品日期:2012，歌词: &apos;我想就这样...&apos;&#125;简单爱,范特西,2012,我想就这样...</div><div class="line">，</div><div class="line">&#123;歌曲名称:&apos;</div><div class="line"></div><div class="line">简单爱&apos;, 所属专辑：&apos;范特西&apos;,出品日期:2012，歌词: &apos;我想就这样...&apos;&#125;,,</div><div class="line"></div><div class="line">]</div><div class="line">请按任意键继续. . .</div></pre></td></tr></table></figure>
+<h2 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h2><p>scanf参数真多。。先体会体会~</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span>  </span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">skip</span><span class="params">()</span></span>&#123;  </div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%*[^0-9]"</span>);  </div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span></div><div class="line">&#123;  </div><div class="line">    <span class="keyword">int</span> n;  </div><div class="line">    <span class="keyword">while</span>(skip() &amp;&amp; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n)!=EOF)  </div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, n);  </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </div><div class="line">&#125;  </div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HEAD-FIRST-C/" rel="tag">#HEAD_FIRST_C</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/25/mycnart_email_config/" rel="prev" title="mycncart email设置">
+                mycncart email设置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/11/26/head_first_c_106/"
+           data-title="C根据标准输入解析为json" data-url="http://iamtb.cn/2017/11/26/head_first_c_106/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avator/fucktheking.jpg"
+               alt="Tong Bo" />
+          <p class="site-author-name" itemprop="name">Tong Bo</p>
+          <p class="site-description motion-element" itemprop="description">生命不嘻,都干不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点："><span class="nav-number">1.</span> <span class="nav-text">知识点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原书版本"><span class="nav-number">2.</span> <span class="nav-text">原书版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果："><span class="nav-number">3.</span> <span class="nav-text">结果：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的版本："><span class="nav-number">4.</span> <span class="nav-text">我的版本：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果：-1"><span class="nav-number">5.</span> <span class="nav-text">结果：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论："><span class="nav-number">6.</span> <span class="nav-text">结论：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tong Bo</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"iamtb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

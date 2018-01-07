@@ -1,0 +1,618 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="REDIS应用," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="incr比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。业务模型参考">
+<meta name="keywords" content="REDIS应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis竟态与争抢唯一">
+<meta property="og:url" content="http://iamtb.cn/2017/11/22/redis_incr_hash/index.html">
+<meta property="og:site_name" content="HEAD FIRST C">
+<meta property="og:description" content="incr比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。业务模型参考">
+<meta property="og:updated_time" content="2017-11-25T12:16:52.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis竟态与争抢唯一">
+<meta name="twitter:description" content="incr比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。业务模型参考">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '1184093927',
+      author: 'BT'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://iamtb.cn/2017/11/22/redis_incr_hash/"/>
+
+
+  <title> redis竟态与争抢唯一 | HEAD FIRST C </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">HEAD FIRST C</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我的沃尔沃呢？</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                redis竟态与争抢唯一
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-22T21:12:03+08:00" content="2017-11-22">
+              2017-11-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/REDIS/" itemprop="url" rel="index">
+                    <span itemprop="name">REDIS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/11/22/redis_incr_hash/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/22/redis_incr_hash/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="incr"><a href="#incr" class="headerlink" title="incr"></a><a href="http://redisdoc.com/string/incr.html" target="_blank" rel="external">incr</a></h2><p>比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。<a href="http://num.10010.com/NumApp/chseNumList/init?num=186" target="_blank" rel="external">业务模型参考</a></p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> if ($this-&gt;redis_db-&gt;incr(&quot;bj_&quot;.$car_no) != 1) &#123;</div><div class="line">      让别人先下手了,点别的去~</div><div class="line">  &#125;else&#123;</div><div class="line">       //抢到竞态条件，如果不复核资质要求退出，并清除incr</div><div class="line">       if(抢到了但是没资质等)&#123;</div><div class="line">         释放对此id的竟态权，别占茅坑</div><div class="line">         $this-&gt;yredis_db-&gt;del(&quot;bj_&quot;.$id);</div><div class="line">       &#125;else&#123;</div><div class="line">         其他业务A</div><div class="line">         抱得号码归...</div><div class="line">         其他业务B</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外，<code>incr</code>对<code>string</code>类型，<code>hash</code>类型，<code>sortedSet</code>类型都可以进行操作</p>
+<h2 id="blpop"><a href="#blpop" class="headerlink" title="blpop"></a><a href="http://redisdoc.com/list/blpop.html" target="_blank" rel="external">blpop</a></h2><p><code>blpop</code>相对于lpop有一个好处，可以对多个队列进行优先级操作。<br><code>blpop</code>会按照<code>key</code>的排列顺序依次弹出，返回值为<code>key</code>的listname及具体元素值，而且可以设置<code>block</code>时间，原则是先阻塞先服务.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$date = date(&apos;Ymd&apos;, time());</div><div class="line">//左进左出 ，优先分配一般的车牌号码，然后在分配非常好的连号号码，设置一个阻塞时间</div><div class="line">return $this-&gt;redis-&gt;blpop(self::$_config[&apos;dispatch_normal_list&apos;] . $date, self::$_config[&apos;dispatch_better_list&apos;] . $date, self::$_config[&apos;redis_block_l_pop_time_out&apos;]);</div></pre></td></tr></table></figure>
+<h2 id="hsetnx"><a href="#hsetnx" class="headerlink" title="hsetnx"></a><a href="http://redisdoc.com/hash/hsetnx.html" target="_blank" rel="external">hsetnx</a></h2><p>设置<code>hash</code>中一个<code>field</code>为指定<code>value</code>，前提是<code>field</code>不存在。如果存在，返回0。<br>这样能保证在一个人只能抢一个车牌，但是抢到车牌执行付款或者其他业务操作过程中，其他人无法对此操作，（即不能将此车牌绑定到其他人身上）。根据具体业务情况，可设置基于car_no的hash field和基于 people 的hash field。<br>hash_base_people {“zhangsan”:”京A888”,”lisi”:”京A999”}<br>hash_base_car_no {“京A888”:”zhangsan”,”京A999”:”lisi”}<br>基于这两个hash 可以做更多关于业务的操作,比如通过hget等查看具体的绑定关系。</p>
+<h2 id="hdel"><a href="#hdel" class="headerlink" title="hdel"></a><a href="http://redisdoc.com/hash/hdel.html" target="_blank" rel="external">hdel</a></h2><p>有了通过hsetnx的绑定模型，当某个人对某个车牌交付了订金等一系列之后，就代表可以永远的将其消除，这样会用到hdel。另外如果在指定时间内没有做比如交付订金之类的操作，这个车牌号码会回炉到原始列表中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//删除以people_id为key的hash</div><div class="line">$base_people_id_del = $this-&gt;redis-&gt;hdel(self::$_config[&apos;hash_base_people&apos;], $people_id);</div><div class="line"></div><div class="line">//删除以car_no为key的hash</div><div class="line">$base_car_no_del = $this-&gt;redis-&gt;hdel(self::$_config[&apos;hash_base_car_no&apos;], $clue_id);</div></pre></td></tr></table></figure>
+<h2 id="lpush"><a href="#lpush" class="headerlink" title="lpush"></a><a href="http://redisdoc.com/list/lpush.html" target="_blank" rel="external">lpush</a></h2><p>如果有入口将北京可以抢拍的车牌放入到一个list里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$lpush_res = $redisObj-&gt;lpush($list_name, $car_no);</div></pre></td></tr></table></figure>
+<p>其中list_name的值可以根据car_no的具体值来确定，比如有６和８的我就放入到<code>better_car_no</code>列表里，其他的放入到<code>normal_car_no</code>列表里，最后可以用<code>blpop</code>来指定一个先后优先级。</p>
+<h2 id="rpoplpush"><a href="#rpoplpush" class="headerlink" title="rpoplpush"></a><a href="http://redisdoc.com/list/rpoplpush.html" target="_blank" rel="external">rpoplpush</a></h2><p>安全的队列弹出模式，比如N多人对一个入口按钮进行操作，如果list结构中有足够的数据，每个人有且只有一条数据会被领取，领取之后再做其他的业务操作。<br>但是问题是，如果用<code>lpop</code>之后，原队列中已被弹出，如果中途客户端在取得该<code>pop</code>的元素后，且完成处理此元素前，客户端发生崩溃。这时候此条消息就凭空消失了。如果没有其他补助措施（比如通过绑定或者记录此弹出的元素）需要严谨要求，可以用<code>rpoplpus</code>h可以解决此问题。在客户端真正处理完此<code>pop</code>的元素之后，通过<code>lrem</code>将此消息安全删除。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/REDIS应用/" rel="tag">#REDIS应用</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/25/head_firstc_strstr_94/" rel="next" title="C语言STRSTR实例">
+                <i class="fa fa-chevron-left"></i> C语言STRSTR实例
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/20/head_frist_c_78/" rel="prev" title="字符指针与字符数组">
+                字符指针与字符数组 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/11/22/redis_incr_hash/"
+           data-title="redis竟态与争抢唯一" data-url="http://iamtb.cn/2017/11/22/redis_incr_hash/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avator/fucktheking.jpg"
+               alt="Tong Bo" />
+          <p class="site-author-name" itemprop="name">Tong Bo</p>
+          <p class="site-description motion-element" itemprop="description">生命不嘻,都干不止</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#incr"><span class="nav-number">1.</span> <span class="nav-text">incr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blpop"><span class="nav-number">2.</span> <span class="nav-text">blpop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hsetnx"><span class="nav-number">3.</span> <span class="nav-text">hsetnx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hdel"><span class="nav-number">4.</span> <span class="nav-text">hdel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lpush"><span class="nav-number">5.</span> <span class="nav-text">lpush</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rpoplpush"><span class="nav-number">6.</span> <span class="nav-text">rpoplpush</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tong Bo</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"iamtb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
