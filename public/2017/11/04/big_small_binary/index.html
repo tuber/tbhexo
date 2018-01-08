@@ -65,7 +65,7 @@
 <meta property="og:url" content="http://iamtb.cn/2017/11/04/big_small_binary/index.html">
 <meta property="og:site_name" content="HEAD FIRST C">
 <meta property="og:description" content="大端字节序：数据的低位字节保存在内存的高地址端，等于内存的低位保存的是数据的高位地址小端字节序：数据的高位字节保存在内存的高地址端，网络字节序：tcpip是基于大端字节序">
-<meta property="og:updated_time" content="2017-11-20T04:31:06.504Z">
+<meta property="og:updated_time" content="2018-01-07T23:59:24.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大小端字节序">
 <meta name="twitter:description" content="大端字节序：数据的低位字节保存在内存的高地址端，等于内存的低位保存的是数据的高位地址小端字节序：数据的高位字节保存在内存的高地址端，网络字节序：tcpip是基于大端字节序">
@@ -299,6 +299,11 @@
 <p>本地a字节序转成网络字节序-发送给b  b接收网络字节序 -b转成本地字节序 ，网络字节序为大端模式</p>
 <p>比如内存地址由低到高：0x01 0x02<br>数据为12345678，数据的1234为高位，5678为低位。</p>
 <p>0x01存的是1234，内存低地址存数据高位，为大端。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="keyword">int</span> num=<span class="number">0x12345678</span>;</div><div class="line"></div><div class="line">  <span class="keyword">char</span> *pnum = (<span class="keyword">char</span> *)&amp;num;</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">" sizeof pnum is %i\n"</span>,<span class="keyword">sizeof</span>(pnum));</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"first %p,value is %x\n"</span>,pnum,pnum[<span class="number">0</span>]);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"second %p,value is %x\n"</span>,pnum+<span class="number">1</span>,pnum[<span class="number">1</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"third %p,value is %x\n"</span>,pnum+<span class="number">2</span>,pnum[<span class="number">2</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"fourth %p,value is %x\n"</span>,pnum+<span class="number">3</span>,pnum[<span class="number">3</span>]);</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行结果，可以看出，78存在了低地址位，所以是小端序。</p>
+<p>·<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sizeof pnum is 4</div><div class="line">first 1703740,value is 78</div><div class="line">second 1703741,value is 56</div><div class="line">third 1703742,value is 34</div><div class="line">fourth 1703743,value is 12</div><div class="line">Press any key to continue</div></pre></td></tr></table></figure></p>
+<p>结合php的PACK/unpack，可以得出一致结果:小端序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line"></div><div class="line">define(&apos;BIG_ENDIAN&apos;, pack(&apos;L&apos;, 1) === pack(&apos;N&apos;, 1));</div><div class="line"></div><div class="line">if (BIG_ENDIAN)</div><div class="line">&#123;</div><div class="line">  echo &quot;大端序&quot;;</div><div class="line">&#125;</div><div class="line">else</div><div class="line">&#123;</div><div class="line">  echo &quot;小端序&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -412,7 +417,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -477,7 +482,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
