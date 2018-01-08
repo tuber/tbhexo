@@ -46,3 +46,57 @@ NULL (空洞)
 数据为12345678，数据的1234为高位，5678为低位。
 
 0x01存的是1234，内存低地址存数据高位，为大端。
+
+{% codeblock lang:c %}
+#include <stdio.h>
+
+int main(){
+
+
+  int num=0x12345678;
+
+  char *pnum = (char *)&num;
+
+  printf(" sizeof pnum is %i\n",sizeof(pnum));
+
+  printf("first %p,value is %x\n",pnum,pnum[0]);
+
+  printf("second %p,value is %x\n",pnum+1,pnum[1]);
+  printf("third %p,value is %x\n",pnum+2,pnum[2]);
+  printf("fourth %p,value is %x\n",pnum+3,pnum[3]);
+
+
+}
+{% endcodeblock %}
+
+
+执行结果，可以看出，78存在了低地址位，所以是小端序。
+
+·
+```
+sizeof pnum is 4
+first 1703740,value is 78
+second 1703741,value is 56
+third 1703742,value is 34
+fourth 1703743,value is 12
+Press any key to continue
+```
+
+结合php的PACK/unpack，可以得出一致结果:小端序
+
+
+```
+<?php
+
+
+define('BIG_ENDIAN', pack('L', 1) === pack('N', 1));
+
+if (BIG_ENDIAN)
+{
+  echo "大端序";
+}
+else
+{
+  echo "小端序";
+}
+```
