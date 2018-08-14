@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: HEAD FIRST C
-subtitle: 我的沃尔沃呢？
-description: 生命不嘻,都干不止
+title: 原则
+subtitle: 吾尝终日而思矣，学而不思则罔
+description: 生命不息，抖腿不止
 author: Tong Bo
-language: zh-Hans
+language: en
 timezone:
 
 # URL
@@ -72,3 +72,10 @@ deploy:
   repo: https://github.com/tuber/tuber.github.io.git
   branch: master
   message: static
+
+# http://www.itfanr.cc/2017/10/27/add-search-function-to-hexo-blog/
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
