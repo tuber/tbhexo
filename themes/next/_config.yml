@@ -521,8 +521,8 @@ gitment:
   language: en
   github_user: tuber
   github_repo: tuber.github.io
-  client_id: 19b457df29ae5beb9039
-  client_secret: 595fe14c989ad14dbaf3016cffb3ccaf82f610d5
+  client_id: ed5c34d2bbfec342d5e5
+  client_secret: 974eb52655c2e7907a0fd72eb8a2a9c5cf6a3f5b
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 

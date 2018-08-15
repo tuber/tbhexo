@@ -1545,180 +1545,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/04/head_first_c_/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="生命不息，抖腿不止">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="原则">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/04/head_first_c_/" itemprop="url">
-                  字符数组+1与指针+1
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-04 21:12:03" itemprop="dateCreated datePublished" datetime="2017-11-04T21:12:03+08:00">2017-11-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-08-14 17:42:55" itemprop="dateModified" datetime="2018-08-14T17:42:55+08:00">2018-08-14</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="字符数组-1代码"><a href="#字符数组-1代码" class="headerlink" title="字符数组+1代码"></a>字符数组+1代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">char</span> mystr[]=<span class="string">"Abcef"</span>;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"size of mystr=%i\n"</span>,<span class="keyword">sizeof</span>(mystr));</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[0]，他的值为%c:\n"</span>,mystr[<span class="number">0</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[0]，他的内存地址值为%i:\n"</span>,&amp;mystr);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[1]，他的值为%c:\n"</span>,mystr[<span class="number">1</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[1]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">1</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[2]，他的值为%c:\n"</span>,mystr[<span class="number">2</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[2]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">2</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[3]，他的值为%c:\n"</span>,mystr[<span class="number">3</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[3]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">3</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/04/head_first_c_/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/04/computer-science-summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1839,6 +1665,180 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/04/computer-science-summary/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/04/head_first_c_/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="生命不息，抖腿不止">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="原则">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/04/head_first_c_/" itemprop="url">
+                  字符数组+1与指针+1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-04 21:12:03" itemprop="dateCreated datePublished" datetime="2017-11-04T21:12:03+08:00">2017-11-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-14 17:42:55" itemprop="dateModified" datetime="2018-08-14T17:42:55+08:00">2018-08-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="字符数组-1代码"><a href="#字符数组-1代码" class="headerlink" title="字符数组+1代码"></a>字符数组+1代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">char</span> mystr[]=<span class="string">"Abcef"</span>;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"size of mystr=%i\n"</span>,<span class="keyword">sizeof</span>(mystr));</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[0]，他的值为%c:\n"</span>,mystr[<span class="number">0</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[0]，他的内存地址值为%i:\n"</span>,&amp;mystr);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[1]，他的值为%c:\n"</span>,mystr[<span class="number">1</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[1]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">1</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[2]，他的值为%c:\n"</span>,mystr[<span class="number">2</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[2]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">2</span>);</div><div class="line"></div><div class="line">  <span class="built_in">printf</span>(<span class="string">"mystr[3]，他的值为%c:\n"</span>,mystr[<span class="number">3</span>]);</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"&amp;mystr[3]，他的内存地址值为%i:\n"</span>,&amp;mystr+<span class="number">3</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/04/head_first_c_/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
