@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="学名（Distributed TracingSystem 分布式追踪系统）支持的客户端语言情况奉上谷歌论文Dapper新美大之CAT（开源）大厂子自己造的轮子华为专利 link安装运行 代码执行 12345678910111213141516171819202122232425262728root@es_002:/home/tb/tbdown/zipkin# lsquickstart.sh  zi">
+<meta name="keywords" content="traceing,zipkin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php的调用链追踪入门（zipkin）">
+<meta property="og:url" content="http://iamtb.cn/2018/08/13/trace-zipkin-php/index.html">
+<meta property="og:site_name" content="MAC">
+<meta property="og:description" content="学名（Distributed TracingSystem 分布式追踪系统）支持的客户端语言情况奉上谷歌论文Dapper新美大之CAT（开源）大厂子自己造的轮子华为专利 link安装运行 代码执行 12345678910111213141516171819202122232425262728root@es_002:/home/tb/tbdown/zipkin# lsquickstart.sh  zi">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/5513E5C3C0524A5FB937A1CB0EE7A3EA">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/52486B77B78B473E92DA60311F4491E4">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/2454953BD0204E7090F1FBA67FB99C36">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/6DDA0E236C6F476FAEC555B3E99A3266?ynotemdtimestamp=1561305104458">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/C1ABE11BB22B452A9470EC27AB4097FD?ynotemdtimestamp=1561305104458">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/3955D44C096B4438AF40BF293D59EC45?ynotemdtimestamp=1561305104458">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/D162A85DC67E42D1BAAC622EF4A7668D?ynotemdtimestamp=1561305104458">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/EEF5EFEED18C45C49EB8FC07B501FC02">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/9BB3B84BD4A04C28965996E780B59E07">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/6145935D275A41A9B6359FF6F970B7F8?ynotemdtimestamp=1561305104458">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/56AE1215B7BA4F93B47120D94D54D503?ynotemdtimestamp=1561305104458">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/B7806B72E74E46D5837F81FFAE051029?ynotemdtimestamp=1561305104458">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/C3DF7959091E40FB90890595A42C65EC?ynotemdtimestamp=1561305104458">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/02AA4B5059C349AB8ABBF2DF087E784E?ynotemdtimestamp=1561305104458">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/F08444612B414B3B9EA23544D9F8058B?ynotemdtimestamp=1561305104458">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/F08444612B414B3B9EA23544D9F8058B?ynotemdtimestamp=1561305104458">
+<meta property="og:updated_time" content="2019-06-23T16:06:05.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php的调用链追踪入门（zipkin）">
+<meta name="twitter:description" content="学名（Distributed TracingSystem 分布式追踪系统）支持的客户端语言情况奉上谷歌论文Dapper新美大之CAT（开源）大厂子自己造的轮子华为专利 link安装运行 代码执行 12345678910111213141516171819202122232425262728root@es_002:/home/tb/tbdown/zipkin# lsquickstart.sh  zi">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/5513E5C3C0524A5FB937A1CB0EE7A3EA">
+
+
+
+
+
+
+  <link rel="canonical" href="http://iamtb.cn/2018/08/13/trace-zipkin-php/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>php的调用链追踪入门（zipkin） | MAC</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MAC</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Multiple Access Control</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2018/08/13/trace-zipkin-php/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">php的调用链追踪入门（zipkin）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-13 23:26:44" itemprop="dateCreated datePublished" datetime="2018-08-13T23:26:44+08:00">2018-08-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-06-24 00:06:05" itemprop="dateModified" datetime="2019-06-24T00:06:05+08:00">2019-06-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/13/trace-zipkin-php/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/13/trace-zipkin-php/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="学名（Distributed-TracingSystem-分布式追踪系统）"><a href="#学名（Distributed-TracingSystem-分布式追踪系统）" class="headerlink" title="学名（Distributed TracingSystem 分布式追踪系统）"></a>学名（Distributed TracingSystem 分布式追踪系统）</h2><h2 id="支持的客户端语言情况"><a href="#支持的客户端语言情况" class="headerlink" title="支持的客户端语言情况"></a><a href="https://zipkin.io/pages/existing_instrumentations.html" target="_blank" rel="external">支持的客户端语言情况</a></h2><h2 id="奉上谷歌论文Dapper"><a href="#奉上谷歌论文Dapper" class="headerlink" title="奉上谷歌论文Dapper"></a><a href="https://bigbully.github.io/Dapper-translation/" target="_blank" rel="external">奉上谷歌论文Dapper</a></h2><h2 id="新美大之CAT（开源）"><a href="#新美大之CAT（开源）" class="headerlink" title="新美大之CAT（开源）"></a><a href="https://tech.meituan.com/CAT_in_Depth_Java_Application_Monitoring.html" target="_blank" rel="external">新美大之CAT（开源）</a></h2><h2 id="大厂子自己造的轮子"><a href="#大厂子自己造的轮子" class="headerlink" title="大厂子自己造的轮子"></a><a href="https://www.jianshu.com/p/e02972487e00" target="_blank" rel="external">大厂子自己造的轮子</a></h2><h2 id="华为专利-link"><a href="#华为专利-link" class="headerlink" title="华为专利 link"></a>华为专利 <a href="https://note.youdao.com/" target="_blank" rel="external">link</a></h2><h2 id="安装运行"><a href="#安装运行" class="headerlink" title="安装运行"></a>安装运行</h2><ol>
+<li><p>代码执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">root@es_002:/home/tb/tbdown/zipkin# ls</div><div class="line">quickstart.sh  zipkin-server-2.11.7-exec.jar</div><div class="line">root@es_002:/home/tb/tbdown/zipkin# java -jar zipkin-server-2.11.7-exec.jar </div><div class="line">                                    ********</div><div class="line">                                  **        **</div><div class="line">                                 *            *</div><div class="line">                                **            **</div><div class="line">                                **            **</div><div class="line">                                 **          **</div><div class="line">                                  **        **</div><div class="line">                                    ********</div><div class="line">                                      ****</div><div class="line">                                      ****</div><div class="line">        ****                          ****</div><div class="line">     ******                           ****                                 ***</div><div class="line">  ****************************************************************************</div><div class="line">    *******                           ****                                 ***</div><div class="line">        ****                          ****</div><div class="line">                                       **</div><div class="line">                                       **</div><div class="line"></div><div class="line"></div><div class="line">             *****      **     *****     ** **       **     **   **</div><div class="line">               **       **     **  *     ***         **     **** **</div><div class="line">              **        **     *****     ****        **     **  ***</div><div class="line">             ******     **     **        **  **      **     **   **</div><div class="line"></div><div class="line">:: Powered by Spring Boot ::</div></pre></td></tr></table></figure>
+</li>
+<li><p>上图</p>
+<ol>
+<li>是没有jaeger的好看，丰富<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/5513E5C3C0524A5FB937A1CB0EE7A3EA" alt="image"></li>
+<li>有数据的<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/52486B77B78B473E92DA60311F4491E4" alt="image"></li>
+<li><p>依赖<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/2454953BD0204E7090F1FBA67FB99C36" alt="image"></p>
+</li>
+<li><p>逻辑图  </p>
+</li>
+</ol>
+<ul>
+<li><p>总<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/6DDA0E236C6F476FAEC555B3E99A3266?ynotemdtimestamp=1561305104458" alt="image"></p>
+</li>
+<li><p>分<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/C1ABE11BB22B452A9470EC27AB4097FD?ynotemdtimestamp=1561305104458" alt="image"></p>
+</li>
+<li><p>层次<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/3955D44C096B4438AF40BF293D59EC45?ynotemdtimestamp=1561305104458" alt="image"></p>
+</li>
+<li><p>更贴近业务的复杂调用<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/D162A85DC67E42D1BAAC622EF4A7668D?ynotemdtimestamp=1561305104458" alt="image"></p>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><a href="https://github.com/openzipkin/zipkin-php" target="_blank" rel="external">Zipkin of php</a>类库<a href="https://zipkin.io/pages/existing_instrumentations.html" target="_blank" rel="external">了解</a>一下</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//如果是新项目需要引入包，按需参考以下命令</div><div class="line">composer init</div><div class="line">composer config -g secure-http false</div><div class="line"></div><div class="line">//参考官方php类库 composer.json文件，得到以下</div><div class="line">root@udev:/home/tb/tbtmp# ls</div><div class="line">composer.json  composer.lock  vendor</div><div class="line">root@udev:/home/tb/tbtmp# cd vendor/</div><div class="line">root@udev:/home/tb/tbtmp/vendor# ls</div><div class="line">autoload.php  composer  evenement   jcchavezs  phpdocumentor  phpunit  react        sebastian  symfony</div><div class="line">bin           doctrine  guzzlehttp  myclabs    phpspec        psr      ringcentral  squizlabs  webmozart</div><div class="line">root@udev:/home/tb/tbtmp/vendor#</div></pre></td></tr></table></figure>
+<ol>
+<li>数据持久化到mysql</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">create database zipkin;</div><div class="line"></div><div class="line">CREATE TABLE IF NOT EXISTS zipkin_spans (</div><div class="line">  `trace_id_high` BIGINT NOT NULL DEFAULT 0 COMMENT &apos;If non zero, this means the trace uses 128 bit traceIds instead of 64 bit&apos;,</div><div class="line">  `trace_id` BIGINT NOT NULL,</div><div class="line">  `id` BIGINT NOT NULL,</div><div class="line">  `name` VARCHAR(255) NOT NULL,</div><div class="line">  `parent_id` BIGINT,</div><div class="line">  `debug` BIT(1),</div><div class="line">  `start_ts` BIGINT COMMENT &apos;Span.timestamp(): epoch micros used for endTs query and to implement TTL&apos;,</div><div class="line">  `duration` BIGINT COMMENT &apos;Span.duration(): micros used for minDuration and maxDuration query&apos;</div><div class="line">) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;</div><div class="line"></div><div class="line">ALTER TABLE zipkin_spans ADD UNIQUE KEY(`trace_id_high`, `trace_id`, `id`) COMMENT &apos;ignore insert on duplicate&apos;;</div><div class="line">ALTER TABLE zipkin_spans ADD INDEX(`trace_id_high`, `trace_id`, `id`) COMMENT &apos;for joining with zipkin_annotations&apos;;</div><div class="line">ALTER TABLE zipkin_spans ADD INDEX(`trace_id_high`, `trace_id`) COMMENT &apos;for getTracesByIds&apos;;</div><div class="line">ALTER TABLE zipkin_spans ADD INDEX(`name`) COMMENT &apos;for getTraces and getSpanNames&apos;;</div><div class="line">ALTER TABLE zipkin_spans ADD INDEX(`start_ts`) COMMENT &apos;for getTraces ordering and range&apos;;</div><div class="line"></div><div class="line">CREATE TABLE IF NOT EXISTS zipkin_annotations (</div><div class="line">  `trace_id_high` BIGINT NOT NULL DEFAULT 0 COMMENT &apos;If non zero, this means the trace uses 128 bit traceIds instead of 64 bit&apos;,</div><div class="line">  `trace_id` BIGINT NOT NULL COMMENT &apos;coincides with zipkin_spans.trace_id&apos;,</div><div class="line">  `span_id` BIGINT NOT NULL COMMENT &apos;coincides with zipkin_spans.id&apos;,</div><div class="line">  `a_key` VARCHAR(255) NOT NULL COMMENT &apos;BinaryAnnotation.key or Annotation.value if type == -1&apos;,</div><div class="line">  `a_value` BLOB COMMENT &apos;BinaryAnnotation.value(), which must be smaller than 64KB&apos;,</div><div class="line">  `a_type` INT NOT NULL COMMENT &apos;BinaryAnnotation.type() or -1 if Annotation&apos;,</div><div class="line">  `a_timestamp` BIGINT COMMENT &apos;Used to implement TTL; Annotation.timestamp or zipkin_spans.timestamp&apos;,</div><div class="line">  `endpoint_ipv4` INT COMMENT &apos;Null when Binary/Annotation.endpoint is null&apos;,</div><div class="line">  `endpoint_ipv6` BINARY(16) COMMENT &apos;Null when Binary/Annotation.endpoint is null, or no IPv6 address&apos;,</div><div class="line">  `endpoint_port` SMALLINT COMMENT &apos;Null when Binary/Annotation.endpoint is null&apos;,</div><div class="line">  `endpoint_service_name` VARCHAR(255) COMMENT &apos;Null when Binary/Annotation.endpoint is null&apos;</div><div class="line">) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;</div><div class="line"></div><div class="line">ALTER TABLE zipkin_annotations ADD UNIQUE KEY(`trace_id_high`, `trace_id`, `span_id`, `a_key`, `a_timestamp`) COMMENT &apos;Ignore insert on duplicate&apos;;</div><div class="line">ALTER TABLE zipkin_annotations ADD INDEX(`trace_id_high`, `trace_id`, `span_id`) COMMENT &apos;for joining with zipkin_spans&apos;;</div><div class="line">ALTER TABLE zipkin_annotations ADD INDEX(`trace_id_high`, `trace_id`) COMMENT &apos;for getTraces/ByIds&apos;;</div><div class="line">ALTER TABLE zipkin_annotations ADD INDEX(`endpoint_service_name`) COMMENT &apos;for getTraces and getServiceNames&apos;;</div><div class="line">ALTER TABLE zipkin_annotations ADD INDEX(`a_type`) COMMENT &apos;for getTraces&apos;;</div><div class="line">ALTER TABLE zipkin_annotations ADD INDEX(`a_key`) COMMENT &apos;for getTraces&apos;;</div><div class="line">ALTER TABLE zipkin_annotations ADD INDEX(`trace_id`, `span_id`, `a_key`) COMMENT &apos;for dependencies job&apos;;</div><div class="line"></div><div class="line">CREATE TABLE IF NOT EXISTS zipkin_dependencies (</div><div class="line">  `day` DATE NOT NULL,</div><div class="line">  `parent` VARCHAR(255) NOT NULL,</div><div class="line">  `child` VARCHAR(255) NOT NULL,</div><div class="line">  `call_count` BIGINT,</div><div class="line">  `error_count` BIGINT</div><div class="line">) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;</div><div class="line"></div><div class="line">ALTER TABLE zipkin_dependencies ADD UNIQUE KEY(`day`, `parent`, `child`);</div></pre></td></tr></table></figure>
+<p>以mysql为存储方式启动(222为另外一台机器)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">STORAGE_TYPE=mysql MYSQL_HOST=192.168.50.222 MYSQL_TCP_PORT=3306 MYSQL_DB=zipkin MYSQL_USER=root MYSQL_PASS=&apos;root&apos; java -jar zipkin-server-2.11.7-exec.jar</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Database changed</div><div class="line">mysql&gt; show tables;</div><div class="line">+---------------------+</div><div class="line">| Tables_in_zipkin    |</div><div class="line">+---------------------+</div><div class="line">| zipkin_annotations  |</div><div class="line">| zipkin_dependencies |</div><div class="line">| zipkin_spans        |</div><div class="line">+---------------------+</div><div class="line">3 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; select * from zipkin_spans;</div><div class="line">+---------------+------------------+------------------+--------------+------------------+-------+------------------+----------+</div><div class="line">| trace_id_high | trace_id         | id               | name         | parent_id        | debug | start_ts         | duration |</div><div class="line">+---------------+------------------+------------------+--------------+------------------+-------+------------------+----------+</div><div class="line">|             0 | 1540542210608961 | 1540542210608963 | /method_of_a |             NULL |      | 1540542210608963 |   380025 |</div><div class="line">|             0 | 1540542210608961 | 1540542210608964 | /method_of_b | 1540542210608963 |      | 1540542210608968 |   229175 |</div><div class="line">|             0 | 1540542210608961 | 1540542210838146 | mysql.user   | 1540542210608963 |      | 1540542210838148 |   100442 |</div><div class="line">+---------------+------------------+------------------+--------------+------------------+-------+------------------+----------+</div><div class="line">3 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt;</div></pre></td></tr></table></figure>
+<p>与下图匹配<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/EEF5EFEED18C45C49EB8FC07B501FC02" alt="image"></p>
+<ol>
+<li>更形象化的例子</li>
+</ol>
+<p><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/9BB3B84BD4A04C28965996E780B59E07" alt="image"></p>
+<pre><code>1. 在10ms的时候，client send发起一个请求
+2. 服务端在9ms后(10+9),之后，收到这个请求 server receive
+3. 12ms后，server处理完了业务逻辑，返回给客户端 server send
+4. 1ms后，client收到了这个响应 client receive
+</code></pre><h2 id="实战代码"><a href="#实战代码" class="headerlink" title="实战代码"></a>实战代码</h2><ol>
+<li>new trace是一个span的名称，这三个span是同级别<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">$span_root = $tracer-&gt;newTrace();</div><div class="line">       $span_root-&gt;setName(&apos;pre_con_redis&apos;);</div><div class="line">       $span_root-&gt;start();</div><div class="line">       try &#123;</div><div class="line">           //1000毫秒 =1秒=1000000微秒 usleep 单位是微妙</div><div class="line">          usleep(1000000);</div><div class="line">       &#125; finally &#123;</div><div class="line">           $span_root-&gt;finish();</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       //new trace是一个span的名称</div><div class="line">       $span_root_2 = $tracer-&gt;newTrace();</div><div class="line">       $span_root_2-&gt;setName(&apos;do_redis&apos;);</div><div class="line">       $span_root_2-&gt;start();</div><div class="line">       try &#123;</div><div class="line">           //1000毫秒 =1秒=1000000微秒 usleep 单位是微妙</div><div class="line">           usleep(2000000);</div><div class="line">       &#125; finally &#123;</div><div class="line">           $span_root_2-&gt;finish();</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       $span_root_3 = $tracer-&gt;newTrace();</div><div class="line">       $span_root_3-&gt;setName(&apos;do_redis&apos;);</div><div class="line">       $span_root_3-&gt;start();</div><div class="line">       try &#123;</div><div class="line">           //1000毫秒 =1秒=1000000微秒 usleep 单位是微妙</div><div class="line">           usleep(3000000);</div><div class="line">       &#125; finally &#123;</div><div class="line">           $span_root_3-&gt;finish();</div><div class="line">       &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>对应下面的1s，2s，3s  </p>
+<p><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/6145935D275A41A9B6359FF6F970B7F8?ynotemdtimestamp=1561305104458" alt="image"></p>
+<ol>
+<li>父子关系</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">  $span_root = $tracer-&gt;newTrace();</div><div class="line">        $span_root-&gt;setName(&apos;php_demo_begin&apos;);</div><div class="line">        $span_root-&gt;start();</div><div class="line">//        $span_root-&gt;tag(&apos;http.status_code&apos;, &apos;200&apos;);</div><div class="line">        try &#123;</div><div class="line">            $parentContext = $span_root-&gt;getContext();</div><div class="line">            $child_span1=$tracer-&gt;newChild($parentContext);</div><div class="line">            $child_span1-&gt;setName(&quot;pre_con_redis&quot;);</div><div class="line">            $child_span1-&gt;start();</div><div class="line">            //1000毫秒 =1秒=1000000微秒 usleep 单位是微妙</div><div class="line">           usleep(1000000);</div><div class="line">        &#125; finally &#123;</div><div class="line">            $child_span1-&gt;finish();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        /**new trace是一个span的名称</div><div class="line">        *在每个节点处（span）打点，初始化时设置context上下文（暂时忽略这个概念），name（span名称）</div><div class="line">        *这样就产生了一条span记录，包含：context，span-name，start-time，end-time。</div><div class="line">         **/</div><div class="line">        $child_span1 = $tracer-&gt;newChild($parentContext);</div><div class="line">        $child_span1-&gt;setName(&apos;do_redis&apos;);</div><div class="line">        $child_span1-&gt;start();</div><div class="line">//        $span_root-&gt;tag(&apos;http.status_code&apos;, &apos;200&apos;);</div><div class="line">        try &#123;</div><div class="line">            //1000毫秒 =1秒=1000000微秒 usleep 单位是微妙</div><div class="line">            usleep(2300000);</div><div class="line">        &#125; finally &#123;</div><div class="line">            $child_span1-&gt;finish();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        $child_span3 = $tracer-&gt;newChild($parentContext);</div><div class="line">        $child_span3-&gt;setName(&apos;redis_return&apos;);</div><div class="line">        $child_span3-&gt;start();</div><div class="line">//        $span_root-&gt;tag(&apos;http.status_code&apos;, &apos;200&apos;);</div><div class="line">        try &#123;</div><div class="line">            //1000毫秒 =1秒=1000000微秒 usleep 单位是微妙</div><div class="line">            usleep(1200000);</div><div class="line">        &#125; finally &#123;</div><div class="line">            $child_span3-&gt;finish();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        $span_root-&gt;finish();</div></pre></td></tr></table></figure>
+<p><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/56AE1215B7BA4F93B47120D94D54D503?ynotemdtimestamp=1561305104458" alt="image"></p>
+<h2 id="实现截图"><a href="#实现截图" class="headerlink" title="实现截图"></a>实现截图</h2><h4 id="001"><a href="#001" class="headerlink" title="001"></a>001</h4><p> <img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/B7806B72E74E46D5837F81FFAE051029?ynotemdtimestamp=1561305104458" alt="image"></p>
+<h4 id="002"><a href="#002" class="headerlink" title="002"></a>002</h4><p> <img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/C3DF7959091E40FB90890595A42C65EC?ynotemdtimestamp=1561305104458" alt="image"></p>
+<h4 id="003"><a href="#003" class="headerlink" title="003"></a>003</h4><p> <img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/02AA4B5059C349AB8ABBF2DF087E784E?ynotemdtimestamp=1561305104458" alt="image"></p>
+<h4 id="004"><a href="#004" class="headerlink" title="004"></a>004</h4><p> <img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/F08444612B414B3B9EA23544D9F8058B?ynotemdtimestamp=1561305104458" alt="image"></p>
+<h2 id="实际问题"><a href="#实际问题" class="headerlink" title="实际问题"></a>实际问题</h2><ol>
+<li>如果做到对现有代码的低侵入<br>对中间件、类库的二次包装？</li>
+<li>如果兼顾代码执行效率、性能、稳定性<br>根据load动态调整？</li>
+<li>扩展及降级怎么最方便</li>
+<li>该记录什么信息？怎么记录？hook<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/F08444612B414B3B9EA23544D9F8058B?ynotemdtimestamp=1561305104458" alt="image"></li>
+<li><a href="https://dzone.com/articles/distributed-tracing-with-zipkin-and-elk/" target="_blank" rel="external">和ELK结合</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/traceing/" rel="tag"># traceing</a>
+          
+            <a href="/tags/zipkin/" rel="tag"># zipkin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/13/trace-jaeger-php/" rel="next" title="php的调用链追踪入门（jeager）">
+                <i class="fa fa-chevron-left"></i> php的调用链追踪入门（jeager）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/25/docker-one-02/" rel="prev" title="docker环境的各种搭建方法">
+                docker环境的各种搭建方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/avator/fucktheking.jpg"
+                alt="Tong Bo" />
+            
+              <p class="site-author-name" itemprop="name">Tong Bo</p>
+              <p class="site-description motion-element" itemprop="description">君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tuber" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:1184093927@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#学名（Distributed-TracingSystem-分布式追踪系统）"><span class="nav-number">1.</span> <span class="nav-text">学名（Distributed TracingSystem 分布式追踪系统）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持的客户端语言情况"><span class="nav-number">2.</span> <span class="nav-text">支持的客户端语言情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#奉上谷歌论文Dapper"><span class="nav-number">3.</span> <span class="nav-text">奉上谷歌论文Dapper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新美大之CAT（开源）"><span class="nav-number">4.</span> <span class="nav-text">新美大之CAT（开源）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大厂子自己造的轮子"><span class="nav-number">5.</span> <span class="nav-text">大厂子自己造的轮子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#华为专利-link"><span class="nav-number">6.</span> <span class="nav-text">华为专利 link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装运行"><span class="nav-number">7.</span> <span class="nav-text">安装运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战代码"><span class="nav-number">8.</span> <span class="nav-text">实战代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现截图"><span class="nav-number">9.</span> <span class="nav-text">实现截图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#001"><span class="nav-number">9.0.1.</span> <span class="nav-text">001</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#002"><span class="nav-number">9.0.2.</span> <span class="nav-text">002</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#003"><span class="nav-number">9.0.3.</span> <span class="nav-text">003</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#004"><span class="nav-number">9.0.4.</span> <span class="nav-text">004</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际问题"><span class="nav-number">10.</span> <span class="nav-text">实际问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tong Bo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'tuber',
+            repo: 'tuber.github.io',
+            
+            lang: "en" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '974eb52655c2e7907a0fd72eb8a2a9c5cf6a3f5b',
+            
+                client_id: 'ed5c34d2bbfec342d5e5'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

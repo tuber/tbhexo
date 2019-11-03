@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="简单介绍 用途：监控monitor 检测troubleshoot  事务transations 处理在复杂的分布式系统中 complex distributed systems 性能优化分析 官网地址 背景：微服务（microservices）的发展、网络的不稳定、多环的服务请求记录错误排查定位 相关： 轻量级标准化层API：OpenTracing jagger前世今生  阿里好文 opentta">
+<meta name="keywords" content="traceing,jaeger">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php的调用链追踪入门（jeager）">
+<meta property="og:url" content="http://iamtb.cn/2018/08/13/trace-jaeger-php/index.html">
+<meta property="og:site_name" content="MAC">
+<meta property="og:description" content="简单介绍 用途：监控monitor 检测troubleshoot  事务transations 处理在复杂的分布式系统中 complex distributed systems 性能优化分析 官网地址 背景：微服务（microservices）的发展、网络的不稳定、多环的服务请求记录错误排查定位 相关： 轻量级标准化层API：OpenTracing jagger前世今生  阿里好文 opentta">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/E9F2F681E5C54C8B8E806DD9A30EEE1A">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/2460C8742ACF4881A887A87511D74A12">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/DDE2BE398CBF45B4A19C95E17A1B2EF7">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/8C10C46800F54669B10E7376EAC4E536">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/55C38C3F3E0B43ECA926A6FD1CC25E9E">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/7B603AE043744222A2FABDBEC691C32E">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/2EC21DEEF68B4BA5B855FBEA04585B4E">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/1E1DCDC593AC48B4A7FE7283E55601E7?ynotemdtimestamp=1561304251618">
+<meta property="og:updated_time" content="2019-06-24T13:47:23.742Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php的调用链追踪入门（jeager）">
+<meta name="twitter:description" content="简单介绍 用途：监控monitor 检测troubleshoot  事务transations 处理在复杂的分布式系统中 complex distributed systems 性能优化分析 官网地址 背景：微服务（microservices）的发展、网络的不稳定、多环的服务请求记录错误排查定位 相关： 轻量级标准化层API：OpenTracing jagger前世今生  阿里好文 opentta">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/E9F2F681E5C54C8B8E806DD9A30EEE1A">
+
+
+
+
+
+
+  <link rel="canonical" href="http://iamtb.cn/2018/08/13/trace-jaeger-php/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>php的调用链追踪入门（jeager） | MAC</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MAC</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Multiple Access Control</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2018/08/13/trace-jaeger-php/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">php的调用链追踪入门（jeager）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-13 23:26:44" itemprop="dateCreated datePublished" datetime="2018-08-13T23:26:44+08:00">2018-08-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-06-24 21:47:23" itemprop="dateModified" datetime="2019-06-24T21:47:23+08:00">2019-06-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/13/trace-jaeger-php/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/13/trace-jaeger-php/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><ul>
+<li>用途：监控monitor 检测troubleshoot  事务transations 处理在复杂的分布式系统中 complex distributed systems 性能优化分析</li>
+<li><a href="https://www.jaegertracing.io/" target="_blank" rel="external">官网地址</a></li>
+<li>背景：微服务（microservices）的发展、网络的不稳定、多环的服务请求记录错误排查定位</li>
+<li>相关：<ul>
+<li>轻量级标准化层API：<a href="http://opentracing.io/" target="_blank" rel="external">OpenTracing</a></li>
+<li><a href="https://juejin.im/entry/58c3bf8761ff4b005d90c5e1" target="_blank" rel="external">jagger前世今生</a></li>
+<li><a href="https://yq.aliyun.com/articles/514488" target="_blank" rel="external"> 阿里好文</a></li>
+<li><a href="https://github.com/opentracing-contrib/opentracing-specification-zh/blob/master/specification.md" target="_blank" rel="external">openttacing  api 中文版介绍</a></li>
+<li><a href="https://developer.qiniu.com/insight/manual/5054/all-link-track-profile" target="_blank" rel="external">七牛</a></li>
+<li><a href="https://yq.aliyun.com/articles/514488?utm_content=m_43347" target="_blank" rel="external">阿里好文2</a></li>
+<li><a href="https://bigbully.github.io/Dapper-translation/" target="_blank" rel="external">google 论文中文</a></li>
+</ul>
+</li>
+<li><p>两对儿图：</p>
+  <a id="more"></a>
+<ul>
+<li>日常调用（逻辑链路）<br><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/E9F2F681E5C54C8B8E806DD9A30EEE1A" alt="image"><br><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/2460C8742ACF4881A887A87511D74A12" alt="image"></li>
+<li>链路分析（物理链路）<br><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/DDE2BE398CBF45B4A19C95E17A1B2EF7" alt="image"><br><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/8C10C46800F54669B10E7376EAC4E536" alt="image"></li>
+</ul>
+</li>
+<li><p>整图<br><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/55C38C3F3E0B43ECA926A6FD1CC25E9E" alt="image"></p>
+</li>
+</ul>
+<h2 id="名词介绍"><a href="#名词介绍" class="headerlink" title="名词介绍"></a>名词介绍</h2><ol>
+<li>TrancesID 全局跟踪id，标记一次完整的服务调用（可包含多次子，子子调用） 一般可以设置为TraceId和顶级span相同</li>
+<li>SpansID 一次方法（程序块、RPC、db）的调用，每一个RPC对应到一个单一的span，但是traceId都是相同的。<br> 注意：一个节点上可能有多次span（可能此端相对上游来说是服务端，接收和应答上游服务。对于下游（下游）可能有多个，又会是调用和接收下游的服务），不能把一个节点上的多个span合并成一个。<br>  一个节点上并不总是发生完整的cs sr ss cr这四种事件。因为并不是所有的节点都有上游服务和下游服务。</li>
+<li>Spans Tags span日志集合（key-value）</li>
+<li>Baggage Item Trace层面的日志数据</li>
+<li>Refererneces Span之间的关系</li>
+<li>grpc protobuf thrift 跨语言通信框架（协议）</li>
+<li>事件（annotation数据）类型<ol>
+<li>cs ：客户端/消费者发起请求 client send</li>
+<li>cr ：客户端/消费者收到应答 client recevive</li>
+<li>sr ：服务端/生产者接收到请求 server receive</li>
+<li>ss ：服务端/生产者发送应答 server send<ul>
+<li>Annotation的意思是注释，备注，很好理解。可以理解为一个Hash结构，长度最多为4.每种关键事件包含value，  timestamp，和endpoint。value为以上四种事件类型之一，timestamp即为发生调用时间。enpoint用于记录发生的机器ip和服务名称servername。所以一般cs和cr的机器名称相等，sr和ss的机器名称相同</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>duration 时间消耗总耗时</li>
+<li>timestamp 一般用于记录时间消耗的起点</li>
+<li>endpoint 记录终端机器发生的ip和名称（可以是相对的发起方和调用方），也会把endpoint数据放在annotation里。</li>
+<li>BinaryAnnotation 除去以上的时间、事件、节点等信息，如果还需要++绑定业务数据++（日志、异常），将数据写入到BinaryAnnotion中。结构和Annotation一样。</li>
+<li>parentId 父span的Id，当然具有层级关系。顶级span（最先接触服务调用入口）是没有parentId的</li>
+<li>span name 一般为接口的方法名</li>
+<li>一图胜三言(下图)</li>
+<li><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/7B603AE043744222A2FABDBEC691C32E" alt="image"></li>
+</ol>
+<h2 id="大概流程"><a href="#大概流程" class="headerlink" title="大概流程"></a>大概流程</h2><ol>
+<li>请求入口生成唯一traceId，用于贯穿整个服务，</li>
+<li>在调用具体的服务（或方法）前生成span（spanid可以平行、嵌套，），记录调用时间</li>
+<li>在调用具体的服务（或方法）时，传参1的traceId和2的spanid，调用http server或者rpc server</li>
+<li>调用完成后关联到1的traceId</li>
+<li>统一存储（涉及各编程语言调用类库及客户端收集存储）</li>
+<li>查询结果，输出展示</li>
+</ol>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li><a href="https://blog.yeeef.com/post/optimize-slow-request/" target="_blank" rel="external">做一个筛选条件的导出excel操作</a>，筛选条件经过sql查询生成对象数组，然后经过代码逻辑处理导出csv，查看是否有redis缓存，最后到客户端输出。可以查看是sql问题（数据查询和数据转换）？redis连接缓存问题？客户端导出慢？</li>
+<li>谷歌首页搜索一个词语，需要毫秒级响应。列表，图片，推荐，所有的不只一个接口。如果时间太长，到底是哪里慢？</li>
+</ul>
+<h2 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h2><ul>
+<li>前端UI展示</li>
+<li>数据持久化存储（Cassandra or elastic）</li>
+<li>数据查询组件</li>
+<li>客户端库library（Go, Node, Java, Python）</li>
+<li>客户端代理anent（可控制应用追踪数据采样）</li>
+<li>数据收集处理collector</li>
+</ul>
+<h2 id="数据收集展示流程"><a href="#数据收集展示流程" class="headerlink" title="数据收集展示流程"></a>数据收集展示流程</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Agent      --&gt; Collector    # 从Agent发送数据到Collector</div><div class="line">Collector  --&gt; Cassandra    # 从Collector写数据到Cassandra</div><div class="line">Query      --&gt; Cassandra    # 从Cassandra读数据到Query</div></pre></td></tr></table></figure>
+</code></pre><h2 id="ALL-IN-ONE-DOCKER-IMAGE"><a href="#ALL-IN-ONE-DOCKER-IMAGE" class="headerlink" title="ALL IN ONE DOCKER IMAGE"></a>ALL IN ONE DOCKER IMAGE</h2><ol>
+<li><p>仅供测试环境，数据放在内存中了 -docker images </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">docker run -d --name jaeger \</div><div class="line">     -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \</div><div class="line">     -p 5775:5775/udp \</div><div class="line">     -p 6831:6831/udp \</div><div class="line">     -p 6832:6832/udp \</div><div class="line">     -p 5778:5778 \</div><div class="line">     -p 16686:16686 \</div><div class="line">     -p 14268:14268 \</div><div class="line">     -p 9411:9411 \</div><div class="line">     jaegertracing/all-in-one:latest</div></pre></td></tr></table></figure>
+</li>
+<li><p><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/2EC21DEEF68B4BA5B855FBEA04585B4E" alt="image"></p>
+</li>
+</ol>
+<h2 id="模拟测试数据方法一："><a href="#模拟测试数据方法一：" class="headerlink" title="模拟测试数据方法一："></a>模拟测试数据方法一：</h2><ul>
+<li><p><a href="https://github.com/jaegertracing/jaeger/tree/master/examples/hotrod" target="_blank" rel="external">Hot R.O.D. Rides OnDemand</a></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">root@docker_001:/home/tb# docker images</div><div class="line">REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">jaegertracing/example-hotrod   latest              73985981101a        12 hours ago        15.5MB</div><div class="line">jaegertracing/all-in-one       latest              8ab45e1d2c89        4 days ago          40.4MB</div><div class="line">redislabs/rebloom              latest              3386f3e4e33a        4 weeks ago         83.6MB</div><div class="line">tb_php-fpm                     latest              ddd54dd40a46        4 months ago        225MB</div><div class="line">nginx                          latest              c5c4e8fa2cf7        4 months ago        109MB</div><div class="line">phpdockerio/php56-fpm          latest              e944c32c61aa        5 months ago        225MB</div><div class="line">hello-world                    latest              f2a91732366c        9 months ago        1.85kB</div><div class="line">root@docker_001:/home/tb# docker run   --rm   --link jaeger   -p8080-8083:8080-8083   jaegertracing/example-hotrod:latest   all   --jaeger-agent.host-port=jaeger:6831</div><div class="line">2018-08-28T06:44:27.000Z	INFO	cmd/root.go:86	Using expvar as metrics backend</div><div class="line">2018-08-28T06:44:27.000Z	INFO	cmd/all.go:25	Starting all services</div><div class="line">2018-08-28T06:44:27.104Z	INFO	log/logger.go:37	Starting	&#123;&quot;service&quot;: &quot;route&quot;, &quot;address&quot;: &quot;http://0.0.0.0:8083&quot;&#125;</div><div class="line">2018-08-28T06:44:27.105Z	INFO	log/logger.go:37	Starting	&#123;&quot;service&quot;: &quot;frontend&quot;, &quot;address&quot;: &quot;http://0.0.0.0:8080&quot;&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/1E1DCDC593AC48B4A7FE7283E55601E7?ynotemdtimestamp=1561304251618" alt="image"></p>
+</li>
+</ul>
+<h2 id="模拟数据方法二-go源码安装"><a href="#模拟数据方法二-go源码安装" class="headerlink" title="模拟数据方法二 go源码安装"></a>模拟数据方法二 go源码安装</h2><ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">go get github.com/jaegertracing/jaeger</div><div class="line">cd $GOPATH/src/github.com/jaegertracing/jaeger</div><div class="line">make install</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>问题：glide (go 包管理工具)的安装</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">     /bin/sh: 1: glide: not found</div><div class="line">        glide install</div><div class="line">        make: glide: Command not found</div><div class="line">        Makefile:158: recipe for target &apos;install&apos; failed</div><div class="line">        make: *** [install] Error 127</div><div class="line">        </div><div class="line">        ## 安装glide</div><div class="line">        curl https://glide.sh/get | sh</div><div class="line">          % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</div><div class="line">                                         Dload  Upload   Total   Spent    Left  Speed</div><div class="line">        100  4833  100  4833    0     0    944      0  0:00:05  0:00:05 --:--:--  1192</div><div class="line">        ARCH=amd64</div><div class="line">        OS=linux</div><div class="line">        Using curl as download tool</div><div class="line">        Getting https://glide.sh/version</div><div class="line">        TAG=v0.13.1</div><div class="line">        GLIDE_DIST=glide-v0.13.1-linux-amd64.tar.gz</div><div class="line">        Downloading https://github.com/Masterminds/glide/releases/download/v0.13.1/glide-v0.13.1-linux-amd64.tar.gz</div><div class="line">        glide not found. Did you add $GOBIN to your $PATH?</div><div class="line">        Fail to install glide</div><div class="line">        root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger#</div><div class="line">    </div><div class="line">    ``` </div><div class="line">    </div><div class="line">解决问题： </div><div class="line"></div><div class="line">    `vim .profile` # 增加GOBIN的PATH  </div><div class="line"></div><div class="line">然后</div></pre></td></tr></table></figure>
+<pre><code>source .profile 
+root@docker_001:/home/tb# echo $GOBIN
+/usr/local/go/bin
+root@docker_001:/home/tb# cd /home/tb/go_work/src/github.com/jaegertracing/jaeger
+root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger# 
+root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger# curl https://glide.sh/get | sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  4833  100  4833    0     0    481      0  0:00:10  0:00:10 --:--:--  1120
+ARCH=amd64
+OS=linux
+Using curl as download tool
+Getting https://glide.sh/version
+TAG=v0.13.1
+GLIDE_DIST=glide-v0.13.1-linux-amd64.tar.gz
+Downloading https://github.com/Masterminds/glide/releases/download/v0.13.1/glide-v0.13.1-linux-amd64.tar.gz
+glide version v0.13.1 installed successfully
+</code></pre></li>
+</ul>
+<p>然后执行</p>
+<pre><code>`make install`
+`cd examples/hotrod`
+`go run ./main.go all`,执行结果如下  
+
+[INFO]    --&gt; Exporting go.uber.org/multierr
+[INFO]    --&gt; Exporting go.uber.org/zap
+[INFO]    Replacing existing vendor dependencies
+root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger# cd examples/hotrod
+root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger/examples/hotrod# go run ./main.go all
+2018-08-30T11:57:49.524+0800    INFO    cmd/root.go:86    Using expvar as metrics backend
+2018-08-30T11:57:49.524+0800    INFO    cmd/all.go:25    Starting all services
+2018-08-30T11:57:49.625+0800    INFO    log/logger.go:37    Starting    {&quot;service&quot;: &quot;route&quot;, &quot;address&quot;: &quot;http://0.0.0.0:8083&quot;}
+2018-08-30T11:57:49.626+0800    INFO    log/logger.go:37    Starting    {&quot;service&quot;: &quot;frontend&quot;, &quot;address&quot;: &quot;http://0.0.0.0:8080&quot;}
+2018-08-30T11:57:49.728+0800    INFO    log/logger.go:37    Starting    {&quot;service&quot;: &quot;customer&quot;, &quot;address&quot;: &quot;http://0.0.0.0:8081&quot;}
+2018-08-30T11:57:49.729+0800    INFO    log/logger.go:37    TChannel listening    {&quot;service&quot;: &quot;driver&quot;, &quot;hostPort&quot;: &quot;[::]:8082&quot;}
+...
+</code></pre><p>   ```<br>也是同样通过8080端口访问即可。</p>
+<h2 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h2><ol>
+<li>elasticsearch 存储信息</li>
+<li>php 调用追踪</li>
+<li><a href="https://imscc.io/posts/trace/install_jaeger_on_linux/" target="_blank" rel="external">源码安装jaeger</a></li>
+<li>zipkin</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/traceing/" rel="tag"># traceing</a>
+          
+            <a href="/tags/jaeger/" rel="tag"># jaeger</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/29/docker-one-03/" rel="next" title="docker的架构和底层技术">
+                <i class="fa fa-chevron-left"></i> docker的架构和底层技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/13/trace-zipkin-php/" rel="prev" title="php的调用链追踪入门（zipkin）">
+                php的调用链追踪入门（zipkin） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/avator/fucktheking.jpg"
+                alt="Tong Bo" />
+            
+              <p class="site-author-name" itemprop="name">Tong Bo</p>
+              <p class="site-description motion-element" itemprop="description">君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tuber" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:1184093927@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名词介绍"><span class="nav-number">2.</span> <span class="nav-text">名词介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大概流程"><span class="nav-number">3.</span> <span class="nav-text">大概流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">4.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组成部分"><span class="nav-number">5.</span> <span class="nav-text">组成部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据收集展示流程"><span class="nav-number">6.</span> <span class="nav-text">数据收集展示流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALL-IN-ONE-DOCKER-IMAGE"><span class="nav-number">7.</span> <span class="nav-text">ALL IN ONE DOCKER IMAGE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟测试数据方法一："><span class="nav-number">8.</span> <span class="nav-text">模拟测试数据方法一：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟数据方法二-go源码安装"><span class="nav-number">9.</span> <span class="nav-text">模拟数据方法二 go源码安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#todo"><span class="nav-number">10.</span> <span class="nav-text">todo</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tong Bo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'tuber',
+            repo: 'tuber.github.io',
+            
+            lang: "en" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '974eb52655c2e7907a0fd72eb8a2a9c5cf6a3f5b',
+            
+                client_id: 'ed5c34d2bbfec342d5e5'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

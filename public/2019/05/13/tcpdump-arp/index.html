@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="环境准备机器1 udev的mac及ip地址123456789root@udev:/home/tb# ifconfigenp0s3    Link encap:Ethernet  HWaddr 08:00:27:63:49:66            inet addr:10.70.30.73  Bcast:10.70.31.255  Mask:255.255.254.0          inet">
+<meta name="keywords" content="ARP,tcpdump">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tcpdump 工具查看分析arp协议">
+<meta property="og:url" content="http://iamtb.cn/2019/05/13/tcpdump-arp/index.html">
+<meta property="og:site_name" content="MAC">
+<meta property="og:description" content="环境准备机器1 udev的mac及ip地址123456789root@udev:/home/tb# ifconfigenp0s3    Link encap:Ethernet  HWaddr 08:00:27:63:49:66            inet addr:10.70.30.73  Bcast:10.70.31.255  Mask:255.255.254.0          inet">
+<meta property="og:image" content="https://image-static.segmentfault.com/169/921/1699212970-5dbb9b59ac52c_articlex">
+<meta property="og:updated_time" content="2019-11-03T03:25:11.618Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tcpdump 工具查看分析arp协议">
+<meta name="twitter:description" content="环境准备机器1 udev的mac及ip地址123456789root@udev:/home/tb# ifconfigenp0s3    Link encap:Ethernet  HWaddr 08:00:27:63:49:66            inet addr:10.70.30.73  Bcast:10.70.31.255  Mask:255.255.254.0          inet">
+<meta name="twitter:image" content="https://image-static.segmentfault.com/169/921/1699212970-5dbb9b59ac52c_articlex">
+
+
+
+
+
+
+  <link rel="canonical" href="http://iamtb.cn/2019/05/13/tcpdump-arp/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>tcpdump 工具查看分析arp协议 | MAC</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MAC</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Multiple Access Control</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2019/05/13/tcpdump-arp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">tcpdump 工具查看分析arp协议
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-13 22:26:44" itemprop="dateCreated datePublished" datetime="2019-05-13T22:26:44+08:00">2019-05-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-03 11:25:11" itemprop="dateModified" datetime="2019-11-03T11:25:11+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NETWORK/" itemprop="url" rel="index"><span itemprop="name">NETWORK</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/13/tcpdump-arp/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2019/05/13/tcpdump-arp/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="环境准备机器1-udev的mac及ip地址"><a href="#环境准备机器1-udev的mac及ip地址" class="headerlink" title="环境准备机器1 udev的mac及ip地址"></a>环境准备机器1 udev的mac及ip地址</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">root@udev:/home/tb# ifconfig</div><div class="line">enp0s3    Link encap:Ethernet  HWaddr 08:00:27:63:49:66  </div><div class="line">          inet addr:10.70.30.73  Bcast:10.70.31.255  Mask:255.255.254.0</div><div class="line">          inet6 addr: fe80::a00:27ff:fe63:4966/64 Scope:Link</div><div class="line">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</div><div class="line">          RX packets:1992020 errors:0 dropped:0 overruns:0 frame:0</div><div class="line">          TX packets:569243 errors:0 dropped:0 overruns:0 carrier:0</div><div class="line">          collisions:0 txqueuelen:1000 </div><div class="line">          RX bytes:235878919 (235.8 MB)  TX bytes:149889975 (149.8 MB)</div></pre></td></tr></table></figure>
+ <a id="more"></a>
+<h5 id="环境准备机器2-php56当前的mac及ip地址及-arp缓存"><a href="#环境准备机器2-php56当前的mac及ip地址及-arp缓存" class="headerlink" title="环境准备机器2 php56当前的mac及ip地址及 arp缓存"></a>环境准备机器2 php56当前的mac及ip地址及 arp缓存</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">tb@php56:~$ ifconfig</div><div class="line">docker0   Link encap:Ethernet  HWaddr 02:42:c6:68:73:96  </div><div class="line">          inet addr:172.17.0.1  Bcast:172.17.255.255  Mask:255.255.0.0</div><div class="line">          UP BROADCAST MULTICAST  MTU:1500  Metric:1</div><div class="line">          RX packets:0 errors:0 dropped:0 overruns:0 frame:0</div><div class="line">          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0</div><div class="line">          collisions:0 txqueuelen:0 </div><div class="line">          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)</div><div class="line"></div><div class="line">enp0s3    Link encap:Ethernet  HWaddr 08:00:27:ce:14:39  </div><div class="line">          inet addr:10.70.30.60  Bcast:10.70.31.255  Mask:255.255.254.0</div><div class="line">          inet6 addr: fe80::a00:27ff:fece:1439/64 Scope:Link</div><div class="line">          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</div><div class="line">          RX packets:1636533 errors:0 dropped:0 overruns:0 frame:0</div><div class="line">          TX packets:149265 errors:0 dropped:0 overruns:0 carrier:0</div><div class="line">          collisions:0 txqueuelen:1000 </div><div class="line">          RX bytes:219865638 (219.8 MB)  TX bytes:123084741 (123.0 MB)</div><div class="line">root@php56:/home/tb# arp -a</div><div class="line">? (10.70.30.79) at 08:62:66:4d:f1:09 [ether] on enp0s3</div><div class="line">? (10.70.30.32) at 64:00:6a:20:ae:c6 [ether] on enp0s3</div><div class="line">? (10.70.30.47) at 8c:ec:4b:5f:e9:49 [ether] on enp0s3</div><div class="line">? (10.70.30.73) at 08:00:27:63:49:66 [ether] on enp0s3</div><div class="line">? (10.70.30.1) at 84:b2:61:8f:98:00 [ether] on enp0s3</div><div class="line">? (10.70.30.72) at 8c:ec:4b:a1:49:3f [ether] on enp0s3</div><div class="line">? (10.70.30.40) at 74:ea:c8:e3:17:ab [ether] on enp0s3</div><div class="line">? (10.70.31.191) at &lt;incomplete&gt; on enp0s3</div></pre></td></tr></table></figure>
+<h5 id="删除php56上的10-70-30-73的arp缓存"><a href="#删除php56上的10-70-30-73的arp缓存" class="headerlink" title="删除php56上的10.70.30.73的arp缓存"></a>删除php56上的10.70.30.73的arp缓存</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">root@php56:/home/tb# arp -d 10.70.30.73</div><div class="line"></div><div class="line">#抓php56(10.70.30.66 )上 telnet 到10.70.30.73的包</div><div class="line">root@php56:/home/tb# tcpdump -i enp0s3 -ent &apos;(dst 10.70.30.73 and src 10.70.30.60) or (dst 10.70.30.60 and src 10.70.30.73)&apos;</div><div class="line">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</div><div class="line">listening on enp0s3, link-type EN10MB (Ethernet), capture size 262144 bytes</div><div class="line"></div><div class="line"># -e选项代表开启以太网帧头部信息显示</div></pre></td></tr></table></figure>
+<h5 id="新开一个窗口在php56上-telnet，失败不要紧，因为在链路层，arp在tcp连接建立前就已经完成，不关心成功与否"><a href="#新开一个窗口在php56上-telnet，失败不要紧，因为在链路层，arp在tcp连接建立前就已经完成，不关心成功与否" class="headerlink" title="新开一个窗口在php56上  telnet，失败不要紧，因为在链路层，arp在tcp连接建立前就已经完成，不关心成功与否"></a>新开一个窗口在php56上  telnet，失败不要紧，因为在链路层，arp在tcp连接建立前就已经完成，不关心成功与否</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">root@php56:/home/tb# telnet 10.70.30.73</div><div class="line">Trying 10.70.30.73...</div><div class="line">telnet: Unable to connect to remote host: Connection refused</div></pre></td></tr></table></figure>
+<h5 id="抓包结果"><a href="#抓包结果" class="headerlink" title="抓包结果"></a>抓包结果</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">root@php56:/home/tb# tcpdump -i enp0s3 -ent &apos;(dst 10.70.30.73 and src 10.70.30.60) or (dst 10.70.30.60 and src 10.70.30.73)&apos;</div><div class="line">tcpdump: verbose output suppressed, use -v or -vv for full protocol decode</div><div class="line">listening on enp0s3, link-type EN10MB (Ethernet), capture size 262144 bytes</div><div class="line">08:00:27:ce:14:39 &gt; ff:ff:ff:ff:ff:ff, ethertype ARP (0x0806), length 42: Request who-has 10.70.30.73 tell 10.70.30.60, length 28</div><div class="line">08:00:27:63:49:66 &gt; 08:00:27:ce:14:39, ethertype ARP (0x0806), length 60: Reply 10.70.30.73 is-at 08:00:27:63:49:66, length 46</div><div class="line">08:00:27:ce:14:39 &gt; 08:00:27:63:49:66, ethertype IPv4 (0x0800), length 74: 10.70.30.60.42366 &gt; 10.70.30.73.23: Flags [S], seq 803077829, win 29200, options [mss 1460,sackOK,TS val 173958745 ecr 0,nop,wscale 7], length 0</div><div class="line">08:00:27:63:49:66 &gt; 08:00:27:ce:14:39, ethertype IPv4 (0x0800), length 60: 10.70.30.73.23 &gt; 10.70.30.60.42366: Flags [R.], seq 0, ack 803077830, win 0, length 0</div><div class="line">08:00:27:63:49:66 &gt; 08:00:27:ce:14:39, ethertype ARP (0x0806), length 60: Request who-has 10.70.30.60 tell 10.70.30.73, length 46</div><div class="line">08:00:27:ce:14:39 &gt; 08:00:27:63:49:66, ethertype ARP (0x0806), length 42: Reply 10.70.30.60 is-at 08:00:27:ce:14:39, length 28</div><div class="line">08:00:27:ce:14:39 &gt; 08:00:27:63:49:66, ethertype IPv4 (0x0800), length 74: 10.70.30.60.42368 &gt; 10.70.30.73.23: Flags [S], seq 3070062063, win 29200, options [mss 1460,sackOK,TS val 173961995 ecr 0,nop,wscale 7], length 0</div><div class="line">08:00:27:63:49:66 &gt; 08:00:27:ce:14:39, ethertype IPv4 (0x0800), length 60: 10.70.30.73.23 &gt; 10.70.30.60.42368: Flags [R.], seq 0, ack 3070062064, win 0, length 0</div><div class="line">08:00:27:ce:14:39 &gt; 08:00:27:63:49:66, ethertype IPv4 (0x0800), length 74: 10.70.30.60.52718 &gt; 10.70.30.73.7: Flags [S], seq 4237197441, win 29200, options [mss 1460,sackOK,TS val 173965580 ecr 0,nop,wscale 7], length 0</div><div class="line">08:00:27:63:49:66 &gt; 08:00:27:ce:14:39, ethertype IPv4 (0x0800), length 60: 10.70.30.73.7 &gt; 10.70.30.60.52718: Flags [R.], seq 0, ack 4237197442, win 0, length 0</div><div class="line">08:00:27:ce:14:39 &gt; 08:00:27:63:49:66, ethertype IPv4 (0x0800), length 74: 10.70.30.60.52720 &gt; 10.70.30.73.7: Flags [S], seq 3993979182, win 29200, options [mss 1460,sackOK,TS val 173969570 ecr 0,nop,wscale 7], length 0</div><div class="line">08:00:27:63:49:66 &gt; 08:00:27:ce:14:39, ethertype IPv4 (0x0800), length 60: 10.70.30.73.7 &gt; 10.70.30.60.52720: Flags [R.], seq 0, ack 3993979183, win 0, length 0</div><div class="line">08:00:27:63:49:66 &gt; 08:00:27:ce:14:39, ethertype ARP (0x0806), length 60: Request who-has 10.70.30.60 tell 10.70.30.73, length 46</div><div class="line">08:00:27:ce:14:39 &gt; 08:00:27:63:49:66, ethertype ARP (0x0806), length 42: Reply 10.70.30.60 is-at 08:00:27:ce:14:39, length 28</div></pre></td></tr></table></figure>
+<h5 id="包内容简短解释"><a href="#包内容简短解释" class="headerlink" title="包内容简短解释"></a>包内容简短解释</h5><p>ff:ff:ff:ff:ff:ff 代表lan内广播地址，所有机器都会收到并处理这样的帧。Ox086代表是以太网帧arp类型（注意分用思想）。length 42字节，实际为46，由于tcpdump不关心以太网帧尾部的crc校验字段。最后的length 28|46 字节代表数据长度。request reply为arp请求 应答 固定标识，最后路由器并不响应arp请求。</p>
+<h5 id="参考自下图"><a href="#参考自下图" class="headerlink" title="参考自下图"></a>参考自下图</h5><p><img src="https://image-static.segmentfault.com/169/921/1699212970-5dbb9b59ac52c_articlex" alt="image.png"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ARP/" rel="tag"># ARP</a>
+          
+            <a href="/tags/tcpdump/" rel="tag"># tcpdump</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/29/docker-one-03/" rel="prev" title="docker的架构和底层技术">
+                docker的架构和底层技术 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/avator/fucktheking.jpg"
+                alt="Tong Bo" />
+            
+              <p class="site-author-name" itemprop="name">Tong Bo</p>
+              <p class="site-description motion-element" itemprop="description">君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/tuber" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:1184093927@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#环境准备机器1-udev的mac及ip地址"><span class="nav-number">1.</span> <span class="nav-text">环境准备机器1 udev的mac及ip地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#环境准备机器2-php56当前的mac及ip地址及-arp缓存"><span class="nav-number">2.</span> <span class="nav-text">环境准备机器2 php56当前的mac及ip地址及 arp缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除php56上的10-70-30-73的arp缓存"><span class="nav-number">3.</span> <span class="nav-text">删除php56上的10.70.30.73的arp缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#新开一个窗口在php56上-telnet，失败不要紧，因为在链路层，arp在tcp连接建立前就已经完成，不关心成功与否"><span class="nav-number">4.</span> <span class="nav-text">新开一个窗口在php56上  telnet，失败不要紧，因为在链路层，arp在tcp连接建立前就已经完成，不关心成功与否</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#抓包结果"><span class="nav-number">5.</span> <span class="nav-text">抓包结果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#包内容简短解释"><span class="nav-number">6.</span> <span class="nav-text">包内容简短解释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考自下图"><span class="nav-number">7.</span> <span class="nav-text">参考自下图</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tong Bo</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'tuber',
+            repo: 'tuber.github.io',
+            
+            lang: "en" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '974eb52655c2e7907a0fd72eb8a2a9c5cf6a3f5b',
+            
+                client_id: 'ed5c34d2bbfec342d5e5'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
