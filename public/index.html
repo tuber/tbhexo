@@ -705,6 +705,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2018/08/29/docker-one-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/29/docker-one-03/" itemprop="url">
+                  docker的架构和底层技术
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-29 23:19:46" itemprop="dateCreated datePublished" datetime="2018-08-29T23:19:46+08:00">2018-08-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-03 12:31:36" itemprop="dateModified" datetime="2019-11-03T12:31:36+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ol>
+<li>将物理设备和app用docker engine隔离</li>
+<li><p>后台进程dockerd+rest api server+cli接口（docker）（cs架构）<br>3.docker version</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"> client:</div><div class="line"> Version:           18.09.6</div><div class="line"> API version:       1.39</div><div class="line"> Go version:        go1.10.8</div><div class="line"> Git commit:        481bc77</div><div class="line"> Built:             Sat May  4 02:35:27 2019</div><div class="line"> OS/Arch:           linux/amd64</div><div class="line"> Experimental:      false</div><div class="line"></div><div class="line">Server: Docker Engine - Community</div><div class="line"> Engine:</div><div class="line">  Version:          18.09.6</div><div class="line">  API version:      1.39 (minimum version 1.12)</div><div class="line">  Go version:       go1.10.8</div><div class="line">  Git commit:       481bc77</div><div class="line">  Built:            Sat May  4 01:59:36 2019</div><div class="line">  OS/Arch:          linux/amd64</div><div class="line">  Experimental:     false</div></pre></td></tr></table></figure>
+</li>
+<li><p>containers + images + registry</p>
+</li>
+<li>底层技术支持
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/29/docker-one-03/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2018/08/13/trace-jaeger-php/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -768,7 +949,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
+                <time title="Modified: 2019-11-03 12:24:45" itemprop="dateModified" datetime="2019-11-03T12:24:45+08:00">2019-11-03</time>
               
             
           </span>
@@ -831,13 +1012,578 @@
 <li><a href="https://github.com/opentracing-contrib/opentracing-specification-zh/blob/master/specification.md">openttacing  api 中文版介绍</a></li>
 <li><a href="https://developer.qiniu.com/insight/manual/5054/all-link-track-profile">七牛</a></li>
 <li><a href="https://yq.aliyun.com/articles/514488?utm_content=m_43347">阿里好文2</a></li>
-<li><a href="https://bigbully.github.io/Dapper-translation/">google 论文中文</a><br>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</li>
+<li><a href="https://bigbully.github.io/Dapper-translation/">google 论文中文</a></li>
 </ul>
 </li>
 <li><p>两对儿图：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/13/trace-jaeger-php/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2018/07/25/docker-one-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/25/docker-one-02/" itemprop="url">
+                  docker环境的各种搭建方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-25 23:17:33" itemprop="dateCreated datePublished" datetime="2018-07-25T23:17:33+08:00">2018-07-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-03 12:33:59" itemprop="dateModified" datetime="2019-11-03T12:33:59+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ol>
+<li>install docker<ul>
+<li>登录</li>
+<li>id.docker.com</li>
+<li>download win desktop:<a href="https://docs.docker.com/docker-for-windows/install/">必须win10</a>&amp; hyper-v</li>
+<li>mac decktop &amp;kitematic :gui container</li>
+<li>注意如果下载了win的docker，那么在win上的virtualbox无法使用</li>
+<li>建议还是使用虚机
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/25/docker-one-02/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2018/07/23/trace-zipkin-php/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/23/trace-zipkin-php/" itemprop="url">
+                  php的调用链追踪入门（zipkin）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-23 23:16:44" itemprop="dateCreated datePublished" datetime="2018-07-23T23:16:44+08:00">2018-07-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-03 12:28:40" itemprop="dateModified" datetime="2019-11-03T12:28:40+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="学名（Distributed-TracingSystem-分布式追踪系统）"><a href="#学名（Distributed-TracingSystem-分布式追踪系统）" class="headerlink" title="学名（Distributed TracingSystem 分布式追踪系统）"></a>学名（Distributed TracingSystem 分布式追踪系统）</h2><h2 id="支持的客户端语言情况"><a href="#支持的客户端语言情况" class="headerlink" title="支持的客户端语言情况"></a><a href="https://zipkin.io/pages/existing_instrumentations.html">支持的客户端语言情况</a></h2><h2 id="奉上谷歌论文Dapper"><a href="#奉上谷歌论文Dapper" class="headerlink" title="奉上谷歌论文Dapper"></a><a href="https://bigbully.github.io/Dapper-translation/">奉上谷歌论文Dapper</a></h2><h2 id="新美大之CAT（开源）"><a href="#新美大之CAT（开源）" class="headerlink" title="新美大之CAT（开源）"></a><a href="https://tech.meituan.com/CAT_in_Depth_Java_Application_Monitoring.html">新美大之CAT（开源）</a></h2><h2 id="大厂子自己造的轮子"><a href="#大厂子自己造的轮子" class="headerlink" title="大厂子自己造的轮子"></a><a href="https://www.jianshu.com/p/e02972487e00">大厂子自己造的轮子</a></h2><h2 id="华为专利-link"><a href="#华为专利-link" class="headerlink" title="华为专利 link"></a>华为专利 <a href="https://note.youdao.com/">link</a></h2><h2 id="安装运行"><a href="#安装运行" class="headerlink" title="安装运行"></a>安装运行</h2><ol>
+<li><p>代码执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">root@es_002:/home/tb/tbdown/zipkin# ls</div><div class="line">quickstart.sh  zipkin-server-2.11.7-exec.jar</div><div class="line">root@es_002:/home/tb/tbdown/zipkin# java -jar zipkin-server-2.11.7-exec.jar </div><div class="line">                                    ********</div><div class="line">                                  **        **</div><div class="line">                                 *            *</div><div class="line">                                **            **</div><div class="line">                                **            **</div><div class="line">                                 **          **</div><div class="line">                                  **        **</div><div class="line">                                    ********</div><div class="line">                                      ****</div><div class="line">                                      ****</div><div class="line">        ****                          ****</div><div class="line">     ******                           ****                                 ***</div><div class="line">  ****************************************************************************</div><div class="line">    *******                           ****                                 ***</div><div class="line">        ****                          ****</div><div class="line">                                       **</div><div class="line">                                       **</div><div class="line"></div><div class="line"></div><div class="line">             *****      **     *****     ** **       **     **   **</div><div class="line">               **       **     **  *     ***         **     **** **</div><div class="line">              **        **     *****     ****        **     **  ***</div><div class="line">             ******     **     **        **  **      **     **   **</div><div class="line"></div><div class="line">:: Powered by Spring Boot ::</div></pre></td></tr></table></figure>
+</li>
+<li><p>上图</p>
+<ol>
+<li>是没有jaeger的好看，丰富<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/5513E5C3C0524A5FB937A1CB0EE7A3EA" alt="image"></li>
+<li>有数据的<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/52486B77B78B473E92DA60311F4491E4" alt="image"></li>
+<li><p>依赖<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/2454953BD0204E7090F1FBA67FB99C36" alt="image"></p>
+</li>
+<li><p>逻辑图  </p>
+</li>
+</ol>
+<ul>
+<li><p>总<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/6DDA0E236C6F476FAEC555B3E99A3266?ynotemdtimestamp=1561305104458" alt="image"></p>
+</li>
+<li><p>分<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/C1ABE11BB22B452A9470EC27AB4097FD?ynotemdtimestamp=1561305104458" alt="image"></p>
+</li>
+<li><p>层次<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/3955D44C096B4438AF40BF293D59EC45?ynotemdtimestamp=1561305104458" alt="image"></p>
+</li>
+<li><p>更贴近业务的复杂调用<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/D162A85DC67E42D1BAAC622EF4A7668D?ynotemdtimestamp=1561305104458" alt="image"></p>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><a href="https://github.com/openzipkin/zipkin-php">Zipkin of php</a>类库<a href="https://zipkin.io/pages/existing_instrumentations.html">了解</a>一下</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//如果是新项目需要引入包，按需参考以下命令</div><div class="line">composer init</div><div class="line">composer config -g secure-http false</div><div class="line"></div><div class="line">//参考官方php类库 composer.json文件，得到以下</div><div class="line">root@udev:/home/tb/tbtmp# ls</div><div class="line">composer.json  composer.lock  vendor</div><div class="line">root@udev:/home/tb/tbtmp# cd vendor/</div><div class="line">root@udev:/home/tb/tbtmp/vendor# ls</div><div class="line">autoload.php  composer  evenement   jcchavezs  phpdocumentor  phpunit  react        sebastian  symfony</div><div class="line">bin           doctrine  guzzlehttp  myclabs    phpspec        psr      ringcentral  squizlabs  webmozart</div><div class="line">root@udev:/home/tb/tbtmp/vendor#</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/23/trace-zipkin-php/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2018/06/29/docker-one-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/docker-one-01/" itemprop="url">
+                  docker容器技术与简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-29 23:07:56" itemprop="dateCreated datePublished" datetime="2018-06-29T23:07:56+08:00">2018-06-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-03 12:20:24" itemprop="dateModified" datetime="2019-11-03T12:20:24+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ol>
+<li>容器技术与docker</li>
+<li>docker能做什么<ul>
+<li>简化配置（所有打包到容器里）</li>
+<li>提升开发效率（环境相同，统一部署）</li>
+<li>隔离应用</li>
+</ul>
+</li>
+<li><p>容器应用代表</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/29/docker-one-01/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1400,699 +2146,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/25/head_firstc_strstr_94/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MAC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/25/head_firstc_strstr_94/" itemprop="url">
-                  C语言STRSTR实例
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-25 08:12:03" itemprop="dateCreated datePublished" datetime="2017-11-25T08:12:03+08:00">2017-11-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p><code>strstr()</code>函数会在第一个字符串中查找第二个字符串，如果找到，他会返回第二个字符串在存储器中的位置。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/25/head_firstc_strstr_94/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/22/redis_incr_hash/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MAC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/22/redis_incr_hash/" itemprop="url">
-                  redis竟态与争抢唯一
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-22 21:12:03" itemprop="dateCreated datePublished" datetime="2017-11-22T21:12:03+08:00">2017-11-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/REDIS/" itemprop="url" rel="index"><span itemprop="name">REDIS</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="incr"><a href="#incr" class="headerlink" title="incr"></a><a href="http://redisdoc.com/string/incr.html">incr</a></h2><p>比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。<a href="http://num.10010.com/NumApp/chseNumList/init?num=186">业务模型参考</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/22/redis_incr_hash/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/20/head_frist_c_78/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MAC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/20/head_frist_c_78/" itemprop="url">
-                  字符指针与字符数组
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-20 08:12:03" itemprop="dateCreated datePublished" datetime="2017-11-20T08:12:03+08:00">2017-11-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></div><div class="line"></span>&#123;</div><div class="line">	<span class="keyword">char</span> masked_raider[] = <span class="string">"Alived"</span>;</div><div class="line"></div><div class="line">	<span class="keyword">char</span> *jimmy = masked_raider;</div><div class="line"></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"masked_raider is %s,jimmy is %s\n"</span>, masked_raider, jimmy);</div><div class="line"></div><div class="line">	masked_raider[<span class="number">0</span>] = <span class="string">'d'</span>;</div><div class="line">	masked_raider[<span class="number">1</span>] = <span class="string">'e'</span>;</div><div class="line">	masked_raider[<span class="number">2</span>] = <span class="string">'a'</span>;</div><div class="line">	masked_raider[<span class="number">3</span>] = <span class="string">'d'</span>;</div><div class="line">	masked_raider[<span class="number">4</span>] = <span class="string">'e'</span>;</div><div class="line">	masked_raider[<span class="number">5</span>] = <span class="string">'d'</span>;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"masked_raider is %s,jimmy is %s\n"</span>, masked_raider, jimmy);</div><div class="line">	</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/20/head_frist_c_78/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/17/php-catch-fatel-error/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MAC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/17/php-catch-fatel-error/" itemprop="url">
-                  php捕获fatal error
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-17 19:06:12" itemprop="dateCreated datePublished" datetime="2017-11-17T19:06:12+08:00">2017-11-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>用到laravel定时任务的时候，由于类似conf配置问题，无法捕捉到错误，采取的方式如下</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fatal_handler</span><span class="params">()</span> </span>&#123;</div><div class="line">    $errfile = <span class="string">"unknown file"</span>;</div><div class="line">    $errstr  = <span class="string">"shutdown"</span>;</div><div class="line">    $errno   = E_CORE_ERROR;</div><div class="line">    $errline = <span class="number">0</span>;</div><div class="line"></div><div class="line">    $error = error_get_last();</div><div class="line"></div><div class="line">    <span class="keyword">if</span>($error)&#123;</div><div class="line">      <span class="comment">//发送邮件队列也可以</span></div><div class="line">        file_put_contents(<span class="string">'./testerror11.txt'</span>, json_encode($error));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">register_shutdown_function(<span class="string">"fatal_handler"</span>);</div><div class="line"></div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">    $db=<span class="keyword">new</span> db();</div><div class="line">&#125;<span class="keyword">catch</span>(<span class="keyword">Exception</span> $e)&#123;</div><div class="line"></div><div class="line"><span class="keyword">echo</span> $e-&gt;error_msg();</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2144,7 +2197,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2177,7 +2230,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -2302,7 +2357,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">56</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">58</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

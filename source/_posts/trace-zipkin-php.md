@@ -1,10 +1,6 @@
 ---
 title: php的调用链追踪入门（zipkin）
-<<<<<<< HEAD
-date: 2018-08-13 23:26:44
-=======
 date: 2018-07-23 23:16:44
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 categories: PHP
 tags:
     - traceing
@@ -50,7 +46,6 @@ root@es_002:/home/tb/tbdown/zipkin# java -jar zipkin-server-2.11.7-exec.jar
 :: Powered by Spring Boot ::  
 
 ```
-<<<<<<< HEAD
 2. 上图
     1. 是没有jaeger的好看，丰富
 ![image](https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/5513E5C3C0524A5FB937A1CB0EE7A3EA)
@@ -91,10 +86,8 @@ bin           doctrine  guzzlehttp  myclabs    phpspec        psr      ringcentr
 root@udev:/home/tb/tbtmp/vendor# 
 
 ```
-=======
  <!-- more -->
 3. [Zipkin of php](https://github.com/openzipkin/zipkin-php)类库[了解](https://zipkin.io/pages/existing_instrumentations.html)一下
-
 
 ```
   //如果是新项目需要引入包，按需参考以下命令
@@ -110,8 +103,6 @@ root@udev:/home/tb/tbtmp/vendor#
   bin           doctrine  guzzlehttp  myclabs    phpspec        psr      ringcentral  squizlabs  webmozart
   root@udev:/home/tb/tbtmp/vendor# 
 ```
-
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 
 4. 数据持久化到mysql
 
@@ -197,11 +188,6 @@ mysql> select * from zipkin_spans;
 |             0 | 1540542210608961 | 1540542210838146 | mysql.user   | 1540542210608963 |      | 1540542210838148 |   100442 |
 +---------------+------------------+------------------+--------------+------------------+-------+------------------+----------+
 3 rows in set (0.00 sec)
-<<<<<<< HEAD
-
-mysql> 
-
-
 ```
 与下图匹配
 ![image](https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/EEF5EFEED18C45C49EB8FC07B501FC02)
@@ -209,12 +195,8 @@ mysql>
 5. 更形象化的例子
 
 ![image](https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/9BB3B84BD4A04C28965996E780B59E07)
-=======
-```
 与下图匹配
 ![image][1]
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
-
     1. 在10ms的时候，client send发起一个请求
     2. 服务端在9ms后(10+9),之后，收到这个请求 server receive
     3. 12ms后，server处理完了业务逻辑，返回给客户端 server send
@@ -224,11 +206,8 @@ mysql>
 
 1. new trace是一个span的名称，这三个span是同级别
 ```
-<<<<<<< HEAD
  $span_root = $tracer->newTrace();
-=======
         $span_root = $tracer->newTrace();
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
         $span_root->setName('pre_con_redis');
         $span_root->start();
         try {
@@ -262,11 +241,8 @@ mysql>
 ```
 对应下面的1s，2s，3s  
 
-<<<<<<< HEAD
 ![image](https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/6145935D275A41A9B6359FF6F970B7F8?ynotemdtimestamp=1561305104458)
-=======
 ![image][2]
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 
 2. 父子关系
 
@@ -274,11 +250,8 @@ mysql>
   $span_root = $tracer->newTrace();
         $span_root->setName('php_demo_begin');
         $span_root->start();
-<<<<<<< HEAD
 //        $span_root->tag('http.status_code', '200');
-=======
         $span_root->tag('http.status_code', '200');
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
         try {
             $parentContext = $span_root->getContext();
             $child_span1=$tracer->newChild($parentContext);
@@ -297,11 +270,8 @@ mysql>
         $child_span1 = $tracer->newChild($parentContext);
         $child_span1->setName('do_redis');
         $child_span1->start();
-<<<<<<< HEAD
 //        $span_root->tag('http.status_code', '200');
-=======
         $span_root->tag('http.status_code', '200');
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
         try {
             //1000毫秒 =1秒=1000000微秒 usleep 单位是微妙
             usleep(2300000);
@@ -312,11 +282,8 @@ mysql>
         $child_span3 = $tracer->newChild($parentContext);
         $child_span3->setName('redis_return');
         $child_span3->start();
-<<<<<<< HEAD
 //        $span_root->tag('http.status_code', '200');
-=======
         $span_root->tag('http.status_code', '200');
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
         try {
             //1000毫秒 =1秒=1000000微秒 usleep 单位是微妙
             usleep(1200000);
@@ -326,7 +293,6 @@ mysql>
 
         $span_root->finish();
 ```
-<<<<<<< HEAD
 
 ![image](https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/56AE1215B7BA4F93B47120D94D54D503?ynotemdtimestamp=1561305104458)
 
@@ -344,7 +310,6 @@ mysql>
  
  ![image](https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/F08444612B414B3B9EA23544D9F8058B?ynotemdtimestamp=1561305104458)
 =======
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
  
  ## 实际问题
  1. 如果做到对现有代码的低侵入
@@ -353,17 +318,14 @@ mysql>
     根据load动态调整？
  3. 扩展及降级怎么最方便
  4. 该记录什么信息？怎么记录？hook
-<<<<<<< HEAD
     ![image](https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/F08444612B414B3B9EA23544D9F8058B?ynotemdtimestamp=1561305104458)
  5. [和ELK结合](https://dzone.com/articles/distributed-tracing-with-zipkin-and-elk/)
-=======
     ![image][3]
  5. [和ELK结合](https://dzone.com/articles/distributed-tracing-with-zipkin-and-elk/)
  
- ## [点击查看完整多图](http://note.youdao.com/noteshare?id=16e9b0e6405d9b23ee0d38b52cad6a4f)
+ ## [如果图片无法加载，请点此查看完整多图](http://note.youdao.com/noteshare?id=16e9b0e6405d9b23ee0d38b52cad6a4f)
 
 [1]: /img/php/zipkin_php_01.jpg
 [2]: /img/php/zipkin_php_02.jpg
 [3]: /img/php/zipkin_php_03.jpg
 
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99

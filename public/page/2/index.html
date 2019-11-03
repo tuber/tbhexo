@@ -338,7 +338,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/04/computer-science-summary/">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/25/head_firstc_strstr_94/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tong Bo">
@@ -357,8 +357,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/04/computer-science-summary/" itemprop="url">
-                  计算机科学CS分类
+                <a class="post-title-link" href="/2017/11/25/head_firstc_strstr_94/" itemprop="url">
+                  C语言STRSTR实例
                 </a>
               
             
@@ -384,7 +384,7 @@
                 
               
 
-              <time title="Created: 2017-11-04 21:12:03" itemprop="dateCreated datePublished" datetime="2017-11-04T21:12:03+08:00">2017-11-04</time>
+              <time title="Created: 2017-11-25 08:12:03" itemprop="dateCreated datePublished" datetime="2017-11-25T08:12:03+08:00">2017-11-25</time>
             
 
             
@@ -418,7 +418,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/computer/" itemprop="url" rel="index"><span itemprop="name">computer</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a></span>
 
                 
                 
@@ -453,15 +453,533 @@
 
       
         
-          <p>经常看到CS这个词，今天偶然下载了知乎刘洋的电子书。再此也敲一下。</p>
-<h3 id="理论计算机科学"><a href="#理论计算机科学" class="headerlink" title="理论计算机科学"></a>理论计算机科学</h3><h4 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h4><h4 id="计算理论"><a href="#计算理论" class="headerlink" title="计算理论"></a>计算理论</h4><h4 id="信息论与编码理论"><a href="#信息论与编码理论" class="headerlink" title="信息论与编码理论"></a>信息论与编码理论</h4><h4 id="编程语言与编译器"><a href="#编程语言与编译器" class="headerlink" title="编程语言与编译器"></a>编程语言与编译器</h4><h4 id="形式化方法"><a href="#形式化方法" class="headerlink" title="形式化方法"></a>形式化方法</h4>
+          <h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p><code>strstr()</code>函数会在第一个字符串中查找第二个字符串，如果找到，他会返回第二个字符串在存储器中的位置。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/04/computer-science-summary/#more" rel="contents">
+            <a class="btn" href="/2017/11/25/head_firstc_strstr_94/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/22/redis_incr_hash/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/22/redis_incr_hash/" itemprop="url">
+                  redis竟态与争抢唯一
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-22 21:12:03" itemprop="dateCreated datePublished" datetime="2017-11-22T21:12:03+08:00">2017-11-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/REDIS/" itemprop="url" rel="index"><span itemprop="name">REDIS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="incr"><a href="#incr" class="headerlink" title="incr"></a><a href="http://redisdoc.com/string/incr.html">incr</a></h2><p>比如北京车牌采取先抢到后审批资质的流程。车牌池子中有N多号码，页面呈现以一页十条的方式展示，每个号码后有一个抢的按钮，且一个人只能抢一个车牌，同样一个车牌只能被一个人抢到。<a href="http://num.10010.com/NumApp/chseNumList/init?num=186">业务模型参考</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/22/redis_incr_hash/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/20/head_frist_c_78/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/20/head_frist_c_78/" itemprop="url">
+                  字符指针与字符数组
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-20 08:12:03" itemprop="dateCreated datePublished" datetime="2017-11-20T08:12:03+08:00">2017-11-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></div><div class="line"></span>&#123;</div><div class="line">	<span class="keyword">char</span> masked_raider[] = <span class="string">"Alived"</span>;</div><div class="line"></div><div class="line">	<span class="keyword">char</span> *jimmy = masked_raider;</div><div class="line"></div><div class="line">	<span class="built_in">printf</span>(<span class="string">"masked_raider is %s,jimmy is %s\n"</span>, masked_raider, jimmy);</div><div class="line"></div><div class="line">	masked_raider[<span class="number">0</span>] = <span class="string">'d'</span>;</div><div class="line">	masked_raider[<span class="number">1</span>] = <span class="string">'e'</span>;</div><div class="line">	masked_raider[<span class="number">2</span>] = <span class="string">'a'</span>;</div><div class="line">	masked_raider[<span class="number">3</span>] = <span class="string">'d'</span>;</div><div class="line">	masked_raider[<span class="number">4</span>] = <span class="string">'e'</span>;</div><div class="line">	masked_raider[<span class="number">5</span>] = <span class="string">'d'</span>;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"masked_raider is %s,jimmy is %s\n"</span>, masked_raider, jimmy);</div><div class="line">	</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/20/head_frist_c_78/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/17/php-catch-fatel-error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/17/php-catch-fatel-error/" itemprop="url">
+                  php捕获fatal error
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-17 19:06:12" itemprop="dateCreated datePublished" datetime="2017-11-17T19:06:12+08:00">2017-11-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>用到laravel定时任务的时候，由于类似conf配置问题，无法捕捉到错误，采取的方式如下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fatal_handler</span><span class="params">()</span> </span>&#123;</div><div class="line">    $errfile = <span class="string">"unknown file"</span>;</div><div class="line">    $errstr  = <span class="string">"shutdown"</span>;</div><div class="line">    $errno   = E_CORE_ERROR;</div><div class="line">    $errline = <span class="number">0</span>;</div><div class="line"></div><div class="line">    $error = error_get_last();</div><div class="line"></div><div class="line">    <span class="keyword">if</span>($error)&#123;</div><div class="line">      <span class="comment">//发送邮件队列也可以</span></div><div class="line">        file_put_contents(<span class="string">'./testerror11.txt'</span>, json_encode($error));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">register_shutdown_function(<span class="string">"fatal_handler"</span>);</div><div class="line"></div><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">    $db=<span class="keyword">new</span> db();</div><div class="line">&#125;<span class="keyword">catch</span>(<span class="keyword">Exception</span> $e)&#123;</div><div class="line"></div><div class="line"><span class="keyword">echo</span> $e-&gt;error_msg();</div><div class="line">&#125;</div><div class="line"></div></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -632,6 +1150,181 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/04/head_first_c_/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/04/computer-science-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/04/computer-science-summary/" itemprop="url">
+                  计算机科学CS分类
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-04 21:12:03" itemprop="dateCreated datePublished" datetime="2017-11-04T21:12:03+08:00">2017-11-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/computer/" itemprop="url" rel="index"><span itemprop="name">computer</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>经常看到CS这个词，今天偶然下载了知乎刘洋的电子书。再此也敲一下。</p>
+<h3 id="理论计算机科学"><a href="#理论计算机科学" class="headerlink" title="理论计算机科学"></a>理论计算机科学</h3><h4 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h4><h4 id="计算理论"><a href="#计算理论" class="headerlink" title="计算理论"></a>计算理论</h4><h4 id="信息论与编码理论"><a href="#信息论与编码理论" class="headerlink" title="信息论与编码理论"></a>信息论与编码理论</h4><h4 id="编程语言与编译器"><a href="#编程语言与编译器" class="headerlink" title="编程语言与编译器"></a>编程语言与编译器</h4><h4 id="形式化方法"><a href="#形式化方法" class="headerlink" title="形式化方法"></a>形式化方法</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/04/computer-science-summary/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1374,705 +2067,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2016/12/05/interface_security/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MAC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/05/interface_security/" itemprop="url">
-                  接口调用安全性
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-12-05 16:42:23" itemprop="dateCreated datePublished" datetime="2016-12-05T16:42:23+08:00">2016-12-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>一些接口调用中，为了安全原因，会加入一些token或者是签名。<br>以下是个简单例子：根据post给被调用方的key和value数组，<br>其中先根据数组做ksort，然后对value的值做（递归）拼接得到$string。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/05/interface_security/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2016/12/05/phpstorm-add-comment-in-function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MAC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/05/phpstorm-add-comment-in-function/" itemprop="url">
-                  PHPSTORM中给一个方法动态添加注释
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-12-05 13:39:22" itemprop="dateCreated datePublished" datetime="2016-12-05T13:39:22+08:00">2016-12-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="目的：在phpstorm中，动态的给一个方法添加注释"><a href="#目的：在phpstorm中，动态的给一个方法添加注释" class="headerlink" title="目的：在phpstorm中，动态的给一个方法添加注释"></a>目的：在phpstorm中，动态的给一个方法添加注释</h2><h2 id="先添加一个动态模版【Live-Templates】"><a href="#先添加一个动态模版【Live-Templates】" class="headerlink" title="先添加一个动态模版【Live Templates】"></a>先添加一个动态模版【Live Templates】</h2><p><em>ct==Crate Time</em></p>
-<p><img src="/img/php/storm-1.jpg" alt="添加动态模版"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/05/phpstorm-add-comment-in-function/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2016/11/21/php7-update-on-ubuntu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MAC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/11/21/php7-update-on-ubuntu/" itemprop="url">
-                  在ubuntu上升级到PHP7
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-11-21 13:41:11" itemprop="dateCreated datePublished" datetime="2016-11-21T13:41:11+08:00">2016-11-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="卸载旧版本php"><a href="#卸载旧版本php" class="headerlink" title="卸载旧版本php"></a>卸载旧版本php</h2><p><code>apt-get autoremove php*</code></p>
-<h2 id="安装新源"><a href="#安装新源" class="headerlink" title="安装新源"></a>安装新源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">apt-get install software-properties-common、</div><div class="line">add-apt-repository ppa:ondrej/php</div><div class="line">apt-get update</div></pre></td></tr></table></figure>
-<h2 id="安装新版php"><a href="#安装新版php" class="headerlink" title="安装新版php"></a>安装新版php</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/11/21/php7-update-on-ubuntu/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2016/11/21/jp2a-meituan/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MAC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/11/21/jp2a-meituan/" itemprop="url">
-                  jp2a把图片转为ascii
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-11-21 10:05:49" itemprop="dateCreated datePublished" datetime="2016-11-21T10:05:49+08:00">2016-11-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/LINUX/" itemprop="url" rel="index"><span itemprop="name">LINUX</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="先看效果"><a href="#先看效果" class="headerlink" title="先看效果"></a>先看效果</h2><iframe height=498 width=510 src='http://player.youku.com/embed/XMTgyODIyMjA3Mg==' frameborder=0 'allowfullscreen'></iframe>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/11/21/jp2a-meituan/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2124,7 +2118,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2157,7 +2151,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -2282,7 +2278,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">56</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">58</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

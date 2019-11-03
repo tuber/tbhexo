@@ -1,10 +1,6 @@
 ---
 title: docker的架构和底层技术
-<<<<<<< HEAD
 date: 2018-08-29 23:19:46
-=======
-date: 2019-03-11 01:19:56
->>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 categories: DevOps
 tags:
     - docker
@@ -80,8 +76,6 @@ tags:
         - pull from registry(类似github,默认的为dockerhub)
             - docker pull ubuntu:14.04
             - docker push （to server）
-            - 
-            - 
                 ```
                 root@swoole_dev:/home/tb# docker pull redis:3.2
                 3.2: Pulling from library/redis

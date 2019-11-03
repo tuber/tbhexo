@@ -123,7 +123,7 @@
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/7B603AE043744222A2FABDBEC691C32E">
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/2EC21DEEF68B4BA5B855FBEA04585B4E">
 <meta property="og:image" content="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/1E1DCDC593AC48B4A7FE7283E55601E7?ynotemdtimestamp=1561304251618">
-<meta property="og:updated_time" content="2019-11-03T04:04:25.908Z">
+<meta property="og:updated_time" content="2019-11-03T04:24:45.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php的调用链追踪入门（jeager）">
 <meta name="twitter:description" content="简单介绍 用途：监控monitor 检测troubleshoot  事务transations 处理在复杂的分布式系统中 complex distributed systems 性能优化分析 官网地址 背景：微服务（microservices）的发展、网络的不稳定、多环的服务请求记录错误排查定位 相关： 轻量级标准化层API：OpenTracing jagger前世今生  阿里好文 opentta">
@@ -407,7 +407,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
+                <time title="Modified: 2019-11-03 12:24:45" itemprop="dateModified" datetime="2019-11-03T12:24:45+08:00">2019-11-03</time>
               
             
           </span>
@@ -479,7 +479,7 @@
 <li><a href="https://github.com/opentracing-contrib/opentracing-specification-zh/blob/master/specification.md" target="_blank" rel="external">openttacing  api 中文版介绍</a></li>
 <li><a href="https://developer.qiniu.com/insight/manual/5054/all-link-track-profile" target="_blank" rel="external">七牛</a></li>
 <li><a href="https://yq.aliyun.com/articles/514488?utm_content=m_43347" target="_blank" rel="external">阿里好文2</a></li>
-<li><a href="https://bigbully.github.io/Dapper-translation/" target="_blank" rel="external">google 论文中文</a><br>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</li>
+<li><a href="https://bigbully.github.io/Dapper-translation/" target="_blank" rel="external">google 论文中文</a></li>
 </ul>
 </li>
 <li><p>两对儿图：</p>
@@ -490,18 +490,10 @@
 </ul>
 </li>
 <li><p>整图<br><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/55C38C3F3E0B43ECA926A6FD1CC25E9E" alt="image"></p>
-</li>
+<!-- more -->
+<h2 id="名词介绍"><a href="#名词介绍" class="headerlink" title="名词介绍"></a>名词介绍</h2></li>
 </ul>
-<p>=======<br> <!-- more --></p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>5cf5fc3ccec8342646523cf4982e8108d5a47e99</p>
-<h2 id="名词介绍"><a href="#名词介绍" class="headerlink" title="名词介绍"></a>名词介绍</h2><ol>
+<ol>
 <li>TrancesID 全局跟踪id，标记一次完整的服务调用（可包含多次子，子子调用） 一般可以设置为TraceId和顶级span相同</li>
 <li>SpansID 一次方法（程序块、RPC、db）的调用，每一个RPC对应到一个单一的span，但是traceId都是相同的。<br> 注意：一个节点上可能有多次span（可能此端相对上游来说是服务端，接收和应答上游服务。对于下游（下游）可能有多个，又会是调用和接收下游的服务），不能把一个节点上的多个span合并成一个。<br>  一个节点上并不总是发生完整的cs sr ss cr这四种事件。因为并不是所有的节点都有上游服务和下游服务。</li>
 <li>Spans Tags span日志集合（key-value）</li>
@@ -523,46 +515,22 @@
 <li>endpoint 记录终端机器发生的ip和名称（可以是相对的发起方和调用方），也会把endpoint数据放在annotation里。</li>
 <li>BinaryAnnotation 除去以上的时间、事件、节点等信息，如果还需要++绑定业务数据++（日志、异常），将数据写入到BinaryAnnotion中。结构和Annotation一样。</li>
 <li>parentId 父span的Id，当然具有层级关系。顶级span（最先接触服务调用入口）是没有parentId的</li>
-<li>span name 一般为接口的方法名<br>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</li>
+<li>span name 一般为接口的方法名</li>
 <li>一图胜三言(下图)</li>
-<li><h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/7B603AE043744222A2FABDBEC691C32E" alt="image"></h1>5cf5fc3ccec8342646523cf4982e8108d5a47e99</li>
+<li><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/7B603AE043744222A2FABDBEC691C32E" alt="image"></li>
 </ol>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h2 id="大概流程"><a href="#大概流程" class="headerlink" title="大概流程"></a>大概流程</h2><ol>
 <li>请求入口生成唯一traceId，用于贯穿整个服务，</li>
 <li>在调用具体的服务（或方法）前生成span（spanid可以平行、嵌套，），记录调用时间</li>
 <li>在调用具体的服务（或方法）时，传参1的traceId和2的spanid，调用http server或者rpc server</li>
 <li>调用完成后关联到1的traceId</li>
 <li>统一存储（涉及各编程语言调用类库及客户端收集存储）</li>
-<li>查询结果，输出展示</li>
+<li>查询结果，输出展示<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2></li>
 </ol>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<p>=======</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>5cf5fc3ccec8342646523cf4982e8108d5a47e99</p>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<ul>
 <li><a href="https://blog.yeeef.com/post/optimize-slow-request/" target="_blank" rel="external">做一个筛选条件的导出excel操作</a>，筛选条件经过sql查询生成对象数组，然后经过代码逻辑处理导出csv，查看是否有redis缓存，最后到客户端输出。可以查看是sql问题（数据查询和数据转换）？redis连接缓存问题？客户端导出慢？</li>
 <li>谷歌首页搜索一个词语，需要毫秒级响应。列表，图片，推荐，所有的不只一个接口。如果时间太长，到底是哪里慢？</li>
 </ul>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h2 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h2><ul>
 <li>前端UI展示</li>
 <li>数据持久化存储（Cassandra or elastic）</li>
@@ -576,52 +544,17 @@
 <li><p>仅供测试环境，数据放在内存中了 -docker images </p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">docker run -d --name jaeger \</div><div class="line">     -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \</div><div class="line">     -p 5775:5775/udp \</div><div class="line">     -p 6831:6831/udp \</div><div class="line">     -p 6832:6832/udp \</div><div class="line">     -p 5778:5778 \</div><div class="line">     -p 16686:16686 \</div><div class="line">     -p 14268:14268 \</div><div class="line">     -p 9411:9411 \</div><div class="line">     jaegertracing/all-in-one:latest</div></pre></td></tr></table></figure>
 </li>
+<li><p><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/2EC21DEEF68B4BA5B855FBEA04585B4E" alt="image"></p>
+</li>
 </ol>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<h1 id="2"><a href="#2" class="headerlink" title="2.  "></a>2.  <img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/2EC21DEEF68B4BA5B855FBEA04585B4E" alt="image"></h1><blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>5cf5fc3ccec8342646523cf4982e8108d5a47e99</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h2 id="模拟测试数据方法一："><a href="#模拟测试数据方法一：" class="headerlink" title="模拟测试数据方法一："></a>模拟测试数据方法一：</h2><ul>
 <li><p><a href="https://github.com/jaegertracing/jaeger/tree/master/examples/hotrod" target="_blank" rel="external">Hot R.O.D. Rides OnDemand</a></p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">root@docker_001:/home/tb# docker images</div><div class="line">REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE</div><div class="line">jaegertracing/example-hotrod   latest              73985981101a        12 hours ago        15.5MB</div><div class="line">jaegertracing/all-in-one       latest              8ab45e1d2c89        4 days ago          40.4MB</div><div class="line">redislabs/rebloom              latest              3386f3e4e33a        4 weeks ago         83.6MB</div><div class="line">tb_php-fpm                     latest              ddd54dd40a46        4 months ago        225MB</div><div class="line">nginx                          latest              c5c4e8fa2cf7        4 months ago        109MB</div><div class="line">phpdockerio/php56-fpm          latest              e944c32c61aa        5 months ago        225MB</div><div class="line">hello-world                    latest              f2a91732366c        9 months ago        1.85kB</div><div class="line">root@docker_001:/home/tb# docker run   --rm   --link jaeger   -p8080-8083:8080-8083   jaegertracing/example-hotrod:latest   all   --jaeger-agent.host-port=jaeger:6831</div><div class="line">2018-08-28T06:44:27.000Z	INFO	cmd/root.go:86	Using expvar as metrics backend</div><div class="line">2018-08-28T06:44:27.000Z	INFO	cmd/all.go:25	Starting all services</div><div class="line">2018-08-28T06:44:27.104Z	INFO	log/logger.go:37	Starting	&#123;&quot;service&quot;: &quot;route&quot;, &quot;address&quot;: &quot;http://0.0.0.0:8083&quot;&#125;</div><div class="line">2018-08-28T06:44:27.105Z	INFO	log/logger.go:37	Starting	&#123;&quot;service&quot;: &quot;frontend&quot;, &quot;address&quot;: &quot;http://0.0.0.0:8080&quot;&#125;</div></pre></td></tr></table></figure>
 </li>
-</ul>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<ul>
-<li><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/1E1DCDC593AC48B4A7FE7283E55601E7?ynotemdtimestamp=1561304251618" alt="image"></li>
-</ul>
-<h2 id="模拟数据方法二-go源码安装"><a href="#模拟数据方法二-go源码安装" class="headerlink" title="模拟数据方法二 go源码安装"></a>模拟数据方法二 go源码安装</h2><ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">=======</div><div class="line"></div><div class="line">## 模拟数据方法二 go源码安装</div></pre></td></tr></table></figure>
+<li><p><img src="https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/1E1DCDC593AC48B4A7FE7283E55601E7?ynotemdtimestamp=1561304251618" alt="image"></p>
 </li>
 </ul>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>5cf5fc3ccec8342646523cf4982e8108d5a47e99<br>        go get github.com/jaegertracing/jaeger<br>        cd $GOPATH/src/github.com/jaegertracing/jaeger<br>        make install </p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</div><div class="line">    </div><div class="line">- 问题：glide (go 包管理工具)的安装</div><div class="line">    </div><div class="line">=======</div><div class="line">   </div><div class="line">## 问题：glide (go 包管理工具)的安装</div><div class="line"></div><div class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 5cf5fc3ccec8342646523cf4982e8108d5a47e99</div></pre></td></tr></table></figure>
+<h2 id="模拟数据方法二-go源码安装"><a href="#模拟数据方法二-go源码安装" class="headerlink" title="模拟数据方法二 go源码安装"></a>模拟数据方法二 go源码安装</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">        go get github.com/jaegertracing/jaeger</div><div class="line">        cd $GOPATH/src/github.com/jaegertracing/jaeger</div><div class="line">        make install </div><div class="line">    </div><div class="line">    ```  </div><div class="line">## 问题：glide (go 包管理工具)的安装</div></pre></td></tr></table></figure>
 
  /bin/sh: 1: glide: not found
     glide install
@@ -644,96 +577,36 @@
     glide not found. Did you add $GOBIN to your $PATH?
     Fail to install glide
     root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger#
-</code></pre><p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">    </div><div class="line">解决问题： </div><div class="line"></div><div class="line">    `vim .profile` # 增加GOBIN的PATH  </div><div class="line"></div><div class="line">然后</div></pre></td></tr></table></figure>
-</code></pre><p>=======<br>        vim .profile # 增加GOBIN的PATH  </p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>5cf5fc3ccec8342646523cf4982e8108d5a47e99<br>        source .profile<br>        root@docker_001:/home/tb# echo $GOBIN<br>        /usr/local/go/bin<br>        root@docker_001:/home/tb# cd /home/tb/go_work/src/github.com/jaegertracing/jaeger<br>        root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger#<br>        root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger# curl <a href="https://glide.sh/get" target="_blank" rel="external">https://glide.sh/get</a> | sh<br>          % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current<br>                                         Dload  Upload   Total   Spent    Left  Speed<br>        100  4833  100  4833    0     0    481      0  0:00:10  0:00:10 –:–:–  1120<br>        ARCH=amd64<br>        OS=linux<br>        Using curl as download tool<br>        Getting <a href="https://glide.sh/version" target="_blank" rel="external">https://glide.sh/version</a><br>        TAG=v0.13.1<br>        GLIDE_DIST=glide-v0.13.1-linux-amd64.tar.gz<br>        Downloading <a href="https://github.com/Masterminds/glide/releases/download/v0.13.1/glide-v0.13.1-linux-amd64.tar.gz" target="_blank" rel="external">https://github.com/Masterminds/glide/releases/download/v0.13.1/glide-v0.13.1-linux-amd64.tar.gz</a><br>        glide version v0.13.1 installed successfully</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<h1 id="然后执行"><a href="#然后执行" class="headerlink" title="然后执行"></a>然后执行</h1><pre><code>#然后执行
-</code></pre><blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>5cf5fc3ccec8342646523cf4982e8108d5a47e99</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<pre><code>`make install`
-`cd examples/hotrod`
-`go run ./main.go all`,执行结果如下  
 
-[INFO]    --&gt; Exporting go.uber.org/multierr
-[INFO]    --&gt; Exporting go.uber.org/zap
-[INFO]    Replacing existing vendor dependencies
-root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger# cd examples/hotrod
-root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger/examples/hotrod# go run ./main.go all
-2018-08-30T11:57:49.524+0800    INFO    cmd/root.go:86    Using expvar as metrics backend
-2018-08-30T11:57:49.524+0800    INFO    cmd/all.go:25    Starting all services
-2018-08-30T11:57:49.625+0800    INFO    log/logger.go:37    Starting    {&quot;service&quot;: &quot;route&quot;, &quot;address&quot;: &quot;http://0.0.0.0:8083&quot;}
-2018-08-30T11:57:49.626+0800    INFO    log/logger.go:37    Starting    {&quot;service&quot;: &quot;frontend&quot;, &quot;address&quot;: &quot;http://0.0.0.0:8080&quot;}
-2018-08-30T11:57:49.728+0800    INFO    log/logger.go:37    Starting    {&quot;service&quot;: &quot;customer&quot;, &quot;address&quot;: &quot;http://0.0.0.0:8081&quot;}
-2018-08-30T11:57:49.729+0800    INFO    log/logger.go:37    TChannel listening    {&quot;service&quot;: &quot;driver&quot;, &quot;hostPort&quot;: &quot;[::]:8082&quot;}
-...
-</code></pre><p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">也是同样通过8080端口访问即可。</div><div class="line"></div><div class="line">=======</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    </div><div class="line">解决问题： </div><div class="line">    `vim .profile` # 增加GOBIN的PATH  </div><div class="line"></div><div class="line">然后</div></pre></td></tr></table></figure>
+
+    vim .profile # 增加GOBIN的PATH  
+    source .profile 
+    root@docker_001:/home/tb# echo $GOBIN
+    /usr/local/go/bin
+    root@docker_001:/home/tb# cd /home/tb/go_work/src/github.com/jaegertracing/jaeger
+    root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger# 
+    root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger# curl https://glide.sh/get | sh
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100  4833  100  4833    0     0    481      0  0:00:10  0:00:10 --:--:--  1120
+    ARCH=amd64
+    OS=linux
+    Using curl as download tool
+    Getting https://glide.sh/version
+    TAG=v0.13.1
+    GLIDE_DIST=glide-v0.13.1-linux-amd64.tar.gz
+    Downloading https://github.com/Masterminds/glide/releases/download/v0.13.1/glide-v0.13.1-linux-amd64.tar.gz
+    glide version v0.13.1 installed successfully
+</code></pre><p>然后执行<br>       <code>make install</code><br>       <code>cd examples/hotrod</code><br>       <code>go run ./main.go all</code>,<br>执行结果如下  </p>
+<p>```<br>       [INFO]    –&gt; Exporting go.uber.org/multierr<br>       [INFO]    –&gt; Exporting go.uber.org/zap<br>       [INFO]    Replacing existing vendor dependencies<br>       root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger# cd examples/hotrod<br>       root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger/examples/hotrod# go run ./main.go all<br>       2018-08-30T11:57:49.524+0800    INFO    cmd/root.go:86    Using expvar as metrics backend<br>       2018-08-30T11:57:49.524+0800    INFO    cmd/all.go:25    Starting all services<br>       2018-08-30T11:57:49.625+0800    INFO    log/logger.go:37    Starting    {“service”: “route”, “address”: “<a href="http://0.0.0.0:8083&quot;}" target="_blank" rel="external">http://0.0.0.0:8083&quot;}</a><br>       2018-08-30T11:57:49.626+0800    INFO    log/logger.go:37    Starting    {“service”: “frontend”, “address”: “<a href="http://0.0.0.0:8080&quot;}" target="_blank" rel="external">http://0.0.0.0:8080&quot;}</a><br>       2018-08-30T11:57:49.728+0800    INFO    log/logger.go:37    Starting    {“service”: “customer”, “address”: “<a href="http://0.0.0.0:8081&quot;}" target="_blank" rel="external">http://0.0.0.0:8081&quot;}</a><br>       2018-08-30T11:57:49.729+0800    INFO    log/logger.go:37    TChannel listening    {“service”: “driver”, “hostPort”: “[::]:8082”}<br>       …</p>
 <p>也是同样通过8080端口访问即可。</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>5cf5fc3ccec8342646523cf4982e8108d5a47e99</p>
 <h2 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h2><ol>
 <li>elasticsearch 存储信息</li>
 <li>php 调用追踪</li>
 <li><a href="https://imscc.io/posts/trace/install_jaeger_on_linux/" target="_blank" rel="external">源码安装jaeger</a></li>
-<li>zipkin</li>
+<li><h1 id="zipkin"><a href="#zipkin" class="headerlink" title="zipkin"></a>zipkin</h1><h2 id="高清大图"><a href="#高清大图" class="headerlink" title="高清大图"></a><a href="http://note.youdao.com/noteshare?id=40533ca20a9edc5b60490f3bd03e3562" target="_blank" rel="external">高清大图</a></h2></li>
 </ol>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<h1 id="lt-lt-lt-lt-lt-lt-lt-HEAD"><a href="#lt-lt-lt-lt-lt-lt-lt-HEAD" class="headerlink" title="&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD"></a>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1><h2 id="高清大图"><a href="#高清大图" class="headerlink" title="高清大图"></a><a href="http://note.youdao.com/noteshare?id=40533ca20a9edc5b60490f3bd03e3562" target="_blank" rel="external">高清大图</a></h2><blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>5cf5fc3ccec8342646523cf4982e8108d5a47e99</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 
       
     </div>
@@ -769,8 +642,8 @@ root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger/examples/ho
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/01/transfer-hue/" rel="next" title="CDH Hue入门">
-                <i class="fa fa-chevron-left"></i> CDH Hue入门
+              <a href="/2018/08/29/docker-one-03/" rel="next" title="docker的架构和底层技术">
+                <i class="fa fa-chevron-left"></i> docker的架构和底层技术
               </a>
             
           </div>
@@ -779,8 +652,8 @@ root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger/examples/ho
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/11/26/head_first_c_106/" rel="prev" title="C根据标准输入解析为json">
-                C根据标准输入解析为json <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/25/docker-one-02/" rel="prev" title="docker环境的各种搭建方法">
+                docker环境的各种搭建方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -862,7 +735,7 @@ root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger/examples/ho
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -895,7 +768,9 @@ root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger/examples/ho
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -1020,7 +895,11 @@ root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger/examples/ho
                     
                       
                     
-                    <span class="site-state-item-count">56</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">58</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1075,7 +954,7 @@ root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger/examples/ho
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名词介绍"><span class="nav-number">2.</span> <span class="nav-text">名词介绍</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#大概流程"><span class="nav-number">1.</span> <span class="nav-text">大概流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">2.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组成部分"><span class="nav-number">3.</span> <span class="nav-text">组成部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据收集展示流程"><span class="nav-number">4.</span> <span class="nav-text">数据收集展示流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALL-IN-ONE-DOCKER-IMAGE"><span class="nav-number">5.</span> <span class="nav-text">ALL IN ONE DOCKER IMAGE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2"><span class="nav-number"></span> <span class="nav-text">2.  </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟测试数据方法一："><span class="nav-number">1.</span> <span class="nav-text">模拟测试数据方法一：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟数据方法二-go源码安装"><span class="nav-number">2.</span> <span class="nav-text">模拟数据方法二 go源码安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#然后执行"><span class="nav-number"></span> <span class="nav-text">然后执行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#todo"><span class="nav-number">1.</span> <span class="nav-text">todo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-lt-lt-lt-lt-lt-lt-HEAD"><span class="nav-number"></span> <span class="nav-text"><<<<<<< HEAD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#高清大图"><span class="nav-number">1.</span> <span class="nav-text">高清大图</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名词介绍"><span class="nav-number">2.</span> <span class="nav-text">名词介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大概流程"><span class="nav-number">3.</span> <span class="nav-text">大概流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">4.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组成部分"><span class="nav-number">5.</span> <span class="nav-text">组成部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据收集展示流程"><span class="nav-number">6.</span> <span class="nav-text">数据收集展示流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALL-IN-ONE-DOCKER-IMAGE"><span class="nav-number">7.</span> <span class="nav-text">ALL IN ONE DOCKER IMAGE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟测试数据方法一："><span class="nav-number">8.</span> <span class="nav-text">模拟测试数据方法一：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟数据方法二-go源码安装"><span class="nav-number">9.</span> <span class="nav-text">模拟数据方法二 go源码安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#todo"><span class="nav-number">10.</span> <span class="nav-text">todo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zipkin"><span class="nav-number"></span> <span class="nav-text">zipkin</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#高清大图"><span class="nav-number">1.</span> <span class="nav-text">高清大图</span></a></li></ol></div>
             
 
           </div>
