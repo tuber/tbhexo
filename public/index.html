@@ -338,6 +338,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2019/07/20/php-pull-control-by-redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/20/php-pull-control-by-redis/" itemprop="url">
+                  php同步拉去大量数据的一种可控方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-20 13:18:59" itemprop="dateCreated datePublished" datetime="2019-07-20T13:18:59+08:00">2019-07-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-03 16:55:11" itemprop="dateModified" datetime="2019-11-03T16:55:11+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>数据同步只能通过php脚本拉取三方接口来执行。比如我需要每天拉取从jd商城下单的数据到mysql，jd通过已知接口告知我共多少页多少条数据。大概每天60w条，但是问题是jd接口请求频次受限。而用php请求还有个问题就是脚本可能超时或者由于其他原因异常退出。这样会导致数据插入失败，甚至是插入重复。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/20/php-pull-control-by-redis/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2019/05/13/tcpdump-arp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1318,7 +1492,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-03 12:28:40" itemprop="dateModified" datetime="2019-11-03T12:28:40+08:00">2019-11-03</time>
+                <time title="Modified: 2019-11-03 12:40:16" itemprop="dateModified" datetime="2019-11-03T12:40:16+08:00">2019-11-03</time>
               
             
           </span>
@@ -1370,35 +1544,9 @@
 
       
         
-          <h2 id="学名（Distributed-TracingSystem-分布式追踪系统）"><a href="#学名（Distributed-TracingSystem-分布式追踪系统）" class="headerlink" title="学名（Distributed TracingSystem 分布式追踪系统）"></a>学名（Distributed TracingSystem 分布式追踪系统）</h2><h2 id="支持的客户端语言情况"><a href="#支持的客户端语言情况" class="headerlink" title="支持的客户端语言情况"></a><a href="https://zipkin.io/pages/existing_instrumentations.html">支持的客户端语言情况</a></h2><h2 id="奉上谷歌论文Dapper"><a href="#奉上谷歌论文Dapper" class="headerlink" title="奉上谷歌论文Dapper"></a><a href="https://bigbully.github.io/Dapper-translation/">奉上谷歌论文Dapper</a></h2><h2 id="新美大之CAT（开源）"><a href="#新美大之CAT（开源）" class="headerlink" title="新美大之CAT（开源）"></a><a href="https://tech.meituan.com/CAT_in_Depth_Java_Application_Monitoring.html">新美大之CAT（开源）</a></h2><h2 id="大厂子自己造的轮子"><a href="#大厂子自己造的轮子" class="headerlink" title="大厂子自己造的轮子"></a><a href="https://www.jianshu.com/p/e02972487e00">大厂子自己造的轮子</a></h2><h2 id="华为专利-link"><a href="#华为专利-link" class="headerlink" title="华为专利 link"></a>华为专利 <a href="https://note.youdao.com/">link</a></h2><h2 id="安装运行"><a href="#安装运行" class="headerlink" title="安装运行"></a>安装运行</h2><ol>
+          <h2 id="学名（Distributed-TracingSystem-分布式追踪系统）"><a href="#学名（Distributed-TracingSystem-分布式追踪系统）" class="headerlink" title="学名（Distributed TracingSystem 分布式追踪系统）"></a>学名（Distributed TracingSystem 分布式追踪系统）</h2><h2 id="支持的客户端语言情况"><a href="#支持的客户端语言情况" class="headerlink" title="支持的客户端语言情况"></a><a href="https://zipkin.io/pages/existing_instrumentations.html">支持的客户端语言情况</a></h2><h2 id="奉上谷歌论文Dapper"><a href="#奉上谷歌论文Dapper" class="headerlink" title="奉上谷歌论文Dapper"></a><a href="https://bigbully.github.io/Dapper-translation/">奉上谷歌论文Dapper</a></h2><h2 id="新美大之CAT（开源）"><a href="#新美大之CAT（开源）" class="headerlink" title="新美大之CAT（开源）"></a><a href="https://tech.meituan.com/CAT_in_Depth_Java_Application_Monitoring.html">新美大之CAT（开源）</a></h2><h2 id="大厂子自己造的轮子"><a href="#大厂子自己造的轮子" class="headerlink" title="大厂子自己造的轮子"></a><a href="https://www.jianshu.com/p/e02972487e00">大厂子自己造的轮子</a></h2><h2 id="安装运行"><a href="#安装运行" class="headerlink" title="安装运行"></a>安装运行</h2><ol>
 <li><p>代码执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">root@es_002:/home/tb/tbdown/zipkin# ls</div><div class="line">quickstart.sh  zipkin-server-2.11.7-exec.jar</div><div class="line">root@es_002:/home/tb/tbdown/zipkin# java -jar zipkin-server-2.11.7-exec.jar </div><div class="line">                                    ********</div><div class="line">                                  **        **</div><div class="line">                                 *            *</div><div class="line">                                **            **</div><div class="line">                                **            **</div><div class="line">                                 **          **</div><div class="line">                                  **        **</div><div class="line">                                    ********</div><div class="line">                                      ****</div><div class="line">                                      ****</div><div class="line">        ****                          ****</div><div class="line">     ******                           ****                                 ***</div><div class="line">  ****************************************************************************</div><div class="line">    *******                           ****                                 ***</div><div class="line">        ****                          ****</div><div class="line">                                       **</div><div class="line">                                       **</div><div class="line"></div><div class="line"></div><div class="line">             *****      **     *****     ** **       **     **   **</div><div class="line">               **       **     **  *     ***         **     **** **</div><div class="line">              **        **     *****     ****        **     **  ***</div><div class="line">             ******     **     **        **  **      **     **   **</div><div class="line"></div><div class="line">:: Powered by Spring Boot ::</div></pre></td></tr></table></figure>
-</li>
-<li><p>上图</p>
-<ol>
-<li>是没有jaeger的好看，丰富<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/5513E5C3C0524A5FB937A1CB0EE7A3EA" alt="image"></li>
-<li>有数据的<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/52486B77B78B473E92DA60311F4491E4" alt="image"></li>
-<li><p>依赖<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/2454953BD0204E7090F1FBA67FB99C36" alt="image"></p>
-</li>
-<li><p>逻辑图  </p>
-</li>
-</ol>
-<ul>
-<li><p>总<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/6DDA0E236C6F476FAEC555B3E99A3266?ynotemdtimestamp=1561305104458" alt="image"></p>
-</li>
-<li><p>分<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/C1ABE11BB22B452A9470EC27AB4097FD?ynotemdtimestamp=1561305104458" alt="image"></p>
-</li>
-<li><p>层次<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/3955D44C096B4438AF40BF293D59EC45?ynotemdtimestamp=1561305104458" alt="image"></p>
-</li>
-<li><p>更贴近业务的复杂调用<br><img src="https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/D162A85DC67E42D1BAAC622EF4A7668D?ynotemdtimestamp=1561305104458" alt="image"></p>
-</li>
-</ul>
-</li>
-</ol>
-<ol>
-<li><a href="https://github.com/openzipkin/zipkin-php">Zipkin of php</a>类库<a href="https://zipkin.io/pages/existing_instrumentations.html">了解</a>一下</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//如果是新项目需要引入包，按需参考以下命令</div><div class="line">composer init</div><div class="line">composer config -g secure-http false</div><div class="line"></div><div class="line">//参考官方php类库 composer.json文件，得到以下</div><div class="line">root@udev:/home/tb/tbtmp# ls</div><div class="line">composer.json  composer.lock  vendor</div><div class="line">root@udev:/home/tb/tbtmp# cd vendor/</div><div class="line">root@udev:/home/tb/tbtmp/vendor# ls</div><div class="line">autoload.php  composer  evenement   jcchavezs  phpdocumentor  phpunit  react        sebastian  symfony</div><div class="line">bin           doctrine  guzzlehttp  myclabs    phpspec        psr      ringcentral  squizlabs  webmozart</div><div class="line">root@udev:/home/tb/tbtmp/vendor#</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/23/trace-zipkin-php/#more" rel="contents">
@@ -1520,7 +1668,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-03 12:20:24" itemprop="dateModified" datetime="2019-11-03T12:20:24+08:00">2019-11-03</time>
+                <time title="Modified: 2019-11-03 12:21:17" itemprop="dateModified" datetime="2019-11-03T12:21:17+08:00">2019-11-03</time>
               
             
           </span>
@@ -1972,180 +2120,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/25/head_firstc_str_reverse_98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MAC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/25/head_firstc_str_reverse_98/" itemprop="url">
-                  C语言str_reverse实例
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-25 08:25:03" itemprop="dateCreated datePublished" datetime="2017-11-25T08:25:03+08:00">2017-11-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><p>字符数组的字符串指针反转<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/25/head_firstc_str_reverse_98/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2197,7 +2171,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2361,7 +2335,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">58</span>
+                      
+                    
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

@@ -11,9 +11,7 @@ tags:
 ## [奉上谷歌论文Dapper](https://bigbully.github.io/Dapper-translation/)
 ## [新美大之CAT（开源）](https://tech.meituan.com/CAT_in_Depth_Java_Application_Monitoring.html)
 ## [大厂子自己造的轮子](https://www.jianshu.com/p/e02972487e00)
-## 华为专利 [link](https://note.youdao.com/)
 ## 安装运行
-
 1. 代码执行
 ```
 root@es_002:/home/tb/tbdown/zipkin# ls
@@ -44,8 +42,8 @@ root@es_002:/home/tb/tbdown/zipkin# java -jar zipkin-server-2.11.7-exec.jar
              ******     **     **        **  **      **     **   **
 
 :: Powered by Spring Boot ::  
-
 ```
+ <!-- more -->
 2. 上图
     1. 是没有jaeger的好看，丰富
 ![image](https://note.youdao.com/yws/public/resource/16e9b0e6405d9b23ee0d38b52cad6a4f/5513E5C3C0524A5FB937A1CB0EE7A3EA)
