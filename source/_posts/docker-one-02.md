@@ -1,6 +1,10 @@
 ---
 title: docker环境的各种搭建方法
+<<<<<<< HEAD
 date: 2018-07-25 23:17:33
+=======
+date: 2019-02-09 11:17:33
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 categories: DevOps
 tags:
     - docker

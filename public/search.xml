@@ -144,17 +144,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[字符数组+1与指针+1]]></title>
-    <url>%2F2017%2F11%2F04%2Fhead_first_c_%2F</url>
-    <content type="text"><![CDATA[字符数组+1代码123456789101112131415161718192021#include &lt;stdio.h&gt;int main()&#123; char mystr[]="Abcef"; printf("size of mystr=%i\n",sizeof(mystr)); printf("mystr[0]，他的值为%c:\n",mystr[0]); printf("&amp;mystr[0]，他的内存地址值为%i:\n",&amp;mystr); printf("mystr[1]，他的值为%c:\n",mystr[1]); printf("&amp;mystr[1]，他的内存地址值为%i:\n",&amp;mystr+1); printf("mystr[2]，他的值为%c:\n",mystr[2]); printf("&amp;mystr[2]，他的内存地址值为%i:\n",&amp;mystr+2); printf("mystr[3]，他的值为%c:\n",mystr[3]); printf("&amp;mystr[3]，他的内存地址值为%i:\n",&amp;mystr+3); return 0;&#125; 字符数组+1代码 结果12345678910size of mystr=6mystr[0]，他的值为A:&amp;mystr[0]，他的内存地址值为1703736:mystr[1]，他的值为b:&amp;mystr[1]，他的内存地址值为1703742:mystr[2]，他的值为c:&amp;mystr[2]，他的内存地址值为1703748:mystr[3]，他的值为e:&amp;mystr[3]，他的内存地址值为1703754:Press any key to continue 指针+1代码12345678910111213141516#include &lt;stdio.h&gt;int main()&#123; char *mystr="ABC"; printf("size of mystr=%i\n",sizeof(mystr)); printf("mystr[0]，他的值为%c:\n",mystr[0]); printf("&amp;mystr[0]，他的内存地址值为%i:\n",&amp;mystr); printf("mystr[1]，他的值为%c:\n",mystr[1]); printf("&amp;mystr[1]，他的内存地址值为%i:\n",&amp;mystr+1); printf("mystr[2]，他的值为%c:\n",mystr[2]); printf("&amp;mystr[2]，他的内存地址值为%i:\n",&amp;mystr+2); printf("mystr[3]，他的值为%c:\n",mystr[3]); printf("&amp;mystr[3]，他的内存地址值为%i:\n",&amp;mystr+3); return 0;&#125; 指针+1代码 结果12345678size of mystr=4mystr[0]，他的值为A:&amp;mystr[0]，他的内存地址值为1703740:mystr[1]，他的值为B:&amp;mystr[1]，他的内存地址值为1703744:mystr[2]，他的值为C:&amp;mystr[2]，他的内存地址值为1703748:mystr[3]，他的值为 结论：指针的+1，只对当前指针所占字节数的+1字符数组的+1，是对当前数组指针的sizeof+1]]></content>
-      <categories>
-        <category>C</category>
-      </categories>
-      <tags>
-        <tag>数组与指针</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[计算机科学CS分类]]></title>
     <url>%2F2017%2F11%2F04%2Fcomputer-science-summary%2F</url>
     <content type="text"><![CDATA[经常看到CS这个词，今天偶然下载了知乎刘洋的电子书。再此也敲一下。 理论计算机科学数据结构和算法计算理论信息论与编码理论编程语言与编译器形式化方法 计算机系统计算机体系结构与计算机工程操作系统并发、并行与分布式系统计算机网络计算机安全密码学数据库计算机应用技术计算机图形学科学计算多媒体技术数据挖掘软件工程人工智能自助推理机器学习计算机视觉自然语言处理]]></content>
@@ -163,6 +152,17 @@
       </categories>
       <tags>
         <tag>计算机科学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[字符数组+1与指针+1]]></title>
+    <url>%2F2017%2F11%2F04%2Fhead_first_c_%2F</url>
+    <content type="text"><![CDATA[字符数组+1代码123456789101112131415161718192021#include &lt;stdio.h&gt;int main()&#123; char mystr[]="Abcef"; printf("size of mystr=%i\n",sizeof(mystr)); printf("mystr[0]，他的值为%c:\n",mystr[0]); printf("&amp;mystr[0]，他的内存地址值为%i:\n",&amp;mystr); printf("mystr[1]，他的值为%c:\n",mystr[1]); printf("&amp;mystr[1]，他的内存地址值为%i:\n",&amp;mystr+1); printf("mystr[2]，他的值为%c:\n",mystr[2]); printf("&amp;mystr[2]，他的内存地址值为%i:\n",&amp;mystr+2); printf("mystr[3]，他的值为%c:\n",mystr[3]); printf("&amp;mystr[3]，他的内存地址值为%i:\n",&amp;mystr+3); return 0;&#125; 字符数组+1代码 结果12345678910size of mystr=6mystr[0]，他的值为A:&amp;mystr[0]，他的内存地址值为1703736:mystr[1]，他的值为b:&amp;mystr[1]，他的内存地址值为1703742:mystr[2]，他的值为c:&amp;mystr[2]，他的内存地址值为1703748:mystr[3]，他的值为e:&amp;mystr[3]，他的内存地址值为1703754:Press any key to continue 指针+1代码12345678910111213141516#include &lt;stdio.h&gt;int main()&#123; char *mystr="ABC"; printf("size of mystr=%i\n",sizeof(mystr)); printf("mystr[0]，他的值为%c:\n",mystr[0]); printf("&amp;mystr[0]，他的内存地址值为%i:\n",&amp;mystr); printf("mystr[1]，他的值为%c:\n",mystr[1]); printf("&amp;mystr[1]，他的内存地址值为%i:\n",&amp;mystr+1); printf("mystr[2]，他的值为%c:\n",mystr[2]); printf("&amp;mystr[2]，他的内存地址值为%i:\n",&amp;mystr+2); printf("mystr[3]，他的值为%c:\n",mystr[3]); printf("&amp;mystr[3]，他的内存地址值为%i:\n",&amp;mystr+3); return 0;&#125; 指针+1代码 结果12345678size of mystr=4mystr[0]，他的值为A:&amp;mystr[0]，他的内存地址值为1703740:mystr[1]，他的值为B:&amp;mystr[1]，他的内存地址值为1703744:mystr[2]，他的值为C:&amp;mystr[2]，他的内存地址值为1703748:mystr[3]，他的值为 结论：指针的+1，只对当前指针所占字节数的+1字符数组的+1，是对当前数组指针的sizeof+1]]></content>
+      <categories>
+        <category>C</category>
+      </categories>
+      <tags>
+        <tag>数组与指针</tag>
       </tags>
   </entry>
   <entry>
@@ -287,6 +287,10 @@
       <tags>
         <tag>装饰模式</tag>
         <tag>软件设计师</tag>
+<<<<<<< HEAD
+=======
+        <tag>装饰模式</tag>
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
         <tag>JAVA</tag>
       </tags>
   </entry>
@@ -324,8 +328,8 @@
         <category>computer</category>
       </categories>
       <tags>
-        <tag>软件设计师</tag>
         <tag>软考</tag>
+        <tag>软件设计师</tag>
       </tags>
   </entry>
   <entry>

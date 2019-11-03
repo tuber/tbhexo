@@ -19,6 +19,7 @@ tags:
     - [七牛](https://developer.qiniu.com/insight/manual/5054/all-link-track-profile)
     - [阿里好文2](https://yq.aliyun.com/articles/514488?utm_content=m_43347)
     - [google 论文中文](https://bigbully.github.io/Dapper-translation/)
+<<<<<<< HEAD
 - 两对儿图：
     <!-- more -->
     - 日常调用（逻辑链路）
@@ -31,6 +32,9 @@ tags:
 - 整图  
 ![image](https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/55C38C3F3E0B43ECA926A6FD1CC25E9E)
 
+=======
+ <!-- more -->
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 ## 名词介绍
 1. TrancesID 全局跟踪id，标记一次完整的服务调用（可包含多次子，子子调用） 一般可以设置为TraceId和顶级span相同
 2. SpansID 一次方法（程序块、RPC、db）的调用，每一个RPC对应到一个单一的span，但是traceId都是相同的。
@@ -52,8 +56,11 @@ tags:
 11. BinaryAnnotation 除去以上的时间、事件、节点等信息，如果还需要++绑定业务数据++（日志、异常），将数据写入到BinaryAnnotion中。结构和Annotation一样。
 12. parentId 父span的Id，当然具有层级关系。顶级span（最先接触服务调用入口）是没有parentId的
 13. span name 一般为接口的方法名
+<<<<<<< HEAD
 14. 一图胜三言(下图)
 15. ![image](https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/7B603AE043744222A2FABDBEC691C32E)
+=======
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 
 ## 大概流程
 1. 请求入口生成唯一traceId，用于贯穿整个服务，
@@ -63,7 +70,10 @@ tags:
 5. 统一存储（涉及各编程语言调用类库及客户端收集存储）
 6. 查询结果，输出展示
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 ## 应用场景
 - [做一个筛选条件的导出excel操作](https://blog.yeeef.com/post/optimize-slow-request/)，筛选条件经过sql查询生成对象数组，然后经过代码逻辑处理导出csv，查看是否有redis缓存，最后到客户端输出。可以查看是sql问题（数据查询和数据转换）？redis连接缓存问题？客户端导出慢？
 - 谷歌首页搜索一个词语，需要毫秒级响应。列表，图片，推荐，所有的不只一个接口。如果时间太长，到底是哪里慢？
@@ -100,7 +110,10 @@ tags:
           -p 9411:9411 \
           jaegertracing/all-in-one:latest
     ```
+<<<<<<< HEAD
 2.  ![image](https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/2EC21DEEF68B4BA5B855FBEA04585B4E)
+=======
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
   
 ## 模拟测试数据方法一： 
  
@@ -123,18 +136,31 @@ tags:
         2018-08-28T06:44:27.105Z	INFO	log/logger.go:37	Starting	{"service": "frontend", "address": "http://0.0.0.0:8080"}
     
     ```
+<<<<<<< HEAD
 - ![image](https://note.youdao.com/yws/public/resource/40533ca20a9edc5b60490f3bd03e3562/1E1DCDC593AC48B4A7FE7283E55601E7?ynotemdtimestamp=1561304251618)
 
 ## 模拟数据方法二 go源码安装
 -    ```
+=======
+
+## 模拟数据方法二 go源码安装
+
+    ```
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
         go get github.com/jaegertracing/jaeger
         cd $GOPATH/src/github.com/jaegertracing/jaeger
         make install 
     
     ```
+<<<<<<< HEAD
     
 - 问题：glide (go 包管理工具)的安装
     
+=======
+   
+## 问题：glide (go 包管理工具)的安装
+
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
     ```
      /bin/sh: 1: glide: not found
         glide install
@@ -157,6 +183,7 @@ tags:
         glide not found. Did you add $GOBIN to your $PATH?
         Fail to install glide
         root@docker_001:/home/tb/go_work/src/github.com/jaegertracing/jaeger#
+<<<<<<< HEAD
     
     ``` 
     
@@ -167,6 +194,9 @@ tags:
 然后 
 
     ```
+=======
+        vim .profile # 增加GOBIN的PATH  
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
         source .profile 
         root@docker_001:/home/tb# echo $GOBIN
         /usr/local/go/bin
@@ -185,7 +215,11 @@ tags:
         Downloading https://github.com/Masterminds/glide/releases/download/v0.13.1/glide-v0.13.1-linux-amd64.tar.gz
         glide version v0.13.1 installed successfully
 
+<<<<<<< HEAD
 然后执行
+=======
+        #然后执行
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 
        `make install`
        `cd examples/hotrod`
@@ -203,14 +237,24 @@ tags:
        2018-08-30T11:57:49.728+0800	INFO	log/logger.go:37	Starting	{"service": "customer", "address": "http://0.0.0.0:8081"}
        2018-08-30T11:57:49.729+0800	INFO	log/logger.go:37	TChannel listening	{"service": "driver", "hostPort": "[::]:8082"}
        ...
+<<<<<<< HEAD
     
    ```
 也是同样通过8080端口访问即可。
 
+=======
+    ```
+也是同样通过8080端口访问即可。
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 ## todo
 1. elasticsearch 存储信息
 2. php 调用追踪
 3. [源码安装jaeger](https://imscc.io/posts/trace/install_jaeger_on_linux/)
 4. zipkin
 
+<<<<<<< HEAD
+=======
+## [高清大图](http://note.youdao.com/noteshare?id=40533ca20a9edc5b60490f3bd03e3562)
+
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 

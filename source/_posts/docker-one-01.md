@@ -1,5 +1,6 @@
 ---
 title: docker容器技术与简介
+<<<<<<< HEAD
 date: 2018-06-29 23:07:56
 categories: DevOps
 tags:
@@ -15,6 +16,26 @@ tags:
     - docker cloud & docker 企业版（收费）
     - kubernetes k8s（容器编排工具，见下图）
     - ![image](https://note.youdao.com/yws/public/resource/9b29555102c38022c7779af947ee67c2/9D2642E1E9974559BF725E7541BEDAB5?ynotemdtimestamp=1561302581281)
+=======
+date: 2019-01-29 23:07:56
+categories: DevOps
+tags:
+    - docker
+---
+## 容器技术与docker
+## docker能做什么
+
+    - 简化配置（所有打包到容器里）
+    - 提升开发效率（环境相同，统一部署）
+    - 隔离应用
+
+## 容器应用代表
+    - docker and docker swarm
+    - docker cloud & docker 企业版（收费）
+    - kubernetes k8s（容器编排工具，见下图）
+![容器编排][1]
+ <!-- more -->
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 4. devops
     - 文化+过程+工具
     - 持续
@@ -29,16 +50,26 @@ tags:
         - 版本管理
     - 信任和尊重、敏捷的目标、开放的沟通
 5. 总览（见下图）
+<<<<<<< HEAD
     -  ![image](https://note.youdao.com/yws/public/resource/9b29555102c38022c7779af947ee67c2/6FE5AB8ECDBD4169AE3697C6C2A3D2D0?ynotemdtimestamp=1561302581281)
+=======
+    -  ![总览][2]
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
 
 ---
 1.  容器技术概述
     - 传统模式 硬件不兼容、部署复杂
     - 虚拟机模式 hypervisor，可以实现物理资源的自定义调度资源池
     - 容器技术产生背景（环境各种各样、部署、监控各种各样）（见下图）
+<<<<<<< HEAD
     - ![image](https://note.youdao.com/yws/public/resource/9b29555102c38022c7779af947ee67c2/A7D6A7D755DF4CE8AB2339D14C613F30?ynotemdtimestamp=1561302581281)
     - 容器解决了什么问题（解决开发、运维、测试的沟通，见下图）
     - ![image](https://note.youdao.com/yws/public/resource/9b29555102c38022c7779af947ee67c2/B45983FD363F460FA6C00FC6F37197CF?ynotemdtimestamp=1561302934925)
+=======
+    - ![image][3]
+    - 容器解决了什么问题（解决开发、运维、测试的沟通，见下图）
+    - ![image][4]
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
     - 容器定义
         - 对软件和依赖的标准化打包
         - 实现应用之间的隔离
@@ -59,7 +90,17 @@ tags:
 1. vagrant
 2. labs
 
+<<<<<<< HEAD
 ---
 完
+=======
+
+[1]: /img/DevOps/rongqi_bianpai.png
+[2]: /img/DevOps/总览.png
+[3]: /img/DevOps/容器技术产生背景.png
+[4]: /img/DevOps/容器解决什么问题.png
+
+
+>>>>>>> 5cf5fc3ccec8342646523cf4982e8108d5a47e99
     
 
