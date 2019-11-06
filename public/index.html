@@ -338,6 +338,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2019/11/04/tcp-not-only-3handshank-4byebye/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tong Bo">
+      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
+      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MAC">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/04/tcp-not-only-3handshank-4byebye/" itemprop="url">
+                  TCP除了3次握手四次挥手之外的基础知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-11-04 22:18:59" itemprop="dateCreated datePublished" datetime="2019-11-04T22:18:59+08:00">2019-11-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-06 21:44:23" itemprop="dateModified" datetime="2019-11-06T21:44:23+08:00">2019-11-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NETWORK/" itemprop="url" rel="index"><span itemprop="name">NETWORK</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="tcp特点"><a href="#tcp特点" class="headerlink" title="tcp特点"></a>tcp特点</h4><ol>
+<li>使用tcp双方的链接分配必要的内核资源，以管理连接的状态和连接上的数据的传输。全双工，即双方的数据读写可以通过一个连接进行。完成数据交换后，需要断开连接以释放系统资源。因为是一对一，所以基于广播和多播的协议不能使用tcp程序。tcp模块发送数据时，涉及到发送缓冲区可能被封装成一个或者多个tcp报文段发出。由此可见，tcp模块发送出的tcp报文段的个数和应用程序执行写的操作次数之间没有固定的数量的关系。</li>
+<li>当接收端收到一个或者多个tcp报文段后，tcp模块将他们携带的应用的程序数据按照tcp报文段的序号依次放入到tcp接收缓冲区中。并通知应用程序去读取数据，接收端应用程序可以一次性将tcp接受缓冲区的数据全部取出，也可以分多次读取。这个取决于用户指定的应用程序缓冲区的大小。由此可见，应用程序执行的读操作次数和tcp模块接收到tcp报文段个数之间也没有固定的数量关系。</li>
+<li>字节流的概念：发送端执行的写操作次数和接收端执行的读操作次数之间没有任何的数量关系，这就是字节流的概念。应用程序对数据的发送和接收是没有唯一边界限制的。而udp发送端应用程序每执行一次写，udp模块就将其封装成一个udp数据报并发送，接收端必须及时接收每个udp数据报进行读操作（recvfrom），否则就会丢包。此外，如果用户没有指定足够的应用程序缓冲区来读取udp数据，则udp数据将被截断。</li>
+<li>一些机制<ul>
+<li>定时器</li>
+<li>未收到回应后重发（定时器）</li>
+<li>RWND:receiver window：接收通告窗口</li>
+<li>tcp对ip数据报进行重排，整理，再交付给上层</li>
+</ul>
+</li>
+</ol>
+<h4 id="tcp头部结构"><a href="#tcp头部结构" class="headerlink" title="tcp头部结构"></a>tcp头部结构</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/11/04/tcp-not-only-3handshank-4byebye/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2019/07/20/php-pull-control-by-redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1946,180 +2132,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://iamtb.cn/2017/11/25/mycnart_email_config/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tong Bo">
-      <meta itemprop="description" content="君子曰：学不可以已。吾尝终日而思矣，不如须臾之所学也；吾尝跂而望矣，不如登高之博见也。登高而招，臂非加长也，而见者远；顺风而呼，声非加疾也，而闻者彰。假舆马者，非利足也，而致千里；假舟楫者，非能水也，而绝江河。君子生非异也，善假于物也。">
-      <meta itemprop="image" content="/img/avator/fucktheking.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MAC">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/25/mycnart_email_config/" itemprop="url">
-                  mycncart email设置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-25 20:25:03" itemprop="dateCreated datePublished" datetime="2017-11-25T20:25:03+08:00">2017-11-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-03 12:04:25" itemprop="dateModified" datetime="2019-11-03T12:04:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="知识点：查看log"><a href="#知识点：查看log" class="headerlink" title="知识点：查看log"></a>知识点：查看log</h2><p>提交订单时，出现服务器500错误，但是php的相关报错都已经打开。<br>想了一会，还是看<code>fpm_error.log</code>和<code>nginx errorlog</code><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/25/mycnart_email_config/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2171,7 +2183,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2337,7 +2349,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">59</span>
+                      
+                    
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
